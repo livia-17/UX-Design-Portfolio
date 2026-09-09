@@ -1,0 +1,1617 @@
+/* ==========================================================================
+   Sakshi Thareja - Minimalist Portfolio & 2-Column Work Grid Theme
+   Typography: Helvetica Neue / Helvetica (24px Title / 16px Subtitle & Tags)
+   Location: Desktop > Portfolio M.Des > New Portfolio
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Reset & Design Tokens
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: none !important;
+}
+
+/* Base cursor container setup */
+#custom-cursor {
+  position: fixed !important;
+  top: 0;  /* No !important so JS can update coordinates freely */
+  left: 0; /* No !important so JS can update coordinates freely */
+  width: 44px !important;  /* Reduced from 60px */
+  height: 44px !important; /* Reduced from 60px */
+  pointer-events: none !important;
+  z-index: 100000 !important;
+  transform: translate(-50%, -50%) !important;
+  opacity: 0; /* Hide initially until first mouse movement */
+  transition: opacity 0.3s ease; /* Smooth fade in */
+  will-change: left, top, opacity;
+}
+
+/* Overlap the two states perfectly */
+.cursor-inactive,
+.cursor-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Initial State */
+.cursor-active {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* Active/Hover State */
+#custom-cursor.is-active .cursor-inactive {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+#custom-cursor.is-active .cursor-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+:root {
+  /* Color Palette Tokens */
+  --color-black: #000000;
+  --color-blue-deep: #0a2e5c;
+  --color-blue-light: #3b76b3;
+  --color-white: #ffffff;
+  --color-text-dark: #000000;
+  --color-text-light: #ffffff;
+
+  /* Font Families: DM Sans Stack for Primary Brand Elements */
+  --font-brand: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-nav: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Motion & Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Global Scroll Behavior & Background Theme
+   -------------------------------------------------------------------------- */
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+  -webkit-text-size-adjust: 100%;
+}
+
+[id] {
+  scroll-margin-top: 76px;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  padding-top: 76px; /* Offset for fixed header height */
+  font-family: var(--font-nav);
+  color: var(--color-text-light);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Full-Page Vertical Linear Gradient */
+  background-image: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #000000 30%,
+    #0a2e5c 50%,
+    #3b76b3 75%,
+    #ffffff 85%,
+    #ffffff 100%
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
+/* --------------------------------------------------------------------------
+   3. Global Fixed Interactive Dot Matrix Wallpaper with Mouse Spotlight & Ripple Reveal
+   -------------------------------------------------------------------------- */
+#interactive-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  pointer-events: auto;
+  z-index: -1; /* Keeps it strictly behind all text and sections as fixed wallpaper */
+  background: transparent;
+  overflow: hidden;
+
+  /* Expanding Radial Reveal (Ripple Effect) Animation */
+  animation: gridRippleReveal 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  will-change: clip-path, opacity;
+}
+
+/* Expanding Radial Ripple Reveal Keyframe Sequence */
+@keyframes gridRippleReveal {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1; /* Fade in base visibility quickly */
+  }
+  100% {
+    clip-path: circle(150% at 50% 50%); /* Expands well past screen edges */
+    opacity: 1;
+  }
+}
+
+/* Mouse-Tracking Radial Spotlight Overlay */
+#interactive-grid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.95) 1.5px, transparent 1.5px);
+  background-size: 48px 48px; /* Matches the 48px grid cell spacing */
+  background-position: center center;
+  mask-image: radial-gradient(circle 180px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 180px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%);
+}
+
+/* Individual Grid Cell (Restored Spacious 48px Spacing) */
+.grid-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  contain: strict; /* High-performance layout containment for fast rendering */
+}
+
+/* Delicate 1px x 1px Micro Dot Architecture with Exact 75% Base Opacity (0.75 Alpha) */
+.grid-dot {
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.75); /* Exactly 75% opacity base white */
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: background-color, box-shadow;
+  pointer-events: auto;
+}
+
+/* Radiant 100% Full Opacity Glow Interaction on Hover */
+.grid-cell:hover .grid-dot,
+.grid-dot:hover {
+  background-color: #ffffff; /* 100% Solid pure white (1.0 opacity) */
+  box-shadow: 0 0 10px 4px #ffffff, 0 0 20px 6px rgba(255, 255, 255, 0.85); /* Intense LED radial glow */
+  transition: background-color 0.05s ease, box-shadow 0.05s ease;
+}
+
+/* Blue Dot Grid Transformation when Viewer Reaches Footer Section */
+body.footer-grid-active .grid-dot {
+  background-color: rgba(10, 46, 92, 0.7) !important; /* Visible deep blue dots on white footer */
+}
+
+body.footer-grid-active #interactive-grid::after {
+  background-image: radial-gradient(circle, rgba(10, 46, 92, 0.95) 2px, transparent 2px) !important;
+}
+
+body.footer-grid-active .grid-cell:hover .grid-dot,
+body.footer-grid-active .grid-dot:hover {
+  background-color: #0a2e5c !important; /* Vibrant deep blue highlight */
+  box-shadow: 0 0 10px 4px #3b76b3, 0 0 20px 6px rgba(59, 118, 179, 0.85) !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. 100% Full Viewport-Width Frosted Glass (Glassmorphism) Navigation Bar Header
+   -------------------------------------------------------------------------- */
+.site-header,
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  background: rgba(10, 10, 15, 0.4) !important; /* Semi-transparent dark overlay */
+  backdrop-filter: blur(12px) !important; /* Key frosted glass effect */
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important; /* Soft rim highlight */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  z-index: 999 !important; /* Ensures it stays above all other content */
+  pointer-events: auto !important;
+}
+
+/* Inner Centered Content Layout Wrapper */
+.navbar,
+nav {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 5%;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  pointer-events: auto;
+}
+
+/* Base Styles for Menu Links: Helvetica Regular 400 @ 16px */
+header a,
+nav a,
+.navbar a,
+.nav-link {
+  font-family: var(--font-brand); /* 'Helvetica Neue', Helvetica, Arial, sans-serif */
+  font-size: 16px !important; /* 16px Base Menu Font Size */
+  font-weight: 400 !important; /* Regular 400 Weight */
+  color: #ffffff !important; /* Solid White */
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  pointer-events: auto;
+}
+
+/* Override Styles for Brand Logo / Name: Helvetica Medium 500 @ 20px */
+.brand-logo,
+.navbar-brand,
+.logo,
+header .brand-logo,
+header .navbar-brand,
+nav .logo {
+  font-family: var(--font-brand);
+  font-size: 20px !important; /* 20px Logo Font Size */
+  font-weight: 500 !important; /* Medium 500 Weight */
+  color: #ffffff !important; /* Solid White */
+  letter-spacing: -0.05em;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  pointer-events: auto;
+}
+
+.brand-logo:hover,
+header a:hover,
+nav a:hover,
+.navbar a:hover,
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+/* Right-side Links Container: 32px Flex Gap */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  pointer-events: auto;
+}
+
+.nav-link:focus-visible,
+.brand-logo:focus-visible,
+.menu-toggle:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Mobile Hamburger Button */
+.menu-toggle,
+button {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  z-index: 1001;
+  pointer-events: auto;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff !important;
+  border-radius: 2px;
+  transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+}
+
+.menu-toggle.is-active .hamburger-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.is-active .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.is-active .hamburger-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Responsiveness (< 768px) */
+@media (max-width: 768px) {
+  .navbar,
+  nav {
+    padding: 18px 5%;
+  }
+
+  .brand-logo {
+    font-size: 18px !important;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(10, 10, 15, 0.85) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0 5%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+  }
+
+  .nav-links.is-open {
+    max-height: 320px;
+    opacity: 1;
+    visibility: visible;
+    padding-bottom: 20px;
+    padding-top: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 12px 0;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Section (#hero) Helvetica Typography & Letter Assembly
+   -------------------------------------------------------------------------- */
+.main-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Reduced Spacing Hero Section */
+.hero-section,
+#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh !important;
+  width: 100%;
+  padding: 0 5% 2vh !important;
+  margin-bottom: 0 !important;
+  text-align: center;
+  background-color: transparent;
+  pointer-events: none; /* Allows cursor hover to pass through to dot grid */
+}
+
+/* Layered Headline Wrapper Container */
+.hero-text-wrapper,
+#hero .hero-text-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  pointer-events: none; /* Allows cursor hover to pass through to dot grid */
+  opacity: 1;
+}
+
+/* Primary Headline DM Sans Typography & Smooth Fade-In Entrance */
+.hero-title,
+.dotted-text,
+#hero h1 {
+  position: relative;
+  font-family: var(--font-brand); /* 'DM Sans', sans-serif */
+  font-weight: 700; /* Bold */
+  font-size: 5.25rem; /* Exactly 84px on Desktop */
+  line-height: 1.15; /* Tightly stacked 115% line height for 3 lines */
+  letter-spacing: -0.07em; /* Default tight alignment (-7% tracking) */
+  text-align: center;
+  color: #ffffff; /* Solid White Typography */
+  white-space: nowrap; /* Forces exact line breaks at <br> tags on desktop */
+  margin: 0;
+  pointer-events: none; /* Allows cursor hover to pass through to dot grid */
+
+  opacity: 0; /* Start hidden */
+  animation: smoothFadeIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  animation-delay: 0.6s !important; /* Grid ripples first, then text fades in */
+}
+
+/* Smooth Fade-In Keyframe Animation */
+@keyframes smoothFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px); /* Subtle lift */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Perfectly Centered #about-intro & Uniform Floating Cards
+   -------------------------------------------------------------------------- */
+#about-intro {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  position: relative !important; /* Positioning context for floating cards */
+  z-index: 10;
+  width: 100%;
+  min-height: 100vh;
+  background-color: transparent; /* Transparent background to reveal dark wallpaper */
+  color: #ffffff; /* Crisp white text */
+  text-align: center;
+  margin-top: 0 !important;
+  padding: 5vh 5% 100px !important;
+  pointer-events: none; /* Allows cursor hover to pass straight through to dot grid behind */
+  overflow: hidden;
+}
+
+/* Initial Unrevealed State: Invisible & Pushed Down 40px */
+#about-intro .content-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(40px); /* Pushes text down slightly */
+  transition: opacity 1s ease-out, transform 1s ease-out; /* Smooth 1-second fade and slide */
+  will-change: opacity, transform;
+}
+
+/* Revealed State Triggered by IntersectionObserver on #about-intro */
+#about-intro.is-visible .content-wrapper {
+  opacity: 1;
+  transform: translateY(0); /* Brings it back smoothly to original position */
+}
+
+/* Line 1 ("Hi!"): Helvetica Bold (700) strictly 72px Solid White */
+.about-line1 {
+  font-family: var(--font-brand); /* 'Helvetica Neue', Helvetica, Arial, sans-serif */
+  font-weight: 700; /* Bold (700) */
+  font-size: 4.5rem; /* Strictly 72px on Desktop */
+  line-height: 1.1;
+  color: #ffffff;
+  letter-spacing: -0.05em;
+  pointer-events: none;
+}
+
+/* Line 2 ("I'm Sakshi"): Helvetica SemiBold (600) strictly 72px Solid White */
+.about-line2 {
+  font-family: var(--font-brand); /* 'Helvetica Neue', Helvetica, Arial, sans-serif */
+  font-weight: 600; /* SemiBold (600) */
+  font-size: 4.5rem; /* Strictly 72px on Desktop */
+  line-height: 1.1;
+  color: #ffffff;
+  letter-spacing: -0.05em;
+  margin-top: 4px;
+  margin-bottom: 8px !important; /* Decreases the gap to Line 3 */
+  pointer-events: none;
+}
+
+/* Line 3 ("And I love to"): Switzer Regular (400) strictly 16px Solid White */
+.about-line3 {
+  font-family: var(--font-nav); /* Switzer Regular (400) */
+  font-weight: 400 !important; /* Regular (400) */
+  font-size: 16px !important; /* Strictly 16px on Desktop */
+  line-height: 1.3;
+  color: #ffffff;
+  margin-top: 0 !important;
+  pointer-events: none;
+}
+
+/* Uniform Floating Glass Card Styling */
+/* Uniform Floating Glass Card Styling */
+.floating-card {
+  position: absolute;
+  padding: 16px 24px;
+  border-radius: 8px !important; /* Sharper 8px corner radius */
+  width: 340px !important; /* Forces all cards to be the exact same uniform size */
+  text-align: center !important; /* Centers text within the uniform box */
+  box-sizing: border-box !important;
+  
+  /* Enhanced Glassmorphism Properties */
+  background: rgba(255, 255, 255, 0.05) !important; /* Highly transparent fill */
+  backdrop-filter: blur(12px) !important; /* The frosted blur */
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important; /* Soft edge highlight */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important; /* Refined glass shadow */
+
+  /* Typography (Light 300 base font) */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 16px !important;
+  font-weight: 300 !important; /* Light 300 base weight */
+  color: #ffffff;
+  white-space: nowrap;
+
+  /* Setup for animation */
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, margin-top;
+}
+
+/* Ensure the first word remains strictly Bold */
+.floating-card strong {
+  font-weight: 700 !important; /* Bold 700 */
+}
+
+/* Feature Point Custom Illustration Layout Reset & Typography */
+.feature-point {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  width: auto !important;
+  
+  /* Resetting the old box styles completely */
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.feature-icon {
+  /* Ensure the image scales properly without distorting */
+  width: auto !important;
+  max-height: 100px !important; /* Adjust if the image renders too large */
+  object-fit: contain !important;
+  display: block !important;
+}
+
+.feature-text {
+  font-family: "DM Sans", sans-serif !important;
+  font-size: 32px !important;
+  font-style: normal !important;
+  font-weight: 400 !important; /* Base weight for softer text */
+  line-height: 40px !important; /* 125% */
+  letter-spacing: -0.64px !important;
+  color: rgba(255, 255, 255, 0.7) !important; /* Softer translucent white for the tail end */
+  
+  text-align: left !important;
+  margin: 0 !important;
+  white-space: normal !important;
+}
+
+.feature-text strong {
+  font-weight: 800 !important;
+  color: #FFF !important; /* Pure white for the bold keyword */
+}
+
+/* Top Cards: Aligned to 5% nav grid boundary (-220px offset) */
+.card-top-left { 
+  top: 50% !important; 
+  left: max(5%, calc(50% - 648px)) !important; 
+  transform: translateY(calc(-50% - 220px)) !important; 
+}
+.card-top-right { 
+  top: 50% !important; 
+  right: max(5%, calc(50% - 648px)) !important; 
+  transform: translateY(calc(-50% - 220px)) !important; 
+}
+
+/* Bottom Cards: Aligned to 5% nav grid boundary (+140px offset) */
+.card-bottom-left { 
+  top: 50% !important; 
+  left: max(5%, calc(50% - 648px)) !important; 
+  transform: translateY(calc(-50% + 140px)) !important; 
+}
+.card-bottom-right { 
+  top: 50% !important; 
+  right: max(5%, calc(50% - 648px)) !important; 
+  transform: translateY(calc(-50% + 140px)) !important; 
+}
+
+/* Non-Overwriting Fade & Entrance Sequence */
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    margin-top: 20px; /* Starts slightly lower than assigned position */
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+/* The .is-visible class is applied to #about-intro by the scroll script */
+#about-intro.is-visible .card-top-left {
+  animation: cardReveal 0.8s ease-out 1.0s forwards; /* Starts at 1.0s */
+}
+#about-intro.is-visible .card-top-right {
+  animation: cardReveal 0.8s ease-out 1.5s forwards; /* Starts at 1.5s */
+}
+#about-intro.is-visible .card-bottom-right {
+  animation: cardReveal 0.8s ease-out 2.0s forwards; /* Starts at 2.0s */
+}
+#about-intro.is-visible .card-bottom-left {
+  animation: cardReveal 0.8s ease-out 2.5s forwards; /* Starts at 2.5s */
+}
+
+/* --------------------------------------------------------------------------
+   7. Work Section Intro Header (#work-intro) & Strict 2-Column Work Grid (#work-grid)
+   -------------------------------------------------------------------------- */
+#work,
+#work-intro {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin-top: 0 !important;
+  padding-top: 2vh !important; /* Reduced from 15vh to pull the text up */
+  padding-bottom: 2vh;
+  padding-left: 0;
+  padding-right: 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+#work.is-visible,
+#work-intro.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.work-subtitle {
+  text-align: center !important;
+  width: 100% !important;
+  margin: 0 auto 12px auto !important;
+}
+
+/* Reusable Scroll-Triggered Fade & Slide Animation State */
+.fade-in-section {
+  opacity: 0 !important;
+  transform: translateY(40px) !important; /* Starts 40px lower */
+  visibility: hidden !important;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out, visibility 0.8s ease-out !important;
+  will-change: opacity, visibility, transform !important;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1 !important;
+  transform: none !important; /* Glides up to original position */
+  visibility: visible !important;
+}
+
+/* 8. Small Business Section Intro Header (#small-business-intro) */
+#small-business-intro {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: 15vh !important; /* Standardized to 15vh to match global section spacing */
+  margin-top: 0 !important;
+  margin-bottom: 24px !important;
+  width: 100% !important;
+  text-align: center !important;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  will-change: opacity, transform;
+}
+
+#small-business-intro.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 9. Small Business Video Showcase Container */
+.video-container {
+  width: 100% !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  padding-left: 5% !important; /* Synced to navbar and work-grid 5% margins */
+  padding-right: 5% !important;
+  box-sizing: border-box !important;
+  margin-bottom: 32px !important; /* Tightened gap below video */
+  text-align: center !important;
+}
+
+.showcase-video {
+  max-height: 70vh !important; /* Prevents the video from being taller than 70% of viewport height */
+  width: auto !important; /* Allows width to scale proportionally down with the height */
+  max-width: 100% !important; /* Prevents horizontal overflow */
+  margin: 0 auto !important; /* Centers the video horizontally */
+  
+  display: block !important;
+  border-radius: 8px !important; /* Matches 8px radius of project cards */
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.05) !important; /* Placeholder color before video loads */
+}
+
+/* 10. Livia Handcrafted Statement Section */
+.statement-container {
+  width: 100% !important;
+  max-width: 1440px !important;
+  margin-top: 0 !important; /* Pulls text flush beneath video margin */
+  margin-bottom: 15vh !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 5% !important;
+  padding-right: 5% !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  justify-content: center !important;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  will-change: opacity, transform;
+}
+
+.statement-container.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.statement-text-wrapper {
+  width: 100% !important;
+  max-width: 950px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+
+.statement-heading {
+  color: #ffffff !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 24px !important;
+  font-style: normal !important;
+  font-weight: 300 !important; /* Updated to 300 weight */
+  line-height: 40px !important; 
+  letter-spacing: -0.48px !important;
+  margin-bottom: 24px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+.statement-but {
+  display: block !important;
+  margin: 8px 0 !important;
+  font-style: normal !important;
+}
+
+.statement-paragraph {
+  margin-top: 24px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+.ux-insight-line1,
+.ux-insight-line2 {
+  color: #ffffff !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 24px !important;
+  font-style: normal !important;
+  font-weight: 300 !important; /* Updated to 300 weight */
+  line-height: 30px !important;
+  letter-spacing: -0.48px !important;
+  margin-bottom: 16px !important;
+}
+
+.ux-insight-line3 {
+  color: #ffffff !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 24px !important;
+  font-style: normal !important;
+  font-weight: 700 !important; /* Remains bold to emphasize the final punchline */
+  line-height: 48px !important;
+  letter-spacing: -0.48px !important;
+  margin-top: 16px !important;
+}
+
+@media (max-width: 768px) {
+  .statement-heading,
+  .ux-insight-line1,
+  .ux-insight-line2,
+  .ux-insight-line3 {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* 11. About Me Section (2-Column Grid) & Dark Grid Interaction */
+#about-me-section {
+  --grid-dot-color: rgba(5, 23, 46, 0.18) !important; 
+}
+
+body.dark-grid-interaction .grid-dot {
+  background-color: rgba(5, 23, 46, 0.25) !important;
+}
+
+body.dark-grid-interaction #interactive-grid::after {
+  background-image: radial-gradient(circle, rgba(5, 23, 46, 0.4) 1.5px, transparent 1.5px) !important;
+}
+
+body.dark-grid-interaction .grid-cell:hover .grid-dot,
+body.dark-grid-interaction .grid-dot:hover {
+  background-color: rgba(5, 23, 46, 1) !important;
+  box-shadow: 0 0 10px 4px rgba(5, 23, 46, 0.5), 0 0 20px 6px rgba(5, 23, 46, 0.3) !important;
+}
+
+body.dark-grid-interaction .interactive-cursor,
+body.dark-grid-interaction .grid-glow-dot {
+  background-color: rgba(5, 23, 46, 0.4) !important;
+  box-shadow: 0 0 12px rgba(5, 23, 46, 0.2) !important;
+}
+
+.about-container {
+  width: 100% !important;
+  max-width: 1440px !important;
+  margin-top: 15vh !important; 
+  margin-bottom: 15vh !important; /* Space before the footer */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 5% !important; 
+  padding-right: 5% !important;
+  box-sizing: border-box !important;
+}
+
+.about-grid {
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  gap: 64px !important;
+  align-items: center !important;
+}
+
+.about-image-wrapper {
+  display: block !important;
+}
+
+.about-image {
+  width: 466px !important;
+  height: 525px !important;
+  aspect-ratio: 79 / 89 !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  display: block !important;
+}
+
+.about-header {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: 28px !important; /* 140% */
+  margin-bottom: 20px !important;
+}
+
+.about-list {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 24px !important; /* 120% */
+  letter-spacing: 0.4px !important;
+  margin-bottom: 24px !important;
+}
+
+.about-subtext {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 24px !important; /* 120% */
+  letter-spacing: 0.4px !important;
+  margin-bottom: 24px !important;
+}
+
+.about-punchline {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 24px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: 28px !important; /* 116.667% */
+}
+
+/* ==========================================================================
+   Dedicated White Background & Blue Grid Theme for About Me Page (about.html)
+   ========================================================================== */
+body.about-page {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #05172E !important;
+}
+
+body.about-page .grid-dot {
+  background-color: rgba(10, 46, 92, 0.7) !important; /* Crisp blue dots on white background */
+}
+
+body.about-page #interactive-grid::after {
+  background-image: radial-gradient(circle, rgba(10, 46, 92, 0.95) 2px, transparent 2px) !important;
+}
+
+body.about-page .grid-cell:hover .grid-dot,
+body.about-page .grid-dot:hover {
+  background-color: #0a2e5c !important;
+  box-shadow: 0 0 10px 4px #3b76b3, 0 0 20px 6px rgba(59, 118, 179, 0.85) !important;
+}
+
+body.about-page .site-header,
+body.about-page header {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.about-page .brand-logo,
+body.about-page .nav-link {
+  color: #05172E !important;
+}
+
+body.about-page .hamburger-bar {
+  background-color: #05172E !important;
+}
+
+body.about-page .about-header,
+body.about-page .about-list,
+body.about-page .about-subtext {
+  color: #05172E !important;
+}
+
+body.about-page .about-punchline {
+  color: #010509 !important;
+}
+
+/* Custom Tracking Cursor Palette for About Me Page (about.html) & Footer */
+body.about-page #custom-cursor circle,
+body.footer-grid-active #custom-cursor circle,
+body.case-study-page #custom-cursor circle {
+  stroke: #05172E !important;
+}
+
+body.about-page #custom-cursor circle[fill],
+body.footer-grid-active #custom-cursor circle[fill],
+body.case-study-page #custom-cursor circle[fill] {
+  fill: #05172E !important;
+}
+
+/* ==========================================================================
+   Solid Plain White Theme for Case Study Landing Pages (mas-sales-dashboard.html)
+   ========================================================================== */
+body.case-study-page {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #05172E !important;
+}
+
+body.case-study-page #interactive-grid {
+  display: none !important; /* Plain clean white background without grid */
+}
+
+body.case-study-page .site-header,
+body.case-study-page header {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+body.case-study-page .brand-logo,
+body.case-study-page .nav-link {
+  color: #05172E !important;
+}
+
+body.case-study-page .hamburger-bar {
+  background-color: #05172E !important;
+}
+
+/* Responsive Layout for Mobile */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  .about-image {
+    width: 100% !important;
+    max-width: 466px !important;
+    height: auto !important;
+  }
+}
+
+.work-subtitle {
+  font-family: var(--font-brand);
+  font-size: 16px !important;
+  font-weight: 400 !important; /* Regular weight */
+  color: #ffffff;
+  margin-bottom: 8px !important; /* Tight spacing between the two lines */
+}
+
+.work-title {
+  font-family: var(--font-brand);
+  font-size: 60px !important; /* Exactly 60px */
+  font-weight: 600 !important; /* Matching 'I'm Sakshi' 600 weight */
+  color: #ffffff;
+  margin: 0 !important;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+}
+
+/* Symmetrical Pulsing Dot Animation Wrapper */
+.title-animation-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 24px !important; /* Distance between the waves and the word 'Work' */
+  margin-top: 8px !important; /* Space below the subtitle */
+}
+
+.dot-wave {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important; /* Distance between individual dots */
+}
+
+.dot-wave span {
+  display: inline-block !important;
+  background-color: #ffffff !important;
+  border-radius: 50% !important;
+  opacity: 0.3 !important; /* Dim base state */
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.2) !important;
+  will-change: transform, opacity, box-shadow;
+}
+
+/* Trigger the pulse animation ONCE when scrolled into view */
+#work-intro.is-visible .dot-wave span {
+  animation: pulseWave 1.5s ease-in-out forwards !important;
+}
+
+/* Tapered base sizes */
+.dot-xs { width: 4px !important; height: 4px !important; }
+.dot-sm { width: 6px !important; height: 6px !important; }
+.dot-md { width: 8px !important; height: 8px !important; }
+.dot-lg { width: 10px !important; height: 10px !important; }
+
+/* Pulsing Wave Animation Keyframes */
+@keyframes pulseWave {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.9); /* Bright peak glow */
+  }
+}
+
+/* Flowing inward: left side delays */
+.wave-left .dot-xs { animation-delay: 0s !important; }
+.wave-left .dot-sm { animation-delay: 0.15s !important; }
+.wave-left .dot-md { animation-delay: 0.3s !important; }
+.wave-left .dot-lg { animation-delay: 0.45s !important; }
+
+/* Flowing inward: right side delays (reversed order) */
+.wave-right .dot-lg { animation-delay: 0.45s !important; }
+.wave-right .dot-md { animation-delay: 0.3s !important; }
+.wave-right .dot-sm { animation-delay: 0.15s !important; }
+.wave-right .dot-xs { animation-delay: 0s !important; }
+
+/* Force 2-Column Grid Container - Aligned to Navbar 5% Margins */
+#work-grid,
+.work-container {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important; /* Strictly 2 equal columns */
+  gap: 80px 40px !important; /* 80px vertical gap, 40px horizontal */
+  background: transparent !important; /* Remove any inherited background */
+  width: 100% !important;
+  max-width: 1440px !important;
+  margin: 0 auto 15vh auto !important;
+  padding: 4vh 5% 15vh 5% !important; /* Spacing controlled by top padding of next section */
+  box-sizing: border-box !important;
+  pointer-events: auto;
+}
+
+/* Strip Card Backgrounds & Fix Layout */
+.project-card {
+  background: transparent !important; /* Removes giant blue boxes */
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important; 
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+/* Resurrect Image Placeholders & Tag Positioning Context */
+.project-image-wrapper {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important; /* Forces correct rectangle shape */
+  min-height: 250px !important; /* Fallback if aspect-ratio fails */
+  background: rgba(255, 255, 255, 0.05) !important; /* Very subtle placeholder box */
+  border-radius: 8px !important; /* Sharper 8px corner radius */
+  margin-bottom: 24px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.project-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 60% !important; /* Positions main screen with clean top headroom */
+  transform: scale(1.04) !important;
+  transform-origin: center center !important;
+  transition: transform 0.4s ease !important;
+  display: block !important;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.10) !important;
+}
+
+.project-card:hover .project-image-wrapper {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.project-title {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  margin: 0 0 8px 0 !important;
+}
+
+.project-desc {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #cccccc !important;
+  margin: 0 0 16px 0 !important; /* Creates a clean, tight gap before the button */
+}
+
+/* Glass Tags Container Pinned to Top Right Inside Image Wrapper */
+.project-tags {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  display: flex !important;
+  gap: 6px !important; /* Refined compact gap */
+  flex-wrap: wrap !important;
+  justify-content: flex-end !important;
+  z-index: 10 !important;
+  margin-top: 0 !important;
+}
+
+/* Glass Tag Pill Shape & Refined Font */
+.glass-tag {
+  display: inline-block !important; /* Forces box shape */
+  border-radius: 50px !important; /* Perfect pill shape */
+  padding: 4px 10px !important; /* Compact padding to prevent overlap */
+  margin: 0 !important;
+  
+  /* Typography */
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 600 !important; /* SemiBold weight for high-contrast legibility */
+  color: #05172E !important; /* Dark Navy text for maximum readability */
+  text-transform: capitalize !important;
+  
+  /* Glassmorphism properties */
+  background: rgba(255, 255, 255, 0.85) !important; /* Frosted white backdrop */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(5, 23, 46, 0.2) !important; /* Subtle navy rim */
+  box-shadow: 0 2px 8px rgba(5, 23, 46, 0.12) !important;
+}
+
+/* Override the previous bolding if strong tags are in HTML */
+.glass-tag strong {
+  font-weight: 300 !important; /* Forces first word to be light as well */
+}
+
+/* Pure Glassmorphism CTA Pill Button */
+.view-project-btn {
+  display: inline-block !important;
+  margin-top: 8px !important; /* Pulls the button up closely beneath the description */
+  align-self: flex-start !important; /* Locks it to the left margin */
+  padding: 12px 36px !important;
+  border-radius: 50px !important; /* Perfect pill shape */
+  opacity: 1 !important; /* 100% full element/text brightness */
+  
+  /* Typography */
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 500 !important; /* Medium weight to stand out */
+  color: #ffffff !important; /* Solid white text */
+  text-decoration: none !important;
+  
+  /* Pure Glassmorphism Background & Blur Effect */
+  background: rgba(255, 255, 255, 0.05) !important; /* Highly transparent white tint */
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important; /* Crisp semi-transparent border */
+  
+  /* Softened refined glow: 0px X, 4px Y, 12px blur, 0.25 alpha */
+  box-shadow: 0 4px 12px rgba(45, 122, 239, 0.25) !important; 
+      
+  transition: all 0.3s ease !important;
+}
+
+.view-project-btn:hover {
+  opacity: 1 !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1) !important; /* Slightly more visible white tint on hover */
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 6px 16px rgba(45, 122, 239, 0.4) !important; 
+  transform: translateY(-2px) !important; /* Gentle lift effect */
+}
+
+/* Specific Typography Overrides for Last 2 Work Cards (Project 3 & Project 4) */
+.project-card:nth-child(3) .project-title,
+.project-card:nth-child(4) .project-title,
+.project-card.card-light-theme .project-title {
+  color: #05172E !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+}
+
+.project-card:nth-child(3) .project-desc,
+.project-card:nth-child(4) .project-desc,
+.project-card.card-light-theme .project-desc {
+  color: #0F2744 !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+.project-card:nth-child(3) .glass-tag,
+.project-card:nth-child(4) .glass-tag,
+.project-card.card-light-theme .glass-tag {
+  color: #05172E !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+.project-card:nth-child(3) .view-project-btn,
+.project-card:nth-child(4) .view-project-btn,
+.project-card.card-light-theme .view-project-btn {
+  color: #05172E !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-color: rgba(5, 23, 46, 0.25) !important;
+}
+
+.about-section {
+  padding: 80px 5% 140px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-card {
+  width: 90% !important; /* Responsive width for smaller screens */
+  max-width: 800px !important; /* Prevents it from getting too wide on desktop */
+  margin: 0 auto !important; /* Centers the card horizontally */
+  padding: 48px !important; /* Ensure there is enough breathing room inside */
+  box-sizing: border-box !important;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  color: #111111;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(16px);
+  pointer-events: auto;
+}
+
+.about-card h2,
+.about-card p {
+  text-align: left !important;
+}
+
+.about-card h2 {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: -0.05em;
+  margin-bottom: 16px;
+  color: #111111;
+}
+
+.about-card p {
+  font-size: 1.1rem;
+  color: #444444;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   8. Footer Section
+   -------------------------------------------------------------------------- */
+.site-footer {
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 80px !important;
+  padding-bottom: 48px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: transparent;
+  color: #111111;
+  pointer-events: none;
+}
+
+.footer-container {
+  width: 100% !important;
+  max-width: 1440px !important; /* Locks to exact navbar & about-container grid */
+  margin: 0 auto !important; /* Centers container on screen */
+  padding-left: 5% !important; /* Matches navbar padding-x exactly */
+  padding-right: 5% !important;
+  box-sizing: border-box !important;
+  pointer-events: auto;
+}
+
+.footer-cta-wrapper,
+.footer-main {
+  width: 100% !important;
+  margin: 0 !important;
+  padding-left: 0 !important; 
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+  
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+.footer-main {
+  padding-bottom: 60px;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 40px;
+}
+
+.footer-cta-text,
+.cta-button,
+.footer-contact-btn {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-align: left !important;
+}
+
+.footer-cta-text {
+  color: #05172E !important; 
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 36px !important; /* Updated to 36px */
+  font-weight: 500 !important;
+  margin-bottom: 24px !important; /* Space between text and button */
+}
+
+@media (max-width: 768px) {
+  .footer-cta-text {
+    font-size: 28px !important; /* Scales down for mobile */
+  }
+}
+
+.footer-social-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 28px !important; /* 28px gap between social SVG icons */
+  margin-top: 8px !important;
+  margin-left: 0 !important;
+}
+
+.social-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.2s ease, opacity 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+.social-icon:hover {
+  transform: translateY(-2px) !important;
+  opacity: 0.85 !important;
+}
+
+.footer-bottom,
+.footer-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #666666;
+  width: 100% !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  color: #333333;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: #000000;
+}
+
+/* --------------------------------------------------------------------------
+   9. Responsive Media Queries for Tablets & Mobile Devices
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .floating-card {
+    width: 300px !important;
+  }
+  .card-top-left { top: 50% !important; left: 5% !important; transform: translateY(calc(-50% - 200px)) !important; }
+  .card-top-right { top: 50% !important; right: 5% !important; transform: translateY(calc(-50% - 200px)) !important; }
+  .card-bottom-left { top: 50% !important; left: 5% !important; transform: translateY(calc(-50% + 140px)) !important; }
+  .card-bottom-right { top: 50% !important; right: 5% !important; transform: translateY(calc(-50% + 140px)) !important; }
+}
+
+@media (max-width: 1024px) {
+  .hero-title,
+  .dotted-text {
+    font-size: 3.5rem;
+    line-height: 1.15;
+  }
+
+  .work-title {
+    font-size: 48px !important;
+  }
+
+  .floating-card {
+    width: 280px !important;
+    font-size: 14px !important;
+  }
+  .card-top-left { top: 50% !important; left: 5% !important; transform: translateY(calc(-50% - 180px)) !important; }
+  .card-top-right { top: 50% !important; right: 5% !important; transform: translateY(calc(-50% - 180px)) !important; }
+  .card-bottom-left { top: 50% !important; left: 5% !important; transform: translateY(calc(-50% + 140px)) !important; }
+  .card-bottom-right { top: 50% !important; right: 5% !important; transform: translateY(calc(-50% + 140px)) !important; }
+}
+
+@media (max-width: 768px) {
+  .navbar,
+  nav {
+    padding: 18px 5%;
+  }
+
+  .brand-logo {
+    font-size: 18px !important;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(10, 10, 15, 0.85) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0 5%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+  }
+
+  .nav-links.is-open {
+    max-height: 320px;
+    opacity: 1;
+    visibility: visible;
+    padding-bottom: 20px;
+    padding-top: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 12px 0;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .work-title {
+    font-size: 38px !important;
+  }
+
+  #work-grid,
+  .work-container {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+    padding: 4vh 5% 15vh 5% !important;
+  }
+
+  .floating-card {
+    font-size: 13px !important;
+    padding: 10px 14px;
+    white-space: normal;
+    width: 44% !important;
+    max-width: 44% !important;
+  }
+  .card-top-left { top: 50% !important; left: 3% !important; transform: translateY(calc(-50% - 180px)) !important; }
+  .card-top-right { top: 50% !important; right: 3% !important; transform: translateY(calc(-50% - 180px)) !important; }
+  .card-bottom-left { top: 50% !important; left: 3% !important; transform: translateY(calc(-50% + 160px)) !important; }
+  .card-bottom-right { top: 50% !important; right: 3% !important; transform: translateY(calc(-50% + 160px)) !important; }
+}

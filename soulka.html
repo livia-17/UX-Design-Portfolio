@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Building Soulka from Scratch Case Study — An experience-led organic food ecosystem integrating a hands-on cooking service with direct-procurement retail by Sakshi Thareja.">
+  <title>Building Soulka from Scratch — Case Study</title>
+
+  <!-- Google Fonts: Anton & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,800&family=Solitreo&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=ranade@500,600,700&f[]=switzer@400,500&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Lenis Luxury Smooth Scroll Library (Rolex-Style Inertial Scroll) -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <style>
+    /* Lenis Smooth Scroll Core Styles (Rolex Luxury Inertial Scroll) */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    .lenis.lenis-scrolling iframe {
+      pointer-events: none;
+    }
+
+    /* Global Ultra-Smooth Scroll Specs */
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-padding-top: 40px;
+    }
+
+    body {
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Force Zero Top Margin & Padding for Case Study Page */
+    body.case-study-page {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    body.case-study-page .main-content {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    body.case-study-page .case-study-hero-section {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    /* Hide Top Header Navbar & Footer on Case Study Page */
+    .site-header,
+    .site-footer {
+      display: none !important;
+    }
+
+    /* Desktop Sidebar Layout Offset (min-width: 1025px) */
+    @media (min-width: 1025px) {
+      body.case-study-page {
+        padding-left: 240px !important;
+      }
+      
+      .case-study-hero-section {
+        width: calc(100vw - 240px) !important;
+        max-width: calc(100vw - 240px) !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+
+    /* Left Navigation Sidebar Styling */
+    .case-study-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      z-index: 998;
+      box-sizing: border-box;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overscroll-behavior: contain;
+    }
+
+    .sidebar-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 40px 20px 32px 24px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+
+    .sidebar-inner::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .sidebar-inner::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar-inner::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 4px;
+    }
+
+    .sidebar-inner::-webkit-scrollbar-thumb:hover {
+      background: rgba(27, 94, 32, 0.5);
+    }
+
+    .sidebar-header {
+      margin-bottom: 28px;
+    }
+
+    .sidebar-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #344054;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: opacity 0.2s ease;
+    }
+
+    .sidebar-back-link:hover {
+      opacity: 0.8;
+    }
+
+    .sidebar-title {
+      color: #1B5E20;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 26px;
+      letter-spacing: -0.4px;
+      margin: 12px 0 0 0;
+    }
+
+    .sidebar-subtitle {
+      color: #344054;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+      margin: 12px 0 0 0;
+    }
+
+    .sidebar-meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar-meta-label {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #98A2B3;
+      display: block;
+      width: 100%;
+      white-space: nowrap;
+    }
+
+    .sidebar-meta-value {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+      color: #344054;
+      margin: 0;
+    }
+
+    .sidebar-outcomes-block {
+      margin-bottom: 24px;
+    }
+
+    .sidebar-outcomes-list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sidebar-outcomes-list li {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+      color: #344054;
+    }
+
+    .sidebar-onthispage-block {
+      margin-bottom: 24px;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #344054;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #D0D5DD;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .sidebar-link:hover {
+      color: #1B5E20;
+      background: rgba(27, 94, 32, 0.06);
+    }
+
+    .sidebar-link:hover .sidebar-dot {
+      background: #1B5E20;
+      transform: scale(1.3);
+    }
+
+    .sidebar-link.active {
+      color: #1B5E20;
+      font-weight: 600;
+      background: rgba(27, 94, 32, 0.1);
+    }
+
+    .sidebar-link.active .sidebar-dot {
+      background: #1B5E20;
+      transform: scale(1.3);
+    }
+
+    /* Mobile Sidebar Toggle Button */
+    .sidebar-toggle-btn {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 999;
+      background: #1B5E20;
+      color: #ffffff;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(27, 94, 32, 0.35);
+      cursor: pointer;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (max-width: 1024px) {
+      .case-study-sidebar {
+        transform: translateX(-100%);
+      }
+      .case-study-sidebar.is-open {
+        transform: translateX(0);
+      }
+      .sidebar-toggle-btn {
+        display: flex;
+      }
+    }
+
+    /* Hero Banner Section */
+    .case-study-hero-section {
+      width: 100vw;
+      max-width: 100vw;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .hero-image-container {
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-bg-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-heading-overlay {
+      position: absolute;
+      top: 6.8%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(22px, 3.8vw, 64px);
+      font-weight: 400;
+      color: #ffffff;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin: 0;
+      padding: 0;
+      letter-spacing: 0.04em;
+      text-align: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Project Overview Section */
+    .project-overview-section {
+      max-width: 1440px;
+      margin: 80px auto 0 auto;
+      padding: 0 5%;
+      box-sizing: border-box;
+    }
+
+    .project-goal-container {
+      margin-bottom: 79px;
+    }
+
+    .project-goal-title {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "DM Sans", sans-serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: #1B5E20;
+      line-height: 1.25;
+      margin: 0 0 12px 0;
+    }
+
+    .project-goal-desc {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #667085;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .project-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .meta-label {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #1B5E20;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .meta-value {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #232F3F;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Soulka Question Headline Section (160px Gap After Hero) */
+    .soulka-question-section {
+      width: 100%;
+      margin-top: 160px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .soulka-question-heading {
+      width: 100%;
+      max-width: 1046px;
+      min-height: 59px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 48px;
+      margin: 0;
+    }
+
+    .soulka-question-heading .cooking-highlight {
+      color: #1B5E20;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 48px;
+    }
+
+    .soulka-sub-statement {
+      margin-top: 28px !important;
+      margin-bottom: 0;
+      width: 100%;
+      max-width: 1300px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 48px;
+    }
+
+    .soulka-sub-statement .green-bold {
+      color: #1B5E20;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 48px;
+    }
+
+    .soulka-walkin-statement {
+      margin-top: 28px !important;
+      margin-bottom: 0;
+      width: 100%;
+      max-width: 1300px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 48px;
+    }
+
+    .soulka-walkin-statement .green-bold {
+      color: #1B5E20;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 48px;
+    }
+
+    /* Soulka Intro Statement Section (240px Gap Below Previous Section) */
+    .soulka-intro-statement-section {
+      width: 100%;
+      margin-top: 240px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .soulka-intro-statement-heading {
+      width: 100%;
+      max-width: 554px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px;
+      letter-spacing: -1.2px;
+      margin: 0;
+    }
+
+    .soulka-intro-statement-heading .soulka-green-bold {
+      color: #1B5E20;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 60px;
+      letter-spacing: -1.2px;
+    }
+
+    /* Soulka YouTube Video Section (40px Gap Below Intro Statement) */
+    .soulka-youtube-section {
+      width: 100%;
+      margin-top: 40px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+    }
+
+    .soulka-youtube-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      background: #000000;
+    }
+
+    .soulka-youtube-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+      display: block;
+      position: relative;
+      z-index: 10;
+      pointer-events: auto !important;
+    }
+
+
+
+    /* Soulka Problem Depth Section (100px Gap Below Video) */
+    .soulka-problem-depth-section {
+      width: 100%;
+      margin-top: 100px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .soulka-problem-depth-heading {
+      width: 100%;
+      max-width: 642px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px;
+      letter-spacing: -1.2px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .soulka-two-worlds-image-wrapper {
+      width: 100%;
+      max-width: 960px;
+      margin-top: 40px !important;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .soulka-two-worlds-image {
+      width: 100%;
+      max-width: 960px;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
+    /* Soulka Studies Show Section (240px Below Two Worlds Image) */
+    .soulka-studies-show-section {
+      width: 100%;
+      margin-top: 240px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .soulka-studies-show-heading {
+      width: 100%;
+      max-width: 242px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px;
+      letter-spacing: -1.2px;
+      margin: 0;
+      text-align: left;
+    }
+
+    /* Studies Grid Container (40px Gap Below Heading, 40px Column Gap) */
+    .soulka-studies-grid {
+      width: 100%;
+      margin-top: 40px !important;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: stretch;
+    }
+
+    /* Individual Study Card (Width: 295px, Gap: 16px) */
+    .soulka-study-card {
+      width: 256px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      box-sizing: border-box;
+    }
+
+    .study-number {
+      align-self: stretch;
+      color: #1B5E20;
+      font-family: "DM Sans", sans-serif;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 100%;
+    }
+
+    .study-body {
+      width: 100%;
+      align-self: stretch;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      margin: 0;
+    }
+
+    .study-source {
+      width: 100%;
+      align-self: stretch;
+      color: rgba(0, 0, 0, 0.50);
+      text-align: right;
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      margin-top: auto;
+    }
+
+    /* Soulka Existing Gaps Section (240px Below Studies Show Section) */
+    .soulka-existing-gaps-section {
+      width: 100%;
+      margin-top: 240px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .soulka-existing-gaps-heading {
+      width: 100%;
+      max-width: 642px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px;
+      letter-spacing: -1.2px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .soulka-gaps-image-wrapper {
+      width: 100%;
+      max-width: 800px;
+      margin-top: 40px !important;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .soulka-gaps-image {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
+    /* Soulka Introducing Section (100px Below Previous Section) */
+    .soulka-introducing-section {
+      width: 100%;
+      margin-top: 100px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      overflow: visible;
+    }
+
+    .soulka-introducing-heading {
+      width: 100%;
+      max-width: 642px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px;
+      letter-spacing: -1.2px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .soulka-introducing-heading .soulka-green-bold {
+      color: #1B5E20;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 60px;
+      letter-spacing: -1.2px;
+    }
+
+    /* Introducing Banner Container (Background Leaf & Ladle Graphics) */
+    .soulka-introducing-banner {
+      position: relative;
+      width: 100%;
+      min-height: 480px;
+      margin-top: 40px !important;
+      overflow: visible;
+      display: flex;
+      align-items: flex-end;
+      box-sizing: border-box;
+    }
+
+    .bg-graphic {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+      object-fit: contain;
+    }
+
+    .bg-leaf {
+      top: -30px;
+      left: -5.5%;
+      width: 78%;
+      max-width: 950px;
+      height: auto;
+    }
+
+    .bg-ladle {
+      bottom: -30px;
+      right: -5.5%;
+      width: 80%;
+      max-width: 980px;
+      height: auto;
+    }
+
+    .soulka-introducing-content {
+      position: relative;
+      z-index: 5;
+      max-width: 560px;
+      padding: 120px 0 10px 0;
+    }
+
+    .soulka-introducing-body {
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 28px;
+      margin: 0;
+    }
+
+    .soulka-introducing-body .soulka-green-bold-text {
+      color: #1B5E20;
+      font-weight: 700;
+    }
+
+    /* Soulka Value Section (240px Below Introducing Section) */
+    .soulka-value-section {
+      width: 100%;
+      margin-top: 240px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .soulka-value-paragraph {
+      width: 100%;
+      max-width: 1180px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 32px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .soulka-value-paragraph .soulka-green-bold-text {
+      color: #1B5E20;
+      font-weight: 700;
+    }
+
+    /* Soulka Store Section (240px Below Previous Section) */
+    .soulka-store-section {
+      width: 100%;
+      margin-top: 240px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 40px;
+    }
+
+    .soulka-store-image-container {
+      flex: 0 1 520px;
+      max-width: 520px;
+    }
+
+    .soulka-store-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
+    .soulka-store-content {
+      flex: 1 1 540px;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .soulka-store-text {
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .soulka-store-text .soulka-green-bold-text {
+      color: #1B5E20;
+      font-weight: 700;
+    }
+
+    /* Soulka Stakeholders Image Section (240px Below Store Section) */
+    .soulka-stakeholders-section {
+      width: 100%;
+      margin-top: 240px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+    }
+
+    .soulka-stakeholders-image-wrapper {
+      width: 100%;
+      max-width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .soulka-stakeholders-image {
+      width: 100%;
+      max-width: 960px;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
+    /* Soulka Naming Section (100px Below Previous Section) */
+    .soulka-naming-section {
+      width: 100%;
+      margin-top: 100px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .soulka-naming-heading {
+      width: 100%;
+      max-width: 442px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px;
+      letter-spacing: -1.2px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .soulka-naming-heading .soulka-green-bold {
+      color: #1B5E20;
+      font-weight: 700;
+    }
+
+    .soulka-naming-image-wrapper {
+      width: 100%;
+      max-width: 640px;
+      margin-top: 160px !important;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .soulka-naming-image {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
+    /* Soulka Visual Identity Section (160px Below Naming Section) */
+    .soulka-identity-section {
+      width: 100%;
+      margin-top: 160px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .soulka-identity-heading {
+      width: 100%;
+      max-width: 442px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px;
+      letter-spacing: -1.2px;
+      margin: 0;
+      text-align: left;
+    }
+
+    .soulka-identity-heading .soulka-green-bold {
+      color: #1B5E20;
+      font-weight: 700;
+    }
+
+    .soulka-identity-image-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 40px !important;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .soulka-identity-image {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
+    /* Soulka App Intro Section (160px Below Visual Identity) */
+    .soulka-app-intro-section {
+      width: 100%;
+      margin-top: 160px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .soulka-app-intro-heading {
+      width: 100%;
+      max-width: 465px;
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px; /* 150% */
+      letter-spacing: -1.2px;
+      margin: 0;
+    }
+
+    .soulka-app-intro-heading .soulka-green-bold {
+      color: #1B5E20;
+      font-weight: 700;
+    }
+
+    .soulka-app-grid {
+      width: 100%;
+      margin-top: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .soulka-app-grid-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
+    .soulka-app-full-image {
+      width: 100%;
+      margin-top: 80px;
+      height: auto;
+      display: block;
+      border-radius: 0;
+      object-fit: contain;
+    }
+
+    /* Soulka Features Section (100px Below App Intro) */
+    .soulka-features-section {
+      width: 100%;
+      margin-top: 100px !important;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .soulka-features-heading {
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px; /* 150% */
+      letter-spacing: -1.2px;
+      margin: 0;
+    }
+
+    .soulka-feature-block {
+      width: 100%;
+      margin-top: 60px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: flex-end;
+      gap: 60px;
+    }
+
+    .soulka-feature-text-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .soulka-feature-title {
+      color: #1B5E20;
+      font-family: "DM Sans", sans-serif;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 40px; /* 111.111% */
+      margin: 0;
+    }
+
+    .soulka-feature-description {
+      width: max-content;
+      display: inline-flex;
+      padding: 20px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+      border-radius: 12px;
+      border: 2px dashed #0CA017;
+
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 21px; /* 150% */
+    }
+
+    .soulka-feature-description strong {
+      color: #1B5E20;
+      font-weight: 700;
+    }
+
+    .soulka-feature-media {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .soulka-feature-video {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      border-radius: 0;
+      display: block;
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+
+    .soulka-feature-block-left {
+      width: 100%;
+      margin-top: 100px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-end;
+      gap: 60px;
+    }
+
+    .soulka-feature-image {
+      width: 412px;
+      height: 298px;
+      aspect-ratio: 206/149;
+      max-width: 100%;
+      border-radius: 0;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* What we Learned Section */
+    .soulka-learned-section {
+      width: 100%;
+      margin-top: 160px;
+      margin-bottom: 240px;
+      padding: 0 5%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .soulka-learned-heading {
+      color: #5A5858;
+      font-family: "DM Sans", sans-serif;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 60px; /* 150% */
+      letter-spacing: -1.2px;
+      margin: 0;
+    }
+
+    .soulka-learned-grid {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      justify-content: center;
+      align-self: center;
+      width: 100%;
+      margin: 60px auto 0;
+      max-width: 1412px;
+    }
+
+    .soulka-learned-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      border-radius: 8px;
+      border: 1px solid #1B5E20;
+      gap: 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .soulka-learned-card-title {
+      color: #1B5E20;
+      text-align: center;
+      font-family: "DM Sans", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px; /* 133.333% */
+      margin: 0;
+    }
+
+    .soulka-learned-card-text {
+      color: #5A5858;
+      text-align: center;
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 150% */
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1024px) {
+      .soulka-learned-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .soulka-learned-card-text {
+        white-space: normal;
+      }
+      .soulka-learned-card-title {
+        white-space: normal !important;
+      }
+    }
+
+    /* Sequential Scroll Fade-in Animation for Question Section */
+    .fade-in-step {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in-step.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .soulka-question-heading.fade-in-step {
+      transition-delay: 0.1s;
+    }
+
+    .soulka-sub-statement.fade-in-step {
+      transition-delay: 0.45s;
+    }
+
+    .soulka-walkin-statement.fade-in-step {
+      transition-delay: 0.8s;
+    }
+
+    @media (max-width: 1024px) {
+      .soulka-question-section,
+      .soulka-intro-statement-section {
+        margin-top: 80px !important;
+      }
+      .soulka-video-section,
+      .soulka-problem-depth-section {
+        margin-top: 48px !important;
+      }
+      .soulka-question-heading,
+      .soulka-question-heading .cooking-highlight,
+      .soulka-sub-statement,
+      .soulka-sub-statement .green-bold,
+      .soulka-walkin-statement,
+      .soulka-walkin-statement .green-bold,
+      .soulka-intro-statement-heading,
+      .soulka-intro-statement-heading .soulka-green-bold,
+      .soulka-problem-depth-heading {
+        font-size: clamp(24px, 4.5vw, 40px);
+        line-height: 1.3;
+      }
+    }
+  </style>
+</head>
+<body class="case-study-page">
+
+  <!-- Custom Tracking Cursor -->
+  <div id="custom-cursor">
+    <div class="cursor-inactive">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 190 188" fill="none">
+        <g filter="url(#filter0_dd_424_8)">
+          <circle cx="94" cy="89" r="83" stroke="white" stroke-width="4" shape-rendering="crispEdges"/>
+        </g>
+        <g filter="url(#filter1_dd_424_8)">
+          <circle cx="94.5" cy="88.5" r="17.5" fill="#F3F3F3"/>
+          <circle cx="94.5" cy="88.5" r="15.5" stroke="white" stroke-width="4"/>
+        </g>
+        <defs>
+          <filter id="filter0_dd_424_8" x="0" y="0" width="189.5" height="187.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="3" dy="6"/>
+            <feGaussianBlur stdDeviation="3.75"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.41 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_424_8"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="-5"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.14 0"/>
+            <feBlend mode="normal" in2="effect1_dropShadow_424_8" result="effect2_dropShadow_424_8"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_424_8" result="shape"/>
+          </filter>
+          <filter id="filter1_dd_424_8" x="68" y="67" width="54.5" height="52.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="3" dy="6"/>
+            <feGaussianBlur stdDeviation="3.75"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.41 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_424_8"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="-5"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.14 0"/>
+            <feBlend mode="normal" in2="effect1_dropShadow_424_8" result="effect2_dropShadow_424_8"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_424_8" result="shape"/>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+    <div class="cursor-active">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 190 188" fill="none">
+        <g filter="url(#filter0_dd_424_9)">
+          <circle cx="94" cy="89" r="83" stroke="white" stroke-width="4" shape-rendering="crispEdges"/>
+        </g>
+        <g filter="url(#filter1_dd_424_9)">
+          <circle cx="94.5" cy="88.5" r="37.5" fill="#F3F3F3"/>
+          <circle cx="94.5" cy="88.5" r="35.5" stroke="white" stroke-width="4"/>
+        </g>
+        <defs>
+          <filter id="filter0_dd_424_9" x="0" y="0" width="189.5" height="187.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="3" dy="6"/>
+            <feGaussianBlur stdDeviation="3.75"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.41 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_424_9"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="-5"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.14 0"/>
+            <feBlend mode="normal" in2="effect1_dropShadow_424_9" result="effect2_dropShadow_424_9"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_424_9" result="shape"/>
+          </filter>
+          <filter id="filter1_dd_424_9" x="48" y="47" width="94.5" height="92.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="3" dy="6"/>
+            <feGaussianBlur stdDeviation="3.75"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.41 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_424_9"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="-5"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.14 0"/>
+            <feBlend mode="normal" in2="effect1_dropShadow_424_9" result="effect2_dropShadow_424_9"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_424_9" result="shape"/>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Interactive Dot Grid Container -->
+  <div id="interactive-grid" aria-hidden="true"></div>
+
+  <!-- Case Study Left Navigation Sidebar -->
+  <aside class="case-study-sidebar" id="caseStudySidebar" aria-label="Case Study Navigation">
+    <div class="sidebar-inner">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back to Work
+        </a>
+        <h4 class="sidebar-title">Building Soulka<br>from Scratch</h4>
+        <p class="sidebar-subtitle">An experience-led organic food<br>ecosystem integrating a hands-<br>on cooking service</p>
+
+        <div class="sidebar-meta-list">
+          <div class="sidebar-meta-item">
+            <span class="sidebar-meta-label">Project type</span>
+            <p class="sidebar-meta-value">Academic Group Project</p>
+          </div>
+          <div class="sidebar-meta-item">
+            <span class="sidebar-meta-label">ROLE</span>
+            <p class="sidebar-meta-value">Founder+Product Designer</p>
+          </div>
+          <div class="sidebar-meta-item">
+            <span class="sidebar-meta-label">INDUSTRY</span>
+            <p class="sidebar-meta-value">Food</p>
+          </div>
+          <div class="sidebar-meta-item">
+            <span class="sidebar-meta-label">TIMELINE</span>
+            <p class="sidebar-meta-value">8 weeks</p>
+          </div>
+        </div>
+
+        <div class="sidebar-outcomes-block">
+          <span class="sidebar-meta-label">KEY OUTCOMES</span>
+          <ul class="sidebar-outcomes-list">
+            <li>Viable business model through UX strategy</li>
+            <li>Accessible cooking for space-constrained urban migrants</li>
+            <li>Seamless digital-to-physical service ecosystem</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-onthispage-block">
+          <span class="sidebar-meta-label" style="margin-bottom: 12px;">ON THIS PAGE</span>
+          <ul class="sidebar-menu">
+            <li>
+              <a href="#overview" class="sidebar-link active">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">About Soulka</span>
+              </a>
+            </li>
+            <li>
+              <a href="#understanding-problem" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">Understanding the Problem</span>
+              </a>
+            </li>
+            <li>
+              <a href="#solution" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">Solution - Soulka</span>
+              </a>
+            </li>
+            <li>
+              <a href="#visual-identity" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">Soulka's Visual Identity</span>
+              </a>
+            </li>
+            <li>
+              <a href="#soulka-app" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">Soulka's App</span>
+              </a>
+            </li>
+            <li>
+              <a href="#what-we-learned" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">What we learned</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile Sidebar Toggle Button -->
+  <button class="sidebar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle Case Study Menu">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <span>Menu</span>
+  </button>
+
+  <!-- Main Case Study Content -->
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="case-study-hero-section">
+      <div class="hero-image-container">
+        <img src="Soulka/Homepage Soulka.png" alt="Building Soulka from Scratch Case Study" class="hero-bg-image">
+      </div>
+    </section>
+
+    <!-- Soulka Question Headline Section (160px Gap After Hero) -->
+    <section class="soulka-question-section" id="overview">
+      <h2 class="soulka-question-heading fade-in-step">
+        What if cooking could just be about <span class="cooking-highlight">cooking</span>?
+      </h2>
+      <p class="soulka-sub-statement fade-in-step">
+        no measuring, no grocery runs, no hunting<br>
+        for the right utensils and definitely no cleaning up after
+      </p>
+      <p class="soulka-walkin-statement fade-in-step">
+        You just walk in <span class="green-bold">cook your favorite meal &amp; enjoy it!</span>
+      </p>
+    </section>
+
+    <!-- Soulka Intro Statement Section (160px Gap Below) -->
+    <section class="soulka-intro-statement-section" id="understanding-user">
+      <h2 class="soulka-intro-statement-heading">
+        That’s where <span class="soulka-green-bold">Soulka</span> comes in.
+      </h2>
+    </section>
+
+    <!-- Soulka Video Showcase Section (40px Below Intro Statement) -->
+    <section class="soulka-youtube-section">
+      <div class="soulka-youtube-wrapper">
+          <video 
+            id="soulkaVideoPlayer"
+            src="Soulka/AboutSoulka.mp4" 
+            autoplay
+            muted
+            loop 
+            playsinline 
+            controls>
+          </video>
+      </div>
+    </section>
+
+    <!-- Soulka Problem Depth Section (100px Gap Below Video) -->
+    <section class="soulka-problem-depth-section" id="understanding-problem">
+      <h2 class="soulka-problem-depth-heading">
+        Understanding the problem in depth
+      </h2>
+      <div class="soulka-two-worlds-image-wrapper">
+        <img class="soulka-two-worlds-image" src="Soulka/Two Worlds.png?v=2" alt="Understanding the problem in depth — Two Worlds">
+      </div>
+    </section>
+
+    <!-- Soulka Studies Show Section (80px Gap Below Two Worlds Image) -->
+    <section class="soulka-studies-show-section">
+      <h2 class="soulka-studies-show-heading">
+        Studies show
+      </h2>
+      
+      <div class="soulka-studies-grid">
+        <!-- Card 01 -->
+        <div class="soulka-study-card">
+          <span class="study-number">01</span>
+          <p class="study-body">Recent studies indicate a growing awareness among Indian consumers regarding food quality, safety, and traceability.</p>
+          <span class="study-source">IMARC Group</span>
+        </div>
+
+        <!-- Card 02 -->
+        <div class="soulka-study-card">
+          <span class="study-number">02</span>
+          <p class="study-body">India’s population of young professionals and migrants live in shared accommodations, PGs, and small rental units with limited cooking infrastructure.</p>
+          <span class="study-source">Sattva</span>
+        </div>
+
+        <!-- Card 03 -->
+        <div class="soulka-study-card">
+          <span class="study-number">03</span>
+          <p class="study-body">Urban housing reports lack of functional kitchens due to space constraints significantly influence food consumption behaviour in urban households.</p>
+          <span class="study-source">Sattva</span>
+        </div>
+
+        <!-- Card 04 -->
+        <div class="soulka-study-card">
+          <span class="study-number">04</span>
+          <p class="study-body">Farmer dissatisfaction with traditional mandi systems due to price instability, low transparency, delayed payments, and middlemen dependence.</p>
+          <span class="study-source">e-Nam Punjab Study</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Soulka Existing Gaps Section -->
+    <section class="soulka-existing-gaps-section" id="understanding-gaps">
+      <h2 class="soulka-existing-gaps-heading">
+        Understanding the Existing Gaps
+      </h2>
+      <div class="soulka-gaps-image-wrapper">
+        <img class="soulka-gaps-image" src="Soulka/Understanding the Gaps.png" alt="Understanding the Existing Gaps">
+      </div>
+    </section>
+
+    <!-- Soulka Introducing Section -->
+    <section class="soulka-introducing-section" id="solution">
+      <h2 class="soulka-introducing-heading fade-in-step">
+        Introducing <span class="soulka-green-bold">Soulka</span>
+      </h2>
+
+      <div class="soulka-introducing-banner fade-in-step">
+        <!-- Background Leaf & Ladle Floating Graphics -->
+        <img class="bg-graphic bg-leaf" src="Soulka/Soulka leaf.png" alt="Soulka Leaf Background">
+        <img class="bg-graphic bg-ladle" src="Soulka/Soulka ladle.png" alt="Soulka Ladle Background">
+
+        <!-- Foreground Written Content -->
+        <div class="soulka-introducing-content">
+          <p class="soulka-introducing-body">
+            Soulka is an <span class="soulka-green-bold-text">experience-based</span> food brand where<br>
+            <span class="soulka-green-bold-text">people can cook their own meals</span> using high-quality,<br>
+            organic ingredients.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Soulka Value / Process Section (100px Below Introducing Section) -->
+    <section class="soulka-value-section">
+      <p class="soulka-value-paragraph">
+        Users can <span class="soulka-green-bold-text">book a slot through our app, choose a recipe and select the number of people.</span><br>
+        When they arrive, everything is ready for them <span class="soulka-green-bold-text">pre-measured ingredients, spices, and utensils.</span><br>
+        They simply cook, enjoy the process, and eat the meal they’ve made.
+      </p>
+
+      <p class="soulka-value-paragraph">
+        All ingredients are directly sourced from <span class="soulka-green-bold-text">farmers and are completely organic.</span><br>
+        This hands on experience helps people understand the real taste and value of organic food,<br>
+        <span class="soulka-green-bold-text">building trust in what they consume.</span>
+      </p>
+    </section>
+
+    <!-- Soulka Store Section (100px Below Value Section) -->
+    <section class="soulka-store-section">
+      <div class="soulka-store-image-container">
+        <img class="soulka-store-image" src="Soulka/Soulka Store.png" alt="Soulka Two-Storey Store Architecture">
+      </div>
+
+      <div class="soulka-store-content">
+        <p class="soulka-store-text">
+          Soulka is designed as a <span class="soulka-green-bold-text">two-storey space:</span>
+        </p>
+
+        <p class="soulka-store-text">
+          The ground floor is an <span class="soulka-green-bold-text">organic mart</span> where customers<br>
+          can explore and buy ingredients.<br>
+          The first floor is the cooking experience area where<br>
+          <span class="soulka-green-bold-text">users prepare their meals.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Soulka Stakeholders Image Section (160px Below Store Section) -->
+    <section class="soulka-stakeholders-section">
+      <div class="soulka-stakeholders-image-wrapper">
+        <img class="soulka-stakeholders-image" src="Soulka/Soulka Stakeholders.png?v=3" alt="Soulka Stakeholders Ecosystem Diagram">
+      </div>
+    </section>
+
+    <!-- Soulka Naming Story Section (100px Below Stakeholders Section) -->
+    <section class="soulka-naming-section" id="how-soulka-got-its-name">
+      <h2 class="soulka-naming-heading">
+        How <span class="soulka-green-bold">Soulka</span> got its name
+      </h2>
+
+      <div class="soulka-naming-image-wrapper">
+        <img class="soulka-naming-image" src="Soulka/Soulka Name.png" alt="How Soulka Got Its Name Diagram">
+      </div>
+    </section>
+
+    <!-- Soulka Visual Identity Section (160px Below Naming Section) -->
+    <section class="soulka-identity-section" id="visual-identity">
+      <h2 class="soulka-identity-heading">
+        <span class="soulka-green-bold">Soulka’s</span> Visual Identity
+      </h2>
+
+      <div class="soulka-identity-image-wrapper">
+        <img class="soulka-identity-image" src="Soulka/Soulka Visual Identity.png" alt="Soulka Visual Identity Guidelines">
+      </div>
+    </section>
+
+    <!-- Soulka App Intro Section (160px Below Visual Identity) -->
+    <section class="soulka-app-intro-section" id="soulka-app">
+      <h2 class="soulka-app-intro-heading">
+        Introducing <span class="soulka-green-bold">Soulka's App</span>
+      </h2>
+      <div class="soulka-app-grid">
+        <img class="soulka-app-grid-image" src="Soulka/Soulka Onboarding.png" alt="Soulka Onboarding">
+        <img class="soulka-app-grid-image" src="Soulka/Soulka Booking via Search.png" alt="Soulka Booking via Search">
+      </div>
+      <img class="soulka-app-full-image" src="Soulka/Soulka Booking via Slot.png" alt="Soulka Booking via Slot">
+      <div class="soulka-app-grid">
+        <img class="soulka-app-grid-image" src="Soulka/Soulka Posting on Soucial.png" alt="Soulka Posting on Soucial">
+        <img class="soulka-app-grid-image" src="Soulka/Soulka Checkin.png" alt="Soulka Checkin">
+      </div>
+    </section>
+
+    <!-- Soulka Features Section (100px Below App Intro) -->
+    <section class="soulka-features-section" id="features">
+      <h2 class="soulka-features-heading">Features in Details</h2>
+      
+      <div class="soulka-feature-block">
+        <div class="soulka-feature-text-content">
+          <h3 class="soulka-feature-title">Onboarding</h3>
+          <div class="soulka-feature-description">
+            <span>Since Soulka introduces a new concept,<br>
+            the experience begins with a short<br>
+            onboarding flow.</span>
+            <span>The goal is to help <strong>first-time users<br>
+            quickly understand the platform</strong> and<br>
+            start confidently.</span>
+          </div>
+        </div>
+        <div class="soulka-feature-media">
+          <video class="soulka-feature-video" autoplay loop muted playsinline>
+            <source src="Soulka/1. Onboarding.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      
+      <div class="soulka-feature-block-left">
+        <div class="soulka-feature-media">
+          <img class="soulka-feature-image" src="Soulka/Soulka Explore.png" alt="Soulka Explore">
+        </div>
+        <div class="soulka-feature-text-content">
+          <h3 class="soulka-feature-title">Explore</h3>
+          <div class="soulka-feature-description">
+            <span>Home screen helps users easily explore what the<br>
+            platform offers.<br>
+            Users can <strong>view ongoing offers</strong>, followed by an<br>
+            option to <strong>choose a main ingredient</strong>. The feed<br>
+            then displays recipes made using that ingredient,<br>
+            <strong>with filters available</strong> to refine results.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="soulka-feature-block" style="margin-top: 100px;">
+        <div class="soulka-feature-text-content">
+          <h3 class="soulka-feature-title">Navigation Bar</h3>
+          <div class="soulka-feature-description">
+            <span>The navigation bar includes <strong>Home, Book a Slot,<br>
+            Manage Booking, and Soucial.</strong><br>
+            In Book a Slot, users select the date, time, number of<br>
+            people, and the dish they want to cook.<br>
+            Manage Booking lets users view, modify, or cancel<br>
+            bookings.<br>
+            While Soucial is a community space to share dishes<br>
+            and discover supper clubs.</span>
+          </div>
+        </div>
+        <div class="soulka-feature-media">
+          <video class="soulka-feature-video" autoplay loop muted playsinline>
+            <source src="Soulka/2. Homepage.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="soulka-feature-block-left">
+        <div class="soulka-feature-media">
+          <video class="soulka-feature-video" autoplay loop muted playsinline>
+            <source src="Soulka/3. Book a slot.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="soulka-feature-text-content">
+          <h3 class="soulka-feature-title">Supper Club</h3>
+          <div class="soulka-feature-description">
+            <span>You can host a supper club at Soulka through<br>
+            Book a Slot. <strong>Select who you are cooking for,<br>
+            choose the date, time, number of people, and<br>
+            the recipe.</strong><br>
+            After selecting the recipe, review the<br>
+            ingredients, add any additional items if needed,<br>
+            and then proceed to confirm the booking.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="soulka-feature-block" style="margin-top: 100px;">
+        <div class="soulka-feature-text-content">
+          <h3 class="soulka-feature-title">Manage Bookings</h3>
+          <div class="soulka-feature-description">
+            <span>Through Manage Bookings, users can <strong>view all<br>
+            their upcoming and past bookings</strong> in one<br>
+            place. They can easily <strong>edit booking details or<br>
+            cancel</strong> if needed.</span>
+          </div>
+        </div>
+        <div class="soulka-feature-media">
+          <video class="soulka-feature-video" autoplay loop muted playsinline>
+            <source src="Soulka/4. Manage Booking.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="soulka-feature-block-left">
+        <div class="soulka-feature-media">
+          <video class="soulka-feature-video" autoplay loop muted playsinline>
+            <source src="Soulka/5. Soucial.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="soulka-feature-text-content">
+          <h3 class="soulka-feature-title">Soucial</h3>
+          <div class="soulka-feature-description">
+            <span>Soucial is a community space for food lovers where<br>
+            users can <strong>share posts about what they cooked at<br>
+            Soulka.</strong> It allows them to <strong>connect with other users,<br>
+            discover dishes made by the community, and<br>
+            stay updated about supper clubs</strong> being organized.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="soulka-feature-block" style="margin-top: 100px;">
+        <div class="soulka-feature-text-content">
+          <h3 class="soulka-feature-title">Check Out</h3>
+          <div class="soulka-feature-description">
+            <span>Once the user finishes cooking, they can check out<br>
+            through the app by accessing their ongoing session.<br>
+            The checkout process requires <strong>the user to capture a<br>
+            photo of the dish as confirmation.</strong> After submitting<br>
+            the photo, the session is completed and the user is<br>
+            successfully checked out from the kitchen.</span>
+          </div>
+        </div>
+        <div class="soulka-feature-media">
+          <video class="soulka-feature-video" autoplay loop muted playsinline>
+            <source src="Soulka/6. Checkout.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- What we Learned Section -->
+    <section class="soulka-learned-section" id="what-we-learned">
+      <h2 class="soulka-learned-heading">What we Learned</h2>
+      <div class="soulka-learned-grid">
+        <!-- Card 1 -->
+        <div class="soulka-learned-card">
+          <h3 class="soulka-learned-card-title">Designing for an unfamiliar concept</h3>
+          <p class="soulka-learned-card-text">
+            As we explored the idea deeper, the concept initially became<br>
+            more confusing. However, that process helped us question<br>
+            assumptions and refine the problem.
+          </p>
+        </div>
+        <!-- Card 2 -->
+        <div class="soulka-learned-card">
+          <h3 class="soulka-learned-card-title">Trusting each other's strengths</h3>
+          <p class="soulka-learned-card-text">
+            Working as a group taught us to rely on each other's capabilities<br>
+            and individual strengths, which helped us deliver stronger<br>
+            outcomes.
+          </p>
+        </div>
+        <!-- Card 3 -->
+        <div class="soulka-learned-card">
+          <h3 class="soulka-learned-card-title">Aligning UX with business needs</h3>
+          <p class="soulka-learned-card-text">
+            The project helped me understand how design decisions must<br>
+            balance user experience with business goals to create a product<br>
+            that is both useful and sustainable.
+          </p>
+        </div>
+        <!-- Card 4 -->
+        <div class="soulka-learned-card">
+          <h3 class="soulka-learned-card-title" style="white-space: nowrap;">Balancing user needs with operational logic</h3>
+          <p class="soulka-learned-card-text">
+            Designing flows such as booking, ingredient selection, and checkout<br>
+            required considering both user convenience and the operational<br>
+            realities of running a shared kitchen.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Mobile Sidebar Toggle Handler
+      const sidebar = document.getElementById("caseStudySidebar");
+      const toggleBtn = document.getElementById("sidebarToggleBtn");
+
+      if (sidebar && toggleBtn) {
+        toggleBtn.addEventListener("click", function () {
+          sidebar.classList.toggle("is-open");
+        });
+
+        document.addEventListener("click", function (e) {
+          if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target) && sidebar.classList.contains("is-open")) {
+            sidebar.classList.remove("is-open");
+          }
+        });
+      }
+
+      // Sidebar Active Section Observer
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".sidebar-link");
+
+      if (sections.length > 0 && navLinks.length > 0) {
+        const observerOptions = {
+          root: null,
+          rootMargin: "-20% 0px -50% 0px",
+          threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const currentId = entry.target.getAttribute("id");
+              navLinks.forEach((link) => {
+                if (link.getAttribute("href") === "#" + currentId) {
+                  link.classList.add("active");
+                } else {
+                  link.classList.remove("active");
+                }
+              });
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach((section) => observer.observe(section));
+      }
+
+      // Smooth Anchor Click Navigation for Sidebar Links
+      const sidebarLinksList = document.querySelectorAll('.sidebar-link[href^="#"]');
+      sidebarLinksList.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href && href.length > 1) {
+            const targetSection = document.querySelector(href);
+            if (targetSection) {
+              e.preventDefault();
+              targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+
+      // Sidebar Smooth Isolated Scroll Handler
+      const sidebarElement = document.getElementById('caseStudySidebar');
+      if (sidebarElement) {
+        const inner = sidebarElement.querySelector('.sidebar-inner');
+        if (inner) {
+          sidebarElement.addEventListener('wheel', (e) => {
+            const scrollTop = inner.scrollTop;
+            const scrollHeight = inner.scrollHeight;
+            const height = inner.clientHeight;
+            const delta = e.deltaY;
+            const up = delta < 0;
+
+            if (!up && delta > scrollHeight - height - scrollTop) {
+              inner.scrollTop = scrollHeight;
+            } else if (up && -delta > scrollTop) {
+              inner.scrollTop = 0;
+            } else {
+              inner.scrollBy({ top: delta, behavior: 'smooth' });
+            }
+          }, { passive: true });
+        }
+      }
+
+      // Sequential Fade-in Observer for Question Section
+      const fadeElements = document.querySelectorAll(".fade-in-step");
+      if (fadeElements.length > 0) {
+        const fadeObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        }, { threshold: 0.15 });
+
+        fadeElements.forEach((el) => fadeObserver.observe(el));
+      }
+
+      // HTML5 Video Scroll Controller removed to allow full native user control without interference
+    });
+
+    // Rolex-Style Luxury Inertial Momentum Smooth Scroll Engine (Lenis.js)
+    (function () {
+      function initLenis() {
+        if (typeof Lenis !== 'undefined') {
+          const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential damp lerp
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1.0,
+            touchMultiplier: 1.5,
+            infinite: false,
+          });
+
+          window.lenis = lenis;
+
+          function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+          requestAnimationFrame(raf);
+
+          // Smooth Anchor Navigation for Sidebar Links
+          document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+              const href = link.getAttribute('href');
+              if (href && href.startsWith('#') && href !== '#') {
+                e.preventDefault();
+                lenis.scrollTo(href, { offset: -40, duration: 1.4 });
+              }
+            });
+          });
+        } else {
+          // High-Performance Inertial Physics Fallback Engine
+          let currentY = window.scrollY;
+          let targetY = window.scrollY;
+          let isMoving = false;
+          const ease = 0.08;
+
+          function smoothScrollLoop() {
+            const diff = targetY - currentY;
+            if (Math.abs(diff) > 0.4) {
+              currentY += diff * ease;
+              window.scrollTo(0, currentY);
+              requestAnimationFrame(smoothScrollLoop);
+            } else {
+              currentY = targetY;
+              window.scrollTo(0, currentY);
+              isMoving = false;
+            }
+          }
+
+          window.addEventListener('wheel', (e) => {
+            if (e.ctrlKey) return;
+            e.preventDefault();
+            targetY += e.deltaY * 0.9;
+            targetY = Math.max(0, Math.min(targetY, document.documentElement.scrollHeight - window.innerHeight));
+            if (!isMoving) {
+              isMoving = true;
+              requestAnimationFrame(smoothScrollLoop);
+            }
+          }, { passive: false });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLenis);
+      } else {
+        initLenis();
+      }
+    })();
+  </script>
+</body>
+</html>

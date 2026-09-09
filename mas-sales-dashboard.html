@@ -1,0 +1,3497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MAS Admission Sales Dashboard Case Study — Simplifying Lead Management for MAS's Admission Team by Sakshi Thareja.">
+  <title>MAS Admission Sales Dashboard — Case Study</title>
+
+  <!-- Google Fonts: Anton & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,800&family=Solitreo&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=ranade@500,600,700&f[]=switzer@400,500&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Global Ultra-Smooth Scroll Specs */
+    html {
+      scroll-behavior: smooth !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-padding-top: 100px;
+    }
+
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    .lenis.lenis-smooth iframe {
+      pointer-events: none;
+    }
+
+    body {
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Case Study Hero Section Specs - Full 100vw Bleed (Zero Gap / Zero Margins) */
+    .case-study-hero-section {
+      width: 100vw;
+      max-width: 100vw;
+      margin-top: 0 !important; /* Flush right against the navbar header */
+      margin-bottom: 40px;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      padding: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .hero-image-container {
+      position: relative;
+      width: 100vw;
+      max-width: 100vw;
+      height: auto;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .hero-bg-image {
+      width: 100vw;
+      max-width: 100vw;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-heading-overlay {
+      position: absolute;
+      top: 7%; /* Positioned cleanly over the dark teal bar above the tablet border */
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: 96vw;
+      white-space: nowrap; /* Forces text onto 1 single line */
+      
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(20px, 3.5vw, 54px); /* Set to 54px desktop font size */
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      text-align: center;
+      color: #FFFFFF;
+      text-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-image-container {
+        height: auto;
+        aspect-ratio: 167 / 106;
+      }
+      .hero-heading-overlay {
+        font-size: 48px;
+        line-height: 56px;
+        top: 10%;
+        letter-spacing: -1px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .case-study-hero-section {
+        margin-top: 0 !important;
+      }
+      .hero-heading-overlay {
+        font-size: 32px;
+        line-height: 38px;
+        top: 8%;
+        letter-spacing: -0.5px;
+      }
+    }
+
+    /* Project Overview & Meta Section Specs */
+    .project-overview-section {
+      display: flex;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      flex-direction: column;
+      align-items: center;
+      gap: 79px; /* Exact 79px gap from Figma specs */
+      margin: 80px auto 100px auto; /* 80px top spacing from hero image */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .project-goal-container {
+      display: flex;
+      width: 100%;
+      max-width: 907px;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px; /* Exact 12px gap between 1st line and 2nd line */
+      text-align: center;
+    }
+
+    .project-goal-title {
+      align-self: stretch;
+      color: #1A97A4; /* var(--Color-primary-2-100, #1A97A4) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 SemiBold */
+      line-height: 48px; /* 133.333% */
+      letter-spacing: -0.72px;
+      margin: 0;
+    }
+
+    .project-goal-desc {
+      width: 100%;
+      max-width: 651px;
+      color: #667085; /* var(--Neutral-500, #667085) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 120% */
+      letter-spacing: -0.4px;
+      margin: 0;
+    }
+
+    /* Metadata Grid: 100px Column Gap & 40px Top/Bottom Padding */
+    .project-meta-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 100px; /* Exact 100px gap between columns from Figma */
+      width: 100%;
+      padding: 40px 0; /* Exact 40px top and bottom padding from Figma */
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 0 1 auto;
+      white-space: nowrap;
+    }
+
+    .meta-item:last-child {
+      flex: 1 1 auto;
+      white-space: normal;
+      max-width: 440px;
+    }
+
+    .meta-label {
+      align-self: stretch;
+      color: #667085; /* var(--Neutral-500, #667085) */
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 SemiBold */
+      line-height: 20px; /* 142.857% */
+      letter-spacing: -0.28px;
+      text-transform: uppercase;
+    }
+
+    .meta-value {
+      color: #344054; /* var(--Neutral-700, #344054) */
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500; /* SF Pro 510 / 500 Medium */
+      line-height: 24px; /* 150% */
+      letter-spacing: -0.32px;
+      margin: 0;
+    }
+
+    @media (max-width: 1100px) {
+      .project-meta-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        padding: 24px 0;
+      }
+      .meta-item {
+        white-space: normal;
+      }
+      .project-goal-title {
+        font-size: 28px;
+        line-height: 38px;
+      }
+      .project-goal-desc {
+        font-size: 17px;
+        line-height: 22px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .project-meta-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .project-overview-section {
+        gap: 48px;
+        margin-top: 50px;
+      }
+    }
+
+    /* Section 3 Part 1: Problem Statement Specs */
+    .problem-statement-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px;
+      margin: 60px auto 50px auto;
+      padding: 0 5%;
+      box-sizing: border-box;
+    }
+
+    .problem-statement-text {
+      width: 100%;
+      max-width: 954px;
+      color: #7A818B; /* var(--Sakshi-Blue-Primary-60, #7A818B) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 SemiBold */
+      line-height: 32px; /* 133.333% */
+      letter-spacing: -0.48px;
+      margin: 0 auto;
+    }
+
+    .problem-statement-text .highlight-teal {
+      color: #1A97A4; /* var(--Color-primary-2-100, #1A97A4) */
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .problem-statement-text {
+        font-size: 20px;
+        line-height: 28px;
+      }
+    }
+
+    /* Section 3 Part 2: Notebook & Pain Points Specs */
+    .notebook-painpoints-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px;
+      margin: 40px auto 160px auto; /* 160px gap to the next section */
+      padding: 0 5%;
+      box-sizing: border-box;
+    }
+
+    .notebook-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px; /* Exact 80px gap from notebook image to pain points section */
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .notebook-img {
+      width: 299px;
+      height: 403px;
+      aspect-ratio: 23 / 31;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .pain-points-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .pain-points-title {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      color: #344054; /* var(--Neutral-700, #344054) */
+      line-height: 32px; /* 133.333% */
+      letter-spacing: -0.48px;
+      margin: 0;
+    }
+
+    .pain-points-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0; /* Vertical spacing driven by 40px line-height */
+    }
+
+    .pain-points-list li {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      color: #667085;
+      line-height: 40px; /* Exact 40px (200%) line-height from specs */
+      letter-spacing: -0.4px;
+      position: relative;
+    }
+
+    /* Underline Graphic Specs */
+    .pain-points-underline-img {
+      position: absolute;
+      bottom: -36px;
+      right: -24px;
+      width: 146.731px;
+      height: 109.501px;
+      aspect-ratio: 67 / 50;
+      transform: rotate(-18.255deg);
+      pointer-events: none;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      .notebook-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+      }
+      .pain-points-content {
+        align-items: center;
+        text-align: center;
+      }
+      .pain-points-underline-img {
+        display: none;
+      }
+    }
+
+    /* Section 4 Part 1: Pie Chart Section Specs */
+    .pie-chart-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto 100px auto;
+      padding: 0 5%;
+      box-sizing: border-box;
+    }
+
+    .pie-chart-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px; /* Exact 60px gap between pie chart image and text */
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .pie-chart-img {
+      width: 400px;
+      height: 332px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .pie-chart-text {
+      width: 100%;
+      max-width: 539px;
+      color: #475467; /* var(--Neutral-600, #475467) */
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 32px; /* 133.333% */
+      letter-spacing: -0.48px;
+      text-align: left;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .pie-chart-container {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+      }
+      .pie-chart-text {
+        text-align: center;
+        font-size: 20px;
+        line-height: 28px;
+      }
+      .pie-chart-img {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+      }
+    }
+
+    /* Section 4 Part 2: Sales Head Statement Specs */
+    .sales-head-statement-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px;
+      margin: 100px auto 60px auto; /* 100px top margin below pie chart section */
+      padding: 0 5%;
+      box-sizing: border-box;
+    }
+
+    .sales-head-statement-text {
+      width: 100%;
+      max-width: 864px;
+      color: #475467; /* var(--Neutral-600, #475467) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 32px; /* 133.333% */
+      letter-spacing: -0.48px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 900px) {
+      .sales-head-statement-section {
+        margin-top: 60px;
+      }
+      .sales-head-statement-text {
+        font-size: 20px;
+        line-height: 28px;
+      }
+    }
+
+    /* Section 5: Telecaller Journey Specs */
+    .telecaller-journey-section {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 240px auto 160px auto; /* Exact 240px top gap from above section */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .telecaller-journey-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 60px;
+      width: 100%;
+    }
+
+    .journey-title-block {
+      flex: 0 0 287px;
+      max-width: 287px;
+    }
+
+    .journey-section-title {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 36px; /* 128.571% */
+      letter-spacing: -0.56px;
+      color: #344054; /* var(--Neutral-700, #344054) */
+      margin: 0;
+    }
+
+    .journey-flow-diagram {
+      position: relative;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 120px; /* Vertical space between top and bottom rows */
+      width: 100%;
+    }
+
+    .journey-flow-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .journey-flow-row.top-row {
+      align-items: flex-start;
+    }
+
+    .journey-flow-row.bottom-row {
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-top: 20px;
+    }
+
+    .journey-step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .step-desc {
+      color: #667085;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 150% */
+      letter-spacing: -0.32px;
+      margin: 0;
+    }
+
+    .line-lock {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .step-platform {
+      color: #1A97A4; /* var(--Color-primary-2-100, #1A97A4) */
+      text-align: center;
+      font-family: 'Solitreo', cursive, 'Caveat', sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 150% */
+      letter-spacing: -0.32px;
+    }
+
+    .journey-arrow-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding-top: 6px;
+    }
+
+    .bottom-row .journey-arrow-wrapper.left-arrow {
+      padding-top: 48px; /* Aligns bottom arrows underneath/between bottom row items */
+    }
+
+    .journey-arrow-svg {
+      width: 82px;
+      height: 20px;
+    }
+
+    .journey-curve-down-connector {
+      position: absolute;
+      right: 0px;
+      top: 90px;
+    }
+
+    .journey-curve-down-connector svg {
+      width: 48px;
+      height: 105px;
+    }
+
+    /* Section 6: Admission Sales Head Journey Specs */
+    .saleshead-journey-section {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 200px auto 160px auto; /* 200px gap below Section 5 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    /* Section 7: Unhappy Pain Points Cards Specs */
+    .unhappy-dashboard-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 160px auto 160px auto;
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .unhappy-section-title {
+      width: max-content;
+      max-width: 100%;
+      white-space: nowrap;
+      color: #344054; /* var(--Neutral-700, #344054) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 36px; /* 128.571% */
+      letter-spacing: -0.56px;
+      margin: 0 0 60px 0;
+    }
+
+    .unhappy-cards-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      width: 100%;
+    }
+
+    .unhappy-card-img {
+      width: 100%;
+      max-width: 548.156px;
+      height: auto;
+      aspect-ratio: 548.156 / 325.538;
+      object-fit: contain;
+      filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.04));
+    }
+
+    @media (max-width: 1100px) {
+      .unhappy-cards-row {
+        flex-direction: column;
+        gap: 32px;
+      }
+    }
+
+    /* Section 8: Dashboard Lacks List Specs */
+    .lacks-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 160px auto 160px auto;
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .lacks-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px; /* Exact 60px gap between statement block and arrows */
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .lacks-title-block {
+      flex: 0 0 auto;
+    }
+
+    .lacks-heading {
+      color: #344054; /* var(--Neutral-700, #344054) */
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 36px; /* 128.571% */
+      letter-spacing: -0.56px;
+      margin: 0;
+    }
+
+    .lacks-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .lacks-item-row {
+      display: flex;
+      align-items: center;
+      gap: 60px; /* Exact 60px gap between arrow and point text */
+      height: 54px; /* Matches 54px line-height */
+    }
+
+    .lacks-arrow-svg {
+      width: 34px;
+      height: 30.271px;
+      flex-shrink: 0;
+    }
+
+    .arrow-rot-1 { transform: rotate(-25deg); }
+    .arrow-rot-2 { transform: rotate(-15deg); }
+    .arrow-rot-3 { transform: rotate(-6deg); }
+    .arrow-rot-4 { transform: rotate(0deg); }
+    .arrow-rot-5 { transform: rotate(0deg); }
+    .arrow-rot-6 { transform: rotate(6deg); }
+    .arrow-rot-7 { transform: rotate(15deg); }
+    .arrow-rot-8 { transform: rotate(25deg); }
+
+    .lacks-item-text {
+      color: #1A97A4; /* var(--Color-primary-2-100, #1A97A4) */
+      font-family: 'Solitreo', cursive, 'Caveat', sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 54px; /* 225% */
+      letter-spacing: -0.48px;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 850px) {
+      .lacks-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+    }
+
+    /* Section 9: Main Issue Section Specs */
+    .main-issue-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 200px auto 0 auto; /* 200px gap below Section 8, 60px gap to Section 10 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .main-issue-title {
+      color: #475467; /* var(--Neutral-600, #475467) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 64px; /* 133.333% */
+      letter-spacing: -0.96px;
+      margin: 0 0 16px 0; /* 16px gap to text below */
+    }
+
+    .main-issue-paragraph {
+      color: #667085; /* var(--Neutral-500, #667085) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 500; /* SF Pro 510 / 500 */
+      line-height: 32px; /* 133.333% */
+      letter-spacing: -0.48px;
+      margin: 0;
+      max-width: 960px;
+    }
+
+    .main-issue-paragraph .highlight-teal {
+      color: #1A97A4; /* var(--Color-primary-2-100, #1A97A4) */
+    }
+
+    /* Section 10: How Might We Card Specs */
+    .how-might-we-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 60px auto 160px auto; /* 60px gap below Section 9 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .how-might-we-img {
+      width: 100%;
+      max-width: 1227px;
+      height: auto;
+      aspect-ratio: 1227 / 283;
+      object-fit: contain;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.05));
+    }
+
+    /* Section 11: Brainstorming Section Specs */
+    .brainstorming-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 160px auto 160px auto; /* 160px gap below Section 10 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .brainstorming-img {
+      width: 100%;
+      max-width: 1044px;
+      height: auto;
+      aspect-ratio: 1044 / 556;
+      object-fit: contain;
+    }
+
+    /* Section 12: Solution Intro Specs */
+    .solution-intro-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 160px auto 0 auto; /* 160px gap below Section 11, 40px gap to Section 13 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .solution-problem-text {
+      max-width: 733px;
+      color: #344054; /* var(--Neutral-700, #344054) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 32px; /* 133.333% */
+      letter-spacing: -0.48px;
+      margin: 0 0 20px 0; /* 20px gap below */
+    }
+
+    .solution-introducing-text {
+      max-width: 143px;
+      color: #98A2B3; /* var(--Neutral-400, #98A2B3) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 36px; /* 128.571% */
+      letter-spacing: -0.56px;
+      margin: 0 0 20px 0; /* 20px gap below */
+    }
+
+    .solution-main-title {
+      max-width: 698px;
+      color: #1A97A4; /* var(--Color-primary-2-100, #1A97A4) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 48px; /* 133.333% */
+      letter-spacing: -0.72px;
+      margin: 0;
+    }
+
+    /* Section 13: Lead Assign Page 1 Showcase Specs */
+    .lead-assign-showcase-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 40px auto 160px auto; /* 40px gap below Section 12 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .lead-assign-img {
+      width: 100%;
+      max-width: 954px;
+      height: auto;
+      aspect-ratio: 159 / 100;
+      object-fit: contain;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.06));
+    }
+
+    /* Section 14: Tele Caller's Dashboard Feature Showcase Specs */
+    .telecaller-feature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 200px auto 160px auto; /* 200px gap below Section 13 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .telecaller-feature-title {
+      align-self: center;
+      width: max-content;
+      max-width: 100%;
+      white-space: nowrap;
+      color: #1A97A4; /* var(--Color-primary-2-100, #1A97A4) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 48px; /* 133.333% */
+      letter-spacing: -0.72px;
+      margin: 0 auto 100px auto; /* 100px gap to PROBLEM & FEATURE row below */
+    }
+
+    .telecaller-prob-feat-row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
+      width: 100%;
+      margin: 0 0 24px 0; /* Exact 24px gap to image below */
+    }
+
+    .telecaller-prob-box,
+    .telecaller-feat-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .telecaller-prob-box {
+      max-width: 320px;
+    }
+
+    .telecaller-feat-box {
+      max-width: 420px;
+    }
+
+    .prob-feat-label {
+      color: #1A97A4; /* var(--Color-primary-2-100, #1A97A4) */
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600; /* SF Pro 590 / 600 */
+      line-height: 24px; /* 150% */
+      letter-spacing: -0.32px;
+      margin: 0 0 4px 0;
+      text-transform: uppercase;
+    }
+
+    .prob-feat-desc {
+      color: #475467; /* var(--Neutral-600, #475467) */
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500; /* SF Pro 510 / 500 */
+      line-height: 16px; /* 133.333% */
+      letter-spacing: -0.24px;
+      margin: 0;
+    }
+
+    /* CRM Screen Interactive Overlay Container */
+    .crm-screen-container {
+      position: relative;
+      width: 100%;
+      max-width: 1050px;
+      align-self: flex-start;
+      margin-left: 0;
+    }
+
+    .crm-screen-container .telecaller-screen-img {
+      width: 100%;
+      max-width: 685px;
+      height: auto;
+      display: block;
+      margin: 0;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.05));
+    }
+
+    .crm-arrow-overlay {
+      position: absolute;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .crm-arrow-overlay.arrow-1-1 {
+      top: 19.8%; /* Positioned right above Leads Status Tracker card header */
+      left: 7.2%;
+      width: 90.6%;
+      max-width: 620px;
+    }
+
+    .crm-arrow-overlay.arrow-1-2 {
+      top: 55.8%; /* Passes across table header row over Interest, Last Contacted, Course Tag */
+      left: 44.2%; /* Ticks align over Interest, Last Contacted, and Course Tag headers */
+      width: 52.5%;
+      max-width: 440px;
+    }
+
+    .crm-arrow-overlay svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .crm-callout-block {
+      position: absolute;
+      z-index: 5;
+      top: 15.2%; /* Aligns with horizontal guideline in reference screenshot */
+      left: 685px; /* Positioned right after max-width: 685px image */
+      margin-left: 28px; /* Exact 28px gap from image container */
+      width: 486px;
+      max-width: 486px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+    }
+
+    .callout-lead-text {
+      width: 486px;
+      max-width: 100%;
+      color: #667085; /* var(--Neutral-500, #667085) */
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 510; /* SF Pro 510 */
+      line-height: 20px; /* 142.857% */
+      letter-spacing: -0.28px;
+      margin: 0 0 20px 0; /* 20px gap to first bold group */
+    }
+
+    .callout-group-1 {
+      margin-bottom: 48px; /* 48px gap to second bold group */
+    }
+
+    .callout-bold-text {
+      color: #232F3F; /* var(--Sakshi-Blue-Primary-100, #232F3F) */
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 590; /* SF Pro 590 */
+      line-height: 24px; /* 150% */
+      letter-spacing: -0.32px;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    /* Section 15: Overview Page Feature Showcase Specs */
+    .overview-feature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 160px auto 160px auto; /* 160px gap below Section 14 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .overview-prob-feat-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .overview-prob-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 320px;
+    }
+
+    .overview-feat-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    .overview-screen-container {
+      position: relative;
+      width: 100%;
+      max-width: 685px;
+      align-self: flex-end;
+      margin-right: 0;
+    }
+
+    .overview-screen-img {
+      width: 100%;
+      max-width: 685px;
+      height: auto;
+      display: block;
+      margin: 0;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.05));
+    }
+
+    .overview-left-callout-block {
+      position: absolute;
+      z-index: 5;
+      top: 22%;
+      right: 100%;
+      margin-right: 28px; /* Exact 28px gap from image container */
+      width: 486px;
+      max-width: 486px;
+      text-align: right;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+    }
+
+    .overview-callout-lead {
+      margin-bottom: 24px;
+    }
+
+    .overview-callout-group-1 {
+      margin-bottom: 48px;
+    }
+
+    .overview-callout-group-2 {
+      margin-bottom: 64px;
+    }
+
+    /* Section 16: Lead Detail Page Feature Showcase Specs */
+    .leaddetail-feature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 160px auto 160px auto; /* 160px gap below Section 15 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .leaddetail-prob-feat-row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .leaddetail-prob-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 320px;
+    }
+
+    .leaddetail-feat-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    .leaddetail-screen-container {
+      position: relative;
+      width: 100%;
+      max-width: 1050px;
+      align-self: flex-start;
+      margin-left: 0;
+    }
+
+    .leaddetail-screen-img {
+      width: 100%;
+      max-width: 685px;
+      height: auto;
+      display: block;
+      margin: 0;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.05));
+    }
+
+    .leaddetail-right-callout-block {
+      position: absolute;
+      z-index: 5;
+      top: 18.5%;
+      left: 685px;
+      margin-left: 28px; /* Exact 28px gap from image container */
+      width: 486px;
+      max-width: 486px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+    }
+
+    .leaddetail-callout-lead {
+      margin-bottom: 20px;
+    }
+
+    .leaddetail-callout-group-1 {
+      margin-bottom: 40px;
+    }
+
+    .leaddetail-callout-group-2 {
+      margin-bottom: 160px;
+    }
+
+    .leaddetail-callout-group-3 {
+      margin-bottom: 180px;
+    }
+
+    .leaddetail-callout-group-4 {
+      margin-bottom: 48px;
+    }
+
+    /* Section 17: Admission Sales Head Dashboard Header (120px gap below Section 16) */
+    .saleshead-dashboard-header-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 120px auto 0 auto; /* 120px gap below Section 16 */
+      padding: 0 5%;
+      box-sizing: border-box;
+    }
+
+    .saleshead-dashboard-title {
+      width: max-content;
+      max-width: 100%;
+      white-space: nowrap;
+      color: #1A97A4; /* var(--Color-primary-2-100, #1A97A4) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 590; /* SF Pro 590 */
+      line-height: 48px; /* 133.333% */
+      letter-spacing: -0.72px;
+      margin: 0 auto;
+    }
+
+    /* Section 18: Admission Sales Head Overview Feature Showcase Specs */
+    .ash-overview-feature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 100px auto 160px auto; /* 100px gap below Section 17 title */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .ash-overview-prob-feat-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .ash-overview-prob-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 320px;
+    }
+
+    .ash-overview-feat-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    .ash-overview-screen-container {
+      position: relative;
+      width: 100%;
+      max-width: 685px;
+      align-self: flex-end;
+      margin-right: 0;
+    }
+
+    .ash-overview-screen-img {
+      width: 100%;
+      max-width: 685px;
+      height: auto;
+      display: block;
+      margin: 0;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.05));
+    }
+
+    .ash-overview-left-callout-block {
+      position: absolute;
+      z-index: 5;
+      top: 22%;
+      right: 100%;
+      margin-right: 28px; /* Exact 28px gap from image container */
+      width: 486px;
+      max-width: 486px;
+      text-align: right;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+    }
+
+    .ash-overview-callout-lead {
+      margin-bottom: 24px;
+    }
+
+    .ash-overview-callout-group-1 {
+      margin-bottom: 120px;
+    }
+
+    /* Section 19: ASH Individual Overview Feature Showcase Specs */
+    .ash-individual-feature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 100px auto 160px auto; /* 100px gap below Section 18 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .ash-individual-prob-feat-row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .ash-individual-prob-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 320px;
+    }
+
+    .ash-individual-feat-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    .ash-individual-screen-container {
+      position: relative;
+      width: 100%;
+      max-width: 1050px;
+      align-self: flex-start;
+      margin-left: 0;
+    }
+
+    .ash-individual-screen-img {
+      width: 100%;
+      max-width: 685px;
+      height: auto;
+      display: block;
+      margin: 0;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.05));
+    }
+
+    .ash-individual-right-callout-block {
+      position: absolute;
+      z-index: 5;
+      top: 18.5%;
+      left: 685px;
+      margin-left: 28px; /* Exact 28px gap from image container */
+      width: 486px;
+      max-width: 486px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+    }
+
+    .ash-individual-callout-lead {
+      margin-bottom: 24px;
+    }
+
+    .ash-individual-callout-group-1 {
+      margin-bottom: 96px;
+    }
+
+    .ash-individual-callout-group-2 {
+      margin-bottom: 140px;
+    }
+
+    /* Section 20: ASH Lead Assign Page Feature Showcase Specs */
+    .ash-leadassign-feature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 100px auto 160px auto; /* 100px gap below Section 19 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .ash-leadassign-prob-feat-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .ash-leadassign-prob-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 320px;
+    }
+
+    .ash-leadassign-feat-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    .ash-leadassign-screen-container {
+      position: relative;
+      width: 100%;
+      max-width: 685px;
+      align-self: flex-end;
+      margin-right: 0;
+    }
+
+    .ash-leadassign-screen-img {
+      width: 100%;
+      max-width: 685px;
+      height: auto;
+      display: block;
+      margin: 0;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.05));
+    }
+
+    .ash-leadassign-left-callout-block {
+      position: absolute;
+      z-index: 5;
+      top: 22%;
+      right: 100%;
+      margin-right: 28px; /* Exact 28px gap from image container */
+      width: 486px;
+      max-width: 486px;
+      text-align: right;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+    }
+
+    .ash-leadassign-callout-lead {
+      margin-bottom: 24px;
+    }
+
+    .ash-leadassign-callout-group-1 {
+      margin-bottom: 64px;
+    }
+
+    /* Section 21: ASH Analytics Page Feature Showcase Specs */
+    .ash-analytics-feature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 100px auto 160px auto; /* 100px gap below Section 20 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .ash-analytics-prob-feat-row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .ash-analytics-prob-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 320px;
+    }
+
+    .ash-analytics-feat-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    .ash-analytics-screen-container {
+      position: relative;
+      width: 100%;
+      max-width: 1050px;
+      align-self: flex-start;
+      margin-left: 0;
+    }
+
+    .ash-analytics-screen-img {
+      width: 100%;
+      max-width: 685px;
+      height: auto;
+      display: block;
+      margin: 0;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.05));
+    }
+
+    .ash-analytics-right-callout-block {
+      position: absolute;
+      z-index: 5;
+      top: 18.5%;
+      left: 685px;
+      margin-left: 28px; /* Exact 28px gap from image container */
+      width: 486px;
+      max-width: 486px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+    }
+
+    .ash-analytics-callout-lead {
+      margin-bottom: 70px;
+    }
+
+    .ash-analytics-callout-group-1 {
+      margin-bottom: 210px;
+    }
+
+    .ash-analytics-callout-group-2 {
+      margin-bottom: 250px;
+    }
+
+    /* Section 22: ASH Targets Page Feature Showcase Specs */
+    .ash-targets-feature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 100px auto 160px auto; /* 100px gap below Section 21 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .ash-targets-prob-feat-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .ash-targets-prob-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 320px;
+    }
+
+    .ash-targets-feat-box {
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    .ash-targets-screen-container {
+      position: relative;
+      width: 100%;
+      max-width: 685px;
+      align-self: flex-end;
+      margin-right: 0;
+    }
+
+    .ash-targets-screen-img {
+      width: 100%;
+      max-width: 685px;
+      height: auto;
+      display: block;
+      margin: 0;
+      filter: drop-shadow(0px 12px 32px rgba(0, 0, 0, 0.05));
+    }
+
+    .ash-targets-left-callout-block {
+      position: absolute;
+      z-index: 5;
+      top: 18.5%;
+      right: 100%;
+      margin-right: 28px; /* Exact 28px gap from image container */
+      width: 486px;
+      max-width: 486px;
+      text-align: right;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+    }
+
+    .ash-targets-callout-lead {
+      margin-bottom: 24px;
+    }
+
+    .ash-targets-callout-group-1 {
+      margin-bottom: 84px; /* Aligns with Leaderboard card row */
+    }
+
+    .ash-targets-callout-group-2 {
+      margin-bottom: 124px; /* Aligns monitor telecaller performance level with Daily Targets Breakdown */
+    }
+
+    /* Section 23: What I Brought Section (220px gap below Section 22) */
+    .what-i-brought-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 220px auto 160px auto; /* 220px gap below Section 22 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .what-i-brought-title {
+      color: #344054; /* var(--Neutral-700, #344054) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 590; /* SF Pro 590 */
+      line-height: 36px; /* 128.571% */
+      letter-spacing: -0.56px;
+      margin: 0 0 56px 0;
+    }
+
+    .wib-cards-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 36px; /* Vertical gap between top row and bottom card */
+    }
+
+    .wib-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 40px;
+    }
+
+    .wib-card-img {
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.04));
+    }
+
+    .wib-bottom-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Section 24: What This Project Taught Me Section (220px gap below Section 23) */
+    .what-project-taught-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px; /* Matching Navbar 1440px grid */
+      margin: 220px auto 160px auto; /* 220px gap below Section 23 */
+      padding: 0 5%; /* Exact Navbar 5% side padding alignment */
+      box-sizing: border-box;
+    }
+
+    .what-project-taught-title {
+      color: #344054; /* var(--Neutral-700, #344054) */
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "DM Sans", sans-serif;
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 590; /* SF Pro 590 */
+      line-height: 36px; /* 128.571% */
+      letter-spacing: -0.56px;
+      margin: 0 0 56px 0;
+    }
+
+    .wtpt-cards-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 36px; /* Vertical gap between top row and bottom card */
+    }
+
+    .wtpt-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 40px;
+    }
+
+    .wtpt-card-img {
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.04));
+    }
+
+    .wtpt-bottom-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    @media (max-width: 850px) {
+      .telecaller-prob-feat-row {
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .telecaller-journey-wrapper {
+        flex-direction: column;
+        gap: 40px;
+      }
+      .journey-title-block {
+        max-width: 100%;
+      }
+      .journey-flow-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 32px;
+      }
+      .journey-curve-down-connector {
+        display: none;
+      }
+    }
+
+    /* Start case study flush at the top of the viewport (Zero Top Space) */
+    html {
+      scroll-padding-top: 20px !important;
+    }
+
+    [id] {
+      scroll-margin-top: 20px !important;
+    }
+
+    body.case-study-page {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    .main-content {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    /* Hide top navbar header and footer on case study page */
+    .site-header,
+    .site-footer {
+      display: none !important;
+    }
+
+    /* ==========================================
+       Persistent Left Sidebar Navigation Specs
+       ========================================== */
+    @media (min-width: 1025px) {
+      body.case-study-page {
+        padding-left: 240px !important;
+      }
+
+      .case-study-hero-section,
+      .hero-image-container,
+      .hero-bg-image {
+        width: calc(100vw - 240px) !important;
+        max-width: calc(100vw - 240px) !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+
+    .case-study-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      z-index: 998;
+      box-sizing: border-box;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overscroll-behavior: contain;
+    }
+
+    .sidebar-inner {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 40px 20px 32px 24px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    }
+
+    .sidebar-inner::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .sidebar-inner::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar-inner::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 4px;
+    }
+
+    .sidebar-inner::-webkit-scrollbar-thumb:hover {
+      background: rgba(26, 151, 164, 0.5);
+    }
+
+    .sidebar-header {
+      margin-bottom: 28px;
+    }
+
+    .sidebar-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #344054;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: opacity 0.2s ease;
+    }
+
+    .sidebar-back-link:hover {
+      opacity: 0.8;
+    }
+
+    .sidebar-title {
+      color: #1A97A4;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 26px;
+      letter-spacing: -0.4px;
+      margin: 12px 0 0 0;
+    }
+
+    .sidebar-subtitle {
+      color: #344054;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+      margin: 12px 0 0 0;
+    }
+
+    .sidebar-meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar-meta-label {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #98A2B3;
+      display: block;
+      width: 100%;
+      white-space: nowrap;
+    }
+
+    .sidebar-meta-value {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+      color: #344054; /* Same color as Back to Work */
+      margin: 0;
+    }
+
+    .sidebar-outcomes-block {
+      margin-bottom: 24px;
+    }
+
+    .sidebar-outcomes-list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sidebar-outcomes-list li {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+      color: #344054;
+    }
+
+    .sidebar-onthispage-block {
+      margin-bottom: 24px;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #344054;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.2px;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #D0D5DD;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .sidebar-link:hover {
+      color: #1A97A4;
+      background: rgba(26, 151, 164, 0.06);
+    }
+
+    .sidebar-link:hover .sidebar-dot {
+      background: #1A97A4;
+      transform: scale(1.3);
+    }
+
+    .sidebar-link.active {
+      color: #1A97A4;
+      font-weight: 600;
+      background: rgba(26, 151, 164, 0.1);
+    }
+
+    .sidebar-link.active .sidebar-dot {
+      background: #1A97A4;
+      transform: scale(1.4);
+      box-shadow: 0 0 6px rgba(26, 151, 164, 0.4);
+    }
+
+    .sidebar-footer {
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .sidebar-connect-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #344054;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .sidebar-connect-link:hover {
+      color: #1A97A4;
+    }
+
+    @media (max-width: 1024px) {
+      .case-study-sidebar {
+        transform: translateX(-100%);
+      }
+      .case-study-sidebar.open {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body class="case-study-page">
+
+  <!-- Custom Tracking Cursor -->
+  <div id="custom-cursor">
+    <!-- INACTIVE STATE -->
+    <div class="cursor-inactive">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 190 188" fill="none">
+        <g filter="url(#filter0_dd_424_8)">
+          <circle cx="94" cy="89" r="83" stroke="white" stroke-width="4" shape-rendering="crispEdges"/>
+        </g>
+        <g filter="url(#filter1_dd_424_8)">
+          <circle cx="94.5" cy="88.5" r="17.5" fill="#F3F3F3"/>
+          <circle cx="94.5" cy="88.5" r="15.5" stroke="white" stroke-width="4"/>
+        </g>
+        <defs>
+          <filter id="filter0_dd_424_8" x="0" y="0" width="189.5" height="187.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="3" dy="6"/>
+            <feGaussianBlur stdDeviation="3.75"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.41 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_424_8"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="-5"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.14 0"/>
+            <feBlend mode="normal" in2="effect1_dropShadow_424_8" result="effect2_dropShadow_424_8"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_424_8" result="shape"/>
+          </filter>
+          <filter id="filter1_dd_424_8" x="68" y="67" width="54.5" height="52.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="3" dy="6"/>
+            <feGaussianBlur stdDeviation="3.75"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.41 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_424_8"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="-5"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.14 0"/>
+            <feBlend mode="normal" in2="effect1_dropShadow_424_8" result="effect2_dropShadow_424_8"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_424_8" result="shape"/>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- ACTIVE STATE -->
+    <div class="cursor-active">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 190 188" fill="none">
+        <g filter="url(#filter0_dd_424_9)">
+          <circle cx="94" cy="89" r="83" stroke="white" stroke-width="4" shape-rendering="crispEdges"/>
+        </g>
+        <g filter="url(#filter1_dd_424_9)">
+          <circle cx="94.5" cy="88.5" r="37.5" fill="#F3F3F3"/>
+          <circle cx="94.5" cy="88.5" r="35.5" stroke="white" stroke-width="4"/>
+        </g>
+        <defs>
+          <filter id="filter0_dd_424_9" x="0" y="0" width="189.5" height="187.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="3" dy="6"/>
+            <feGaussianBlur stdDeviation="3.75"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.41 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_424_9"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="-5"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.14 0"/>
+            <feBlend mode="normal" in2="effect1_dropShadow_424_9" result="effect2_dropShadow_424_9"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_424_9" result="shape"/>
+          </filter>
+          <filter id="filter1_dd_424_9" x="48" y="47" width="94.5" height="92.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="3" dy="6"/>
+            <feGaussianBlur stdDeviation="3.75"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.41 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_424_9"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="-5"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0.393996 0 0 0 0 0.846492 0 0 0 0 0.959615 0 0 0 0.14 0"/>
+            <feBlend mode="normal" in2="effect1_dropShadow_424_9" result="effect2_dropShadow_424_9"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_424_9" result="shape"/>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Interactive Dot Grid Container -->
+  <div id="interactive-grid" aria-hidden="true"></div>
+
+  <!-- Case Study Left Navigation Sidebar -->
+  <aside class="case-study-sidebar" id="caseStudySidebar" aria-label="Case Study Navigation">
+    <div class="sidebar-inner">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back to Work
+        </a>
+        <h4 class="sidebar-title">MAS Admission<br>Sales Dashboard</h4>
+        <p class="sidebar-subtitle">Simplifying Lead Management<br>for MAS’s Admission Team</p>
+
+        <div class="sidebar-meta-list">
+          <div class="sidebar-meta-item">
+            <span class="sidebar-meta-label">COMPANY</span>
+            <p class="sidebar-meta-value">MAS (My Analytics School)</p>
+          </div>
+          <div class="sidebar-meta-item">
+            <span class="sidebar-meta-label">ROLE</span>
+            <p class="sidebar-meta-value">Product Design Intern</p>
+          </div>
+          <div class="sidebar-meta-item">
+            <span class="sidebar-meta-label">INDUSTRY</span>
+            <p class="sidebar-meta-value">Ed Tech</p>
+          </div>
+          <div class="sidebar-meta-item">
+            <span class="sidebar-meta-label">TIMELINE</span>
+            <p class="sidebar-meta-value">4 weeks</p>
+          </div>
+        <div class="sidebar-outcomes-block">
+          <span class="sidebar-meta-label">KEY OUTCOMES</span>
+          <ul class="sidebar-outcomes-list">
+            <li>Faster data entry for telecallers</li>
+            <li>Simplified workflows for target setting</li>
+            <li>Improved visibility into team performance</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-onthispage-block">
+          <span class="sidebar-meta-label" style="margin-bottom: 12px;">ON THIS PAGE</span>
+          <ul class="sidebar-menu">
+            <li>
+              <a href="#overview" class="sidebar-link active">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">Overview & Goal</span>
+              </a>
+            </li>
+            <li>
+              <a href="#telecaller-journey" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">Understanding the user</span>
+              </a>
+            </li>
+            <li>
+              <a href="#dashboard-audit" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">Current Audit</span>
+              </a>
+            </li>
+            <li>
+              <a href="#main-issue" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">Problem</span>
+              </a>
+            </li>
+            <li>
+              <a href="#solution-intro" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">Solution</span>
+              </a>
+            </li>
+            <li>
+              <a href="#what-i-brought" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">What I Brought</span>
+              </a>
+            </li>
+            <li>
+              <a href="#what-i-taught" class="sidebar-link">
+                <span class="sidebar-dot"></span>
+                <span class="sidebar-text">What I learned</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </aside>
+
+  <!-- Navigation Bar Header -->
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main Navigation">
+      <a href="index.html" class="brand-logo">Sakshi Thareja</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <ul class="nav-links" id="primaryNav">
+        <li><a href="index.html#work" class="nav-link active">Work</a></li>
+        <li><a href="about.html" class="nav-link">About Me</a></li>
+        <li><a href="index.html#resume" class="nav-link">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Case Study Content -->
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="case-study-hero-section">
+      <div class="hero-image-container">
+        <!-- Hero Background Image -->
+        <img src="MAS Sales Dashboard/hero section 2.png" alt="MAS Admission Sales Dashboard Case Study" class="hero-bg-image">
+        
+        <!-- Overlaid Capitalized Heading -->
+        <h1 class="hero-heading-overlay">
+          SIMPLIFYING LEAD MANAGEMENT FOR MAS’S ADMISSION TEAM
+        </h1>
+      </div>
+    </section>
+
+    <!-- Project Overview & Meta Section (80px top margin, 79px gap, 12px title/desc gap) -->
+    <section class="project-overview-section" id="overview">
+      <!-- Goal Header (36px Teal Title + 20px Gray Subtitle with 12px Gap) -->
+      <div class="project-goal-container">
+        <h2 class="project-goal-title">To redesign the internal CRM dashboard</h2>
+        <p class="project-goal-desc">
+          to streamline lead allocation, call tracking and status updates, enabling telecallers and managers to work more efficiently.
+        </p>
+      </div>
+
+      <!-- Project Metadata Grid (MY ROLE, TEAM, TIMELINE, RESPONSIBILITIES) -->
+      <div class="project-meta-grid">
+        <div class="meta-item">
+          <span class="meta-label">MY ROLE</span>
+          <p class="meta-value">Product Design Intern</p>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">TEAM</span>
+          <p class="meta-value">1 Tech Lead, 1 Software Developer,<br>1 Product Design Intern</p>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">TIMELINE</span>
+          <p class="meta-value">4 Weeks</p>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">RESPONSIBILITIES</span>
+          <p class="meta-value">Stakeholder interviews, Workflow mapping, UX research, User flow redesign, UI design, Developer collaboration</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 Part 1: Problem Statement Section -->
+    <section class="problem-statement-container">
+      <p class="problem-statement-text">
+        Admissions teams manage thousands of leads every day through <span class="highlight-teal">call logging, follow-ups, lead assignment and performance tracking</span> all within a single CRM dashboard
+      </p>
+    </section>
+
+    <!-- Section 3 Part 2: Notebook & Pain Points Section (40px below heading) -->
+    <section class="notebook-painpoints-section">
+      <div class="notebook-container">
+        <!-- Notebook Image Asset (299px x 403px, 23/31 aspect ratio) -->
+        <img src="MAS Sales Dashboard/Notebook with content.png" alt="Tele Caller and Admission Head Notebook Workflow" class="notebook-img">
+        
+        <!-- Pain Points Text Block (80px gap from notebook image) -->
+        <div class="pain-points-content">
+          <h3 class="pain-points-title">Pain Points</h3>
+          <ul class="pain-points-list">
+            <li>Multiple-step processes</li>
+            <li>Time-consuming workflows</li>
+            <li>Repetitive manual work</li>
+          </ul>
+
+          <!-- Underline Graphic (146.731px x 109.501px, rotated -18.255deg) -->
+          <img src="MAS Sales Dashboard/underline.png" alt="Decorative Underline" class="pain-points-underline-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 Part 1: Pie Chart Section (160px gap from above, 60px gap between img & text) -->
+    <section class="pie-chart-section">
+      <div class="pie-chart-container">
+        <!-- Pie Chart Image (400px x 332px) -->
+        <img src="MAS Sales Dashboard/pie chart1.png" alt="Telecaller Daily Activities Breakdown Pie Chart" class="pie-chart-img">
+        
+        <!-- Statement Text (539px max-width, #475467, 24px/32px font) -->
+        <p class="pie-chart-text">
+          A telecaller's day revolves around calling assigned leads, updating call outcomes, tracking lead status and scheduling follow-ups.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 4 Part 2: Admissions Sales Head Statement (100px gap below pie chart section) -->
+    <section class="sales-head-statement-section">
+      <p class="sales-head-statement-text">
+        An admissions sales head manages lead imports, assigns leads to telecallers, tracks lead progress and monitors team performance.
+      </p>
+    </section>
+
+    <!-- Section 5: Understanding a Day in the Life of a Tele Caller (240px top gap, Navbar 1440px grid) -->
+    <section class="telecaller-journey-section" id="telecaller-journey">
+      <div class="telecaller-journey-wrapper">
+        <!-- Left Column: Title Block (287px max-width) -->
+        <div class="journey-title-block">
+          <h2 class="journey-section-title">
+            Understanding a day in the life of a Tele Caller
+          </h2>
+        </div>
+
+        <!-- Right Column: Interactive 2-Row Flow Diagram -->
+        <div class="journey-flow-diagram">
+          
+          <!-- Top Row: Step 1 -> Step 2 -> Step 3 -> Step 4 -->
+          <div class="journey-flow-row top-row">
+            
+            <!-- Step 1 -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Checks the leads assigned</span>
+                <span class="line-lock">and target for the day</span>
+              </p>
+              <span class="step-platform">CRM Dashboard</span>
+            </div>
+
+            <!-- Arrow 1 -> 2 -->
+            <div class="journey-arrow-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M75.7141 16.5637C73.6398 15.389 72.5467 13.4984 70.756 12.1147C66.0898 9.09584 60.0547 7.85624 54.6333 5.92143C48.3133 4.14213 41.4817 4.13337 34.854 4.30327C24.5716 4.5239 13.8235 6.63865 5.69647 11.8282C5.1183 17.9473 -10.0927 11.2952 11.7184 4.08787C18.0942 1.78021 24.8507 0.405637 31.8232 0.227812C39.0468 -0.14626 46.4567 -0.209704 53.5114 1.22546C60.0349 2.9865 66.7097 4.91582 72.5394 7.86099C75.3235 9.18568 76.6854 11.6033 79.0391 13.2647C81.7157 15.0016 78.4683 18.2609 75.7141 16.5637Z" fill="#AAF1F9"/>
+                <path d="M57.356 19.9998C53.803 20.026 53.789 15.7304 57.3351 15.7714C63.7505 15.3265 70.3599 15.3004 76.6121 14.0233C75.5536 10.2143 73.2419 6.70216 72.1101 2.92803C71.7566 1.24347 74.3448 -0.0509214 76.1373 0.87436C77.1327 1.36725 77.8865 2.33903 77.7047 3.27798C78.664 5.42323 79.7308 7.54003 80.5806 9.71758C81.1628 11.6812 82.6765 13.7602 81.6543 15.7735C79.6635 19.9149 62.8001 19.3608 57.356 19.9998Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Administrative</span>
+                <span class="line-lock">Task</span>
+              </p>
+              <span class="step-platform">Excel/Google Workspace</span>
+            </div>
+
+            <!-- Arrow 2 -> 3 -->
+            <div class="journey-arrow-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M75.7141 16.5637C73.6398 15.389 72.5467 13.4984 70.756 12.1147C66.0898 9.09584 60.0547 7.85624 54.6333 5.92143C48.3133 4.14213 41.4817 4.13337 34.854 4.30327C24.5716 4.5239 13.8235 6.63865 5.69647 11.8282C5.1183 17.9473 -10.0927 11.2952 11.7184 4.08787C18.0942 1.78021 24.8507 0.405637 31.8232 0.227812C39.0468 -0.14626 46.4567 -0.209704 53.5114 1.22546C60.0349 2.9865 66.7097 4.91582 72.5394 7.86099C75.3235 9.18568 76.6854 11.6033 79.0391 13.2647C81.7157 15.0016 78.4683 18.2609 75.7141 16.5637Z" fill="#AAF1F9"/>
+                <path d="M57.356 19.9998C53.803 20.026 53.789 15.7304 57.3351 15.7714C63.7505 15.3265 70.3599 15.3004 76.6121 14.0233C75.5536 10.2143 73.2419 6.70216 72.1101 2.92803C71.7566 1.24347 74.3448 -0.0509214 76.1373 0.87436C77.1327 1.36725 77.8865 2.33903 77.7047 3.27798C78.664 5.42323 79.7308 7.54003 80.5806 9.71758C81.1628 11.6812 82.6765 13.7602 81.6543 15.7735C79.6635 19.9149 62.8001 19.3608 57.356 19.9998Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Calling the</span>
+                <span class="line-lock">Leads</span>
+              </p>
+              <span class="step-platform">Phonecall</span>
+            </div>
+
+            <!-- Arrow 3 -> 4 -->
+            <div class="journey-arrow-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M75.7141 16.5637C73.6398 15.389 72.5467 13.4984 70.756 12.1147C66.0898 9.09584 60.0547 7.85624 54.6333 5.92143C48.3133 4.14213 41.4817 4.13337 34.854 4.30327C24.5716 4.5239 13.8235 6.63865 5.69647 11.8282C5.1183 17.9473 -10.0927 11.2952 11.7184 4.08787C18.0942 1.78021 24.8507 0.405637 31.8232 0.227812C39.0468 -0.14626 46.4567 -0.209704 53.5114 1.22546C60.0349 2.9865 66.7097 4.91582 72.5394 7.86099C75.3235 9.18568 76.6854 11.6033 79.0391 13.2647C81.7157 15.0016 78.4683 18.2609 75.7141 16.5637Z" fill="#AAF1F9"/>
+                <path d="M57.356 19.9998C53.803 20.026 53.789 15.7304 57.3351 15.7714C63.7505 15.3265 70.3599 15.3004 76.6121 14.0233C75.5536 10.2143 73.2419 6.70216 72.1101 2.92803C71.7566 1.24347 74.3448 -0.0509214 76.1373 0.87436C77.1327 1.36725 77.8865 2.33903 77.7047 3.27798C78.664 5.42323 79.7308 7.54003 80.5806 9.71758C81.1628 11.6812 82.6765 13.7602 81.6543 15.7735C79.6635 19.9149 62.8001 19.3608 57.356 19.9998Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Updating the call</span>
+                <span class="line-lock">details and status</span>
+              </p>
+              <span class="step-platform">CRM Dashboard</span>
+            </div>
+
+          </div>
+
+          <!-- Connecting Curved Arrow (Step 4 down to Step 5) -->
+          <div class="journey-curve-down-connector">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="105" viewBox="0 0 48 105" fill="none">
+              <path d="M5.79121 92.0283C7.74782 89.8727 10.2011 89.1034 12.3036 87.3491C17.126 82.6087 20.3826 75.7095 24.2266 69.7486C28.1751 62.6624 30.3019 54.4506 32.1656 46.4326C35.1051 34.0055 36.0705 20.4726 32.7845 9.20486C26.1198 6.74587 38.2734 -9.62625 39.5757 18.6767C40.1811 27.008 39.6247 35.5282 37.663 43.9631C35.843 52.7565 33.6177 61.6844 29.8265 69.7532C25.8353 77.0894 21.6091 84.5589 16.5086 90.7195C14.1643 93.6853 11.0382 94.6259 8.45064 96.9771C5.67853 99.6948 3.03948 94.8506 5.79121 92.0283Z" fill="#AAF1F9"/>
+              <path d="M7.63671 68.9642C8.70838 64.6844 13.5172 65.9058 12.3725 70.1579C10.8821 77.9999 8.86317 85.9545 8.35411 93.8401C12.9423 93.6654 17.5869 91.8982 22.1588 91.6252C24.1524 91.6858 24.7981 95.1709 23.2078 97.0594C22.348 98.1142 21.0276 98.7404 20.0338 98.2511C17.3371 98.7863 14.639 99.4588 11.9402 99.8529C9.56351 99.987 6.76923 101.208 4.83416 99.3983C0.819081 95.811 6.66445 75.6942 7.63671 68.9642Z" fill="#AAF1F9"/>
+            </svg>
+          </div>
+
+          <!-- Bottom Row: Step 7 <- Step 6 <- Step 5 -->
+          <div class="journey-flow-row bottom-row">
+            
+            <!-- Step 7 (Leftmost, aligned under Step 1) -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Updating the</span>
+                <span class="line-lock">Follow-up status</span>
+              </p>
+              <span class="step-platform">CRM Dashboard</span>
+            </div>
+
+            <!-- Arrow 6 -> 7 (pointing left) -->
+            <div class="journey-arrow-wrapper left-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M6.2859 3.4363C8.3602 4.61098 9.45325 6.50155 11.244 7.88525C15.9102 10.9042 21.9453 12.1438 27.3667 14.0786C33.6867 15.8579 40.5183 15.8666 47.146 15.6967C57.4284 15.4761 68.1765 13.3614 76.3035 8.17176C76.8817 2.05271 92.0927 8.70476 70.2816 15.9121C63.9058 18.2198 57.1493 19.5944 50.1768 19.7722C42.9532 20.1463 35.5433 20.2097 28.4886 18.7745C21.9651 17.0135 15.2903 15.0842 9.46064 12.139C6.67651 10.8143 5.31464 8.39666 2.96094 6.73527C0.284302 4.99835 3.53172 1.73907 6.2859 3.4363Z" fill="#AAF1F9"/>
+                <path d="M24.644 0.000185013C28.197 -0.0260487 28.211 4.26957 24.6649 4.22861C18.2495 4.67352 11.6401 4.69959 5.38793 5.97667C6.44638 9.78568 8.75809 13.2978 9.88988 17.072C10.2434 18.7565 7.65518 20.0509 5.86268 19.1256C4.86726 18.6328 4.11351 17.661 4.29535 16.722C3.336 14.5768 2.26923 12.46 1.41944 10.2824C0.8372 8.3188 -0.676495 6.23984 0.345747 4.2265C2.33645 0.0851116 19.1999 0.639225 24.644 0.000185013Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 6 (Middle, aligned between Step 2 & Step 3) -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Calling for</span>
+                <span class="line-lock">Follow-up</span>
+              </p>
+              <span class="step-platform">Phone Call</span>
+            </div>
+
+            <!-- Arrow 5 -> 6 (pointing left) -->
+            <div class="journey-arrow-wrapper left-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M6.2859 3.4363C8.3602 4.61098 9.45325 6.50155 11.244 7.88525C15.9102 10.9042 21.9453 12.1438 27.3667 14.0786C33.6867 15.8579 40.5183 15.8666 47.146 15.6967C57.4284 15.4761 68.1765 13.3614 76.3035 8.17176C76.8817 2.05271 92.0927 8.70476 70.2816 15.9121C63.9058 18.2198 57.1493 19.5944 50.1768 19.7722C42.9532 20.1463 35.5433 20.2097 28.4886 18.7745C21.9651 17.0135 15.2903 15.0842 9.46064 12.139C6.67651 10.8143 5.31464 8.39666 2.96094 6.73527C0.284302 4.99835 3.53172 1.73907 6.2859 3.4363Z" fill="#AAF1F9"/>
+                <path d="M24.644 0.000185013C28.197 -0.0260487 28.211 4.26957 24.6649 4.22861C18.2495 4.67352 11.6401 4.69959 5.38793 5.97667C6.44638 9.78568 8.75809 13.2978 9.88988 17.072C10.2434 18.7565 7.65518 20.0509 5.86268 19.1256C4.86726 18.6328 4.11351 17.661 4.29535 16.722C3.336 14.5768 2.26923 12.46 1.41944 10.2824C0.8372 8.3188 -0.676495 6.23984 0.345747 4.2265C2.33645 0.0851116 19.1999 0.639225 24.644 0.000185013Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 5 (Rightmost, aligned under Step 4) -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Scheduling a follow-up or</span>
+                <span class="line-lock">closing a lead as per the need</span>
+              </p>
+              <span class="step-platform">CRM Dashboard</span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Understanding a Day in the Life of an Admission Sales Head (200px top gap, Title on Right) -->
+    <section class="saleshead-journey-section">
+      <div class="telecaller-journey-wrapper">
+        
+        <!-- Left Column: Interactive 2-Row Flow Diagram -->
+        <div class="journey-flow-diagram">
+          
+          <!-- Top Row: Step 1 -> Step 2 -> Step 3 -> Step 4 -->
+          <div class="journey-flow-row top-row">
+            
+            <!-- Step 1 -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Imports new leads from</span>
+                <span class="line-lock">campaigns, website, excel,</span>
+                <span class="line-lock">Vendors</span>
+              </p>
+              <span class="step-platform">CRM Dashboard</span>
+            </div>
+
+            <!-- Arrow 1 -> 2 -->
+            <div class="journey-arrow-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M75.7141 16.5637C73.6398 15.389 72.5467 13.4984 70.756 12.1147C66.0898 9.09584 60.0547 7.85624 54.6333 5.92143C48.3133 4.14213 41.4817 4.13337 34.854 4.30327C24.5716 4.5239 13.8235 6.63865 5.69647 11.8282C5.1183 17.9473 -10.0927 11.2952 11.7184 4.08787C18.0942 1.78021 24.8507 0.405637 31.8232 0.227812C39.0468 -0.14626 46.4567 -0.209704 53.5114 1.22546C60.0349 2.9865 66.7097 4.91582 72.5394 7.86099C75.3235 9.18568 76.6854 11.6033 79.0391 13.2647C81.7157 15.0016 78.4683 18.2609 75.7141 16.5637Z" fill="#AAF1F9"/>
+                <path d="M57.356 19.9998C53.803 20.026 53.789 15.7304 57.3351 15.7714C63.7505 15.3265 70.3599 15.3004 76.6121 14.0233C75.5536 10.2143 73.2419 6.70216 72.1101 2.92803C71.7566 1.24347 74.3448 -0.0509214 76.1373 0.87436C77.1327 1.36725 77.8865 2.33903 77.7047 3.27798C78.664 5.42323 79.7308 7.54003 80.5806 9.71758C81.1628 11.6812 82.6765 13.7602 81.6543 15.7735C79.6635 19.9149 62.8001 19.3608 57.356 19.9998Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Assigns leads and</span>
+                <span class="line-lock">sets target for each</span>
+                <span class="line-lock">Tele Caller</span>
+              </p>
+              <span class="step-platform">Excel/Google Workspace</span>
+            </div>
+
+            <!-- Arrow 2 -> 3 -->
+            <div class="journey-arrow-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M75.7141 16.5637C73.6398 15.389 72.5467 13.4984 70.756 12.1147C66.0898 9.09584 60.0547 7.85624 54.6333 5.92143C48.3133 4.14213 41.4817 4.13337 34.854 4.30327C24.5716 4.5239 13.8235 6.63865 5.69647 11.8282C5.1183 17.9473 -10.0927 11.2952 11.7184 4.08787C18.0942 1.78021 24.8507 0.405637 31.8232 0.227812C39.0468 -0.14626 46.4567 -0.209704 53.5114 1.22546C60.0349 2.9865 66.7097 4.91582 72.5394 7.86099C75.3235 9.18568 76.6854 11.6033 79.0391 13.2647C81.7157 15.0016 78.4683 18.2609 75.7141 16.5637Z" fill="#AAF1F9"/>
+                <path d="M57.356 19.9998C53.803 20.026 53.789 15.7304 57.3351 15.7714C63.7505 15.3265 70.3599 15.3004 76.6121 14.0233C75.5536 10.2143 73.2419 6.70216 72.1101 2.92803C71.7566 1.24347 74.3448 -0.0509214 76.1373 0.87436C77.1327 1.36725 77.8865 2.33903 77.7047 3.27798C78.664 5.42323 79.7308 7.54003 80.5806 9.71758C81.1628 11.6812 82.6765 13.7602 81.6543 15.7735C79.6635 19.9149 62.8001 19.3608 57.356 19.9998Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Supervises</span>
+                <span class="line-lock">the</span>
+                <span class="line-lock">counsellors</span>
+              </p>
+              <span class="step-platform">Phonecall, Meet-ups</span>
+            </div>
+
+            <!-- Arrow 3 -> 4 -->
+            <div class="journey-arrow-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M75.7141 16.5637C73.6398 15.389 72.5467 13.4984 70.756 12.1147C66.0898 9.09584 60.0547 7.85624 54.6333 5.92143C48.3133 4.14213 41.4817 4.13337 34.854 4.30327C24.5716 4.5239 13.8235 6.63865 5.69647 11.8282C5.1183 17.9473 -10.0927 11.2952 11.7184 4.08787C18.0942 1.78021 24.8507 0.405637 31.8232 0.227812C39.0468 -0.14626 46.4567 -0.209704 53.5114 1.22546C60.0349 2.9865 66.7097 4.91582 72.5394 7.86099C75.3235 9.18568 76.6854 11.6033 79.0391 13.2647C81.7157 15.0016 78.4683 18.2609 75.7141 16.5637Z" fill="#AAF1F9"/>
+                <path d="M57.356 19.9998C53.803 20.026 53.789 15.7304 57.3351 15.7714C63.7505 15.3265 70.3599 15.3004 76.6121 14.0233C75.5536 10.2143 73.2419 6.70216 72.1101 2.92803C71.7566 1.24347 74.3448 -0.0509214 76.1373 0.87436C77.1327 1.36725 77.8865 2.33903 77.7047 3.27798C78.664 5.42323 79.7308 7.54003 80.5806 9.71758C81.1628 11.6812 82.6765 13.7602 81.6543 15.7735C79.6635 19.9149 62.8001 19.3608 57.356 19.9998Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Administrative</span>
+                <span class="line-lock">tasks</span>
+              </p>
+              <span class="step-platform">Excel/Google Workspace</span>
+            </div>
+
+          </div>
+
+          <!-- Connecting Curved Arrow (Step 4 down to Step 5) -->
+          <div class="journey-curve-down-connector">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="105" viewBox="0 0 48 105" fill="none">
+              <path d="M5.79121 92.0283C7.74782 89.8727 10.2011 89.1034 12.3036 87.3491C17.126 82.6087 20.3826 75.7095 24.2266 69.7486C28.1751 62.6624 30.3019 54.4506 32.1656 46.4326C35.1051 34.0055 36.0705 20.4726 32.7845 9.20486C26.1198 6.74587 38.2734 -9.62625 39.5757 18.6767C40.1811 27.008 39.6247 35.5282 37.663 43.9631C35.843 52.7565 33.6177 61.6844 29.8265 69.7532C25.8353 77.0894 21.6091 84.5589 16.5086 90.7195C14.1643 93.6853 11.0382 94.6259 8.45064 96.9771C5.67853 99.6948 3.03948 94.8506 5.79121 92.0283Z" fill="#AAF1F9"/>
+              <path d="M7.63671 68.9642C8.70838 64.6844 13.5172 65.9058 12.3725 70.1579C10.8821 77.9999 8.86317 85.9545 8.35411 93.8401C12.9423 93.6654 17.5869 91.8982 22.1588 91.6252C24.1524 91.6858 24.7981 95.1709 23.2078 97.0594C22.348 98.1142 21.0276 98.7404 20.0338 98.2511C17.3371 98.7863 14.639 99.4588 11.9402 99.8529C9.56351 99.987 6.76923 101.208 4.83416 99.3983C0.819081 95.811 6.66445 75.6942 7.63671 68.9642Z" fill="#AAF1F9"/>
+            </svg>
+          </div>
+
+          <!-- Bottom Row: Step 7 <- Step 6 <- Step 5 -->
+          <div class="journey-flow-row bottom-row">
+            
+            <!-- Step 7 (Leftmost, aligned under Step 1) -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Closing the day with interacting</span>
+                <span class="line-lock">with the Tele Callers</span>
+              </p>
+              <span class="step-platform">Phonecall, Meet-ups</span>
+            </div>
+
+            <!-- Arrow 6 -> 7 (pointing left) -->
+            <div class="journey-arrow-wrapper left-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M6.2859 3.4363C8.3602 4.61098 9.45325 6.50155 11.244 7.88525C15.9102 10.9042 21.9453 12.1438 27.3667 14.0786C33.6867 15.8579 40.5183 15.8666 47.146 15.6967C57.4284 15.4761 68.1765 13.3614 76.3035 8.17176C76.8817 2.05271 92.0927 8.70476 70.2816 15.9121C63.9058 18.2198 57.1493 19.5944 50.1768 19.7722C42.9532 20.1463 35.5433 20.2097 28.4886 18.7745C21.9651 17.0135 15.2903 15.0842 9.46064 12.139C6.67651 10.8143 5.31464 8.39666 2.96094 6.73527C0.284302 4.99835 3.53172 1.73907 6.2859 3.4363Z" fill="#AAF1F9"/>
+                <path d="M24.644 0.000185013C28.197 -0.0260487 28.211 4.26957 24.6649 4.22861C18.2495 4.67352 11.6401 4.69959 5.38793 5.97667C6.44638 9.78568 8.75809 13.2978 9.88988 17.072C10.2434 18.7565 7.65518 20.0509 5.86268 19.1256C4.86726 18.6328 4.11351 17.661 4.29535 16.722C3.336 14.5768 2.26923 12.46 1.41944 10.2824C0.8372 8.3188 -0.676495 6.23984 0.345747 4.2265C2.33645 0.0851116 19.1999 0.639225 24.644 0.000185013Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 6 (Middle, aligned between Step 2 & Step 3) -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Monitoring and tracking</span>
+                <span class="line-lock">tele caller’s performance</span>
+              </p>
+              <span class="step-platform">CRM Dashboard</span>
+            </div>
+
+            <!-- Arrow 5 -> 6 (pointing left) -->
+            <div class="journey-arrow-wrapper left-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="82" height="20" viewBox="0 0 82 20" fill="none" class="journey-arrow-svg">
+                <path d="M6.2859 3.4363C8.3602 4.61098 9.45325 6.50155 11.244 7.88525C15.9102 10.9042 21.9453 12.1438 27.3667 14.0786C33.6867 15.8579 40.5183 15.8666 47.146 15.6967C57.4284 15.4761 68.1765 13.3614 76.3035 8.17176C76.8817 2.05271 92.0927 8.70476 70.2816 15.9121C63.9058 18.2198 57.1493 19.5944 50.1768 19.7722C42.9532 20.1463 35.5433 20.2097 28.4886 18.7745C21.9651 17.0135 15.2903 15.0842 9.46064 12.139C6.67651 10.8143 5.31464 8.39666 2.96094 6.73527C0.284302 4.99835 3.53172 1.73907 6.2859 3.4363Z" fill="#AAF1F9"/>
+                <path d="M24.644 0.000185013C28.197 -0.0260487 28.211 4.26957 24.6649 4.22861C18.2495 4.67352 11.6401 4.69959 5.38793 5.97667C6.44638 9.78568 8.75809 13.2978 9.88988 17.072C10.2434 18.7565 7.65518 20.0509 5.86268 19.1256C4.86726 18.6328 4.11351 17.661 4.29535 16.722C3.336 14.5768 2.26923 12.46 1.41944 10.2824C0.8372 8.3188 -0.676495 6.23984 0.345747 4.2265C2.33645 0.0851116 19.1999 0.639225 24.644 0.000185013Z" fill="#AAF1F9"/>
+              </svg>
+            </div>
+
+            <!-- Step 5 (Rightmost, aligned under Step 4) -->
+            <div class="journey-step-item">
+              <p class="step-desc">
+                <span class="line-lock">Networking</span>
+              </p>
+              <span class="step-platform">
+                <span class="line-lock">LinkedIn, Whatsapp,</span>
+                <span class="line-lock">other platforms</span>
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right Column: Title Block (287px max-width) -->
+        <div class="journey-title-block">
+          <h2 class="journey-section-title">
+            Understanding a day in the life of a Admission Sales Head
+          </h2>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 7: Why were they not happy with the current Dashboard ? -->
+    <section class="unhappy-dashboard-section" id="dashboard-audit">
+      <h2 class="unhappy-section-title">
+        Why were they not happy with the current Dashboard&nbsp;?
+      </h2>
+      <div class="unhappy-cards-row">
+        <img 
+          src="MAS Sales Dashboard/telecaller note.png" 
+          alt="Tele Callers Feedback Note" 
+          class="unhappy-card-img"
+        />
+        <img 
+          src="MAS Sales Dashboard/sales head note.png" 
+          alt="Admission Sales Head Feedback Note" 
+          class="unhappy-card-img"
+        />
+      </div>
+    </section>
+
+    <!-- Section 8: So, the current dashboard lacks... -->
+    <section class="lacks-section">
+      <div class="lacks-wrapper">
+        
+        <!-- Left Statement Block -->
+        <div class="lacks-title-block">
+          <p class="lacks-heading">
+            <span class="line-lock">So,</span>
+            <span class="line-lock">the current dashboard</span>
+            <span class="line-lock">lacks</span>
+          </p>
+        </div>
+
+        <!-- Right Handwritten Items List with Fan-Out Gray Arrows -->
+        <div class="lacks-list-container">
+          
+          <!-- Item 1: Filtering -->
+          <div class="lacks-item-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="45" viewBox="0 0 46 45" fill="none" class="lacks-arrow-svg arrow-rot-1">
+              <path d="M1.13402 19.582C0.659833 19.9456 0.454683 20.6107 0.643814 21.1764C1.37171 22.9822 3.84575 22.2076 5.3792 22.4535C9.24234 22.6263 13.11 22.4839 16.9745 22.5132C25.1784 22.3344 33.2962 23.7891 41.488 23.7675C43.7536 23.4175 42.9749 20.3739 40.7653 20.8844C33.6603 20.8411 26.6293 19.5729 19.5183 19.6584C14.9556 19.5237 10.3932 19.7335 5.83176 19.5659C4.84427 19.5339 3.85182 19.5251 2.86458 19.4617C2.33903 19.1269 1.6268 19.1718 1.13402 19.582Z" fill="#D0D5DD"/>
+              <path d="M35.4673 15.3441C32.7 17.9739 42.6789 21.3141 40.176 24.2448C39.0223 25.7175 33.6692 27.8193 36.1195 29.9288C37.5285 30.8672 38.548 28.9865 39.6566 28.3762C41.4829 26.9761 44.0612 25.3939 43.4178 22.7118C43.1275 20.6531 41.5818 19.1233 40.0656 17.84C38.6957 17.0385 37.1951 14.0293 35.4673 15.3441Z" fill="#D0D5DD"/>
+            </svg>
+            <span class="lacks-item-text">Filtering</span>
+          </div>
+
+          <!-- Item 2: Visibility -->
+          <div class="lacks-item-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="45" viewBox="0 0 46 45" fill="none" class="lacks-arrow-svg arrow-rot-2">
+              <path d="M1.13402 19.582C0.659833 19.9456 0.454683 20.6107 0.643814 21.1764C1.37171 22.9822 3.84575 22.2076 5.3792 22.4535C9.24234 22.6263 13.11 22.4839 16.9745 22.5132C25.1784 22.3344 33.2962 23.7891 41.488 23.7675C43.7536 23.4175 42.9749 20.3739 40.7653 20.8844C33.6603 20.8411 26.6293 19.5729 19.5183 19.6584C14.9556 19.5237 10.3932 19.7335 5.83176 19.5659C4.84427 19.5339 3.85182 19.5251 2.86458 19.4617C2.33903 19.1269 1.6268 19.1718 1.13402 19.582Z" fill="#D0D5DD"/>
+              <path d="M35.4673 15.3441C32.7 17.9739 42.6789 21.3141 40.176 24.2448C39.0223 25.7175 33.6692 27.8193 36.1195 29.9288C37.5285 30.8672 38.548 28.9865 39.6566 28.3762C41.4829 26.9761 44.0612 25.3939 43.4178 22.7118C43.1275 20.6531 41.5818 19.1233 40.0656 17.84C38.6957 17.0385 37.1951 14.0293 35.4673 15.3441Z" fill="#D0D5DD"/>
+            </svg>
+            <span class="lacks-item-text">Visibility</span>
+          </div>
+
+          <!-- Item 3: Automation -->
+          <div class="lacks-item-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="45" viewBox="0 0 46 45" fill="none" class="lacks-arrow-svg arrow-rot-3">
+              <path d="M1.13402 19.582C0.659833 19.9456 0.454683 20.6107 0.643814 21.1764C1.37171 22.9822 3.84575 22.2076 5.3792 22.4535C9.24234 22.6263 13.11 22.4839 16.9745 22.5132C25.1784 22.3344 33.2962 23.7891 41.488 23.7675C43.7536 23.4175 42.9749 20.3739 40.7653 20.8844C33.6603 20.8411 26.6293 19.5729 19.5183 19.6584C14.9556 19.5237 10.3932 19.7335 5.83176 19.5659C4.84427 19.5339 3.85182 19.5251 2.86458 19.4617C2.33903 19.1269 1.6268 19.1718 1.13402 19.582Z" fill="#D0D5DD"/>
+              <path d="M35.4673 15.3441C32.7 17.9739 42.6789 21.3141 40.176 24.2448C39.0223 25.7175 33.6692 27.8193 36.1195 29.9288C37.5285 30.8672 38.548 28.9865 39.6566 28.3762C41.4829 26.9761 44.0612 25.3939 43.4178 22.7118C43.1275 20.6531 41.5818 19.1233 40.0656 17.84C38.6957 17.0385 37.1951 14.0293 35.4673 15.3441Z" fill="#D0D5DD"/>
+            </svg>
+            <span class="lacks-item-text">Automation</span>
+          </div>
+
+          <!-- Item 4: Monitoring -->
+          <div class="lacks-item-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="45" viewBox="0 0 46 45" fill="none" class="lacks-arrow-svg arrow-rot-4">
+              <path d="M1.13402 19.582C0.659833 19.9456 0.454683 20.6107 0.643814 21.1764C1.37171 22.9822 3.84575 22.2076 5.3792 22.4535C9.24234 22.6263 13.11 22.4839 16.9745 22.5132C25.1784 22.3344 33.2962 23.7891 41.488 23.7675C43.7536 23.4175 42.9749 20.3739 40.7653 20.8844C33.6603 20.8411 26.6293 19.5729 19.5183 19.6584C14.9556 19.5237 10.3932 19.7335 5.83176 19.5659C4.84427 19.5339 3.85182 19.5251 2.86458 19.4617C2.33903 19.1269 1.6268 19.1718 1.13402 19.582Z" fill="#D0D5DD"/>
+              <path d="M35.4673 15.3441C32.7 17.9739 42.6789 21.3141 40.176 24.2448C39.0223 25.7175 33.6692 27.8193 36.1195 29.9288C37.5285 30.8672 38.548 28.9865 39.6566 28.3762C41.4829 26.9761 44.0612 25.3939 43.4178 22.7118C43.1275 20.6531 41.5818 19.1233 40.0656 17.84C38.6957 17.0385 37.1951 14.0293 35.4673 15.3441Z" fill="#D0D5DD"/>
+            </svg>
+            <span class="lacks-item-text">Monitoring</span>
+          </div>
+
+          <!-- Item 5: Flexibility -->
+          <div class="lacks-item-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="45" viewBox="0 0 46 45" fill="none" class="lacks-arrow-svg arrow-rot-5">
+              <path d="M1.13402 19.582C0.659833 19.9456 0.454683 20.6107 0.643814 21.1764C1.37171 22.9822 3.84575 22.2076 5.3792 22.4535C9.24234 22.6263 13.11 22.4839 16.9745 22.5132C25.1784 22.3344 33.2962 23.7891 41.488 23.7675C43.7536 23.4175 42.9749 20.3739 40.7653 20.8844C33.6603 20.8411 26.6293 19.5729 19.5183 19.6584C14.9556 19.5237 10.3932 19.7335 5.83176 19.5659C4.84427 19.5339 3.85182 19.5251 2.86458 19.4617C2.33903 19.1269 1.6268 19.1718 1.13402 19.582Z" fill="#D0D5DD"/>
+              <path d="M35.4673 15.3441C32.7 17.9739 42.6789 21.3141 40.176 24.2448C39.0223 25.7175 33.6692 27.8193 36.1195 29.9288C37.5285 30.8672 38.548 28.9865 39.6566 28.3762C41.4829 26.9761 44.0612 25.3939 43.4178 22.7118C43.1275 20.6531 41.5818 19.1233 40.0656 17.84C38.6957 17.0385 37.1951 14.0293 35.4673 15.3441Z" fill="#D0D5DD"/>
+            </svg>
+            <span class="lacks-item-text">Flexibility</span>
+          </div>
+
+          <!-- Item 6: Efficiency -->
+          <div class="lacks-item-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="45" viewBox="0 0 46 45" fill="none" class="lacks-arrow-svg arrow-rot-6">
+              <path d="M1.13402 19.582C0.659833 19.9456 0.454683 20.6107 0.643814 21.1764C1.37171 22.9822 3.84575 22.2076 5.3792 22.4535C9.24234 22.6263 13.11 22.4839 16.9745 22.5132C25.1784 22.3344 33.2962 23.7891 41.488 23.7675C43.7536 23.4175 42.9749 20.3739 40.7653 20.8844C33.6603 20.8411 26.6293 19.5729 19.5183 19.6584C14.9556 19.5237 10.3932 19.7335 5.83176 19.5659C4.84427 19.5339 3.85182 19.5251 2.86458 19.4617C2.33903 19.1269 1.6268 19.1718 1.13402 19.582Z" fill="#D0D5DD"/>
+              <path d="M35.4673 15.3441C32.7 17.9739 42.6789 21.3141 40.176 24.2448C39.0223 25.7175 33.6692 27.8193 36.1195 29.9288C37.5285 30.8672 38.548 28.9865 39.6566 28.3762C41.4829 26.9761 44.0612 25.3939 43.4178 22.7118C43.1275 20.6531 41.5818 19.1233 40.0656 17.84C38.6957 17.0385 37.1951 14.0293 35.4673 15.3441Z" fill="#D0D5DD"/>
+            </svg>
+            <span class="lacks-item-text">Efficiency</span>
+          </div>
+
+          <!-- Item 7: Lead Tracking -->
+          <div class="lacks-item-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="45" viewBox="0 0 46 45" fill="none" class="lacks-arrow-svg arrow-rot-7">
+              <path d="M1.13402 19.582C0.659833 19.9456 0.454683 20.6107 0.643814 21.1764C1.37171 22.9822 3.84575 22.2076 5.3792 22.4535C9.24234 22.6263 13.11 22.4839 16.9745 22.5132C25.1784 22.3344 33.2962 23.7891 41.488 23.7675C43.7536 23.4175 42.9749 20.3739 40.7653 20.8844C33.6603 20.8411 26.6293 19.5729 19.5183 19.6584C14.9556 19.5237 10.3932 19.7335 5.83176 19.5659C4.84427 19.5339 3.85182 19.5251 2.86458 19.4617C2.33903 19.1269 1.6268 19.1718 1.13402 19.582Z" fill="#D0D5DD"/>
+              <path d="M35.4673 15.3441C32.7 17.9739 42.6789 21.3141 40.176 24.2448C39.0223 25.7175 33.6692 27.8193 36.1195 29.9288C37.5285 30.8672 38.548 28.9865 39.6566 28.3762C41.4829 26.9761 44.0612 25.3939 43.4178 22.7118C43.1275 20.6531 41.5818 19.1233 40.0656 17.84C38.6957 17.0385 37.1951 14.0293 35.4673 15.3441Z" fill="#D0D5DD"/>
+            </svg>
+            <span class="lacks-item-text">Lead Tracking</span>
+          </div>
+
+          <!-- Item 8: Performance Insights -->
+          <div class="lacks-item-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="45" viewBox="0 0 46 45" fill="none" class="lacks-arrow-svg arrow-rot-8">
+              <path d="M1.13402 19.582C0.659833 19.9456 0.454683 20.6107 0.643814 21.1764C1.37171 22.9822 3.84575 22.2076 5.3792 22.4535C9.24234 22.6263 13.11 22.4839 16.9745 22.5132C25.1784 22.3344 33.2962 23.7891 41.488 23.7675C43.7536 23.4175 42.9749 20.3739 40.7653 20.8844C33.6603 20.8411 26.6293 19.5729 19.5183 19.6584C14.9556 19.5237 10.3932 19.7335 5.83176 19.5659C4.84427 19.5339 3.85182 19.5251 2.86458 19.4617C2.33903 19.1269 1.6268 19.1718 1.13402 19.582Z" fill="#D0D5DD"/>
+              <path d="M35.4673 15.3441C32.7 17.9739 42.6789 21.3141 40.176 24.2448C39.0223 25.7175 33.6692 27.8193 36.1195 29.9288C37.5285 30.8672 38.548 28.9865 39.6566 28.3762C41.4829 26.9761 44.0612 25.3939 43.4178 22.7118C43.1275 20.6531 41.5818 19.1233 40.0656 17.84C38.6957 17.0385 37.1951 14.0293 35.4673 15.3441Z" fill="#D0D5DD"/>
+            </svg>
+            <span class="lacks-item-text">Performance Insights</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 9: So, the main issue (200px gap below Section 8) -->
+    <section class="main-issue-section" id="main-issue">
+      <h2 class="main-issue-title">
+        So, the main issue
+      </h2>
+      <p class="main-issue-paragraph">
+        <span class="line-lock">was that the telecallers' dashboard was <span class="highlight-teal">largely static.</span></span>
+        <span class="line-lock">Since telecallers <span class="highlight-teal">couldn't efficiently update lead information,</span> admissions sales heads</span>
+        <span class="line-lock"><span class="highlight-teal">lacked the visibility</span> needed to effectively monitor progress and performance.</span>
+      </p>
+    </section>
+
+    <!-- Section 10: How Might We Note Card (60px gap below Section 9) -->
+    <section class="how-might-we-section">
+      <img 
+        src="MAS Sales Dashboard/how might we.png" 
+        alt="How might we improve the lead management experience by simplifying telecaller workflows, enhancing dashboard visibility and enabling accurate real-time monitoring for admissions sales heads?" 
+        class="how-might-we-img"
+      />
+    </section>
+
+    <!-- Section 11: Brainstorming (160px gap below Section 10) -->
+    <section class="brainstorming-section">
+      <img 
+        src="MAS Sales Dashboard/brainstorming.png" 
+        alt="MAS CRM Internal Dashboard Brainstorming Map" 
+        class="brainstorming-img"
+      />
+    </section>
+
+    <!-- Section 12: Solution Intro (160px gap below Section 11) -->
+    <section class="solution-intro-section" id="solution-intro">
+      <p class="solution-problem-text">
+        <span class="line-lock">To solve the problems that Admission Sales Head is facing can be</span>
+        <span class="line-lock">solved by solving the problems of the Tele Caller’s Dashboard</span>
+      </p>
+      <h3 class="solution-introducing-text">
+        Introducing
+      </h3>
+      <h2 class="solution-main-title">
+        The New MAS CRM Dashboard
+      </h2>
+    </section>
+
+    <!-- Section 13: Lead Assign Page 1 Showcase (40px gap below Section 12) -->
+    <section class="lead-assign-showcase-section">
+      <img 
+        src="MAS Sales Dashboard/Lead Assign Page 1.png" 
+        alt="The New MAS CRM Dashboard - Lead Assign Interface Showcase" 
+        class="lead-assign-img"
+      />
+    </section>
+
+    <!-- Section 14: Tele Caller's Dashboard Feature Showcase (200px gap below Section 13) -->
+    <section class="telecaller-feature-section" id="telecaller-dashboard">
+      <h2 class="telecaller-feature-title">
+        Tele Caller’s Dashboard
+      </h2>
+
+      <!-- Problem & Feature Specs Row (100px gap below title, 133px gap between columns) -->
+      <div class="telecaller-prob-feat-row">
+        
+        <!-- Problem Box -->
+        <div class="telecaller-prob-box">
+          <h4 class="prob-feat-label">PROBLEM</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Telecallers struggled to prioritize and</span>
+            <span class="line-lock">manage assigned leads due to limited</span>
+            <span class="line-lock">visibility and the absence of filtering tools.</span>
+          </p>
+        </div>
+
+        <!-- Feature Box -->
+        <div class="telecaller-feat-box">
+          <h4 class="prob-feat-label">FEATURE</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Redesigned the Leads page with a real-time target</span>
+            <span class="line-lock">tracker, advanced filtering, search and prioritized lead</span>
+            <span class="line-lock">information, enabling telecallers to find, organize and</span>
+            <span class="line-lock">manage their assigned leads efficiently</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- CRM Screen 1 Showcase Container with Callout Text -->
+      <div class="crm-screen-container">
+        
+        <!-- CRM Screen Image -->
+        <img 
+          src="MAS Sales Dashboard/CRM Screen 1.png" 
+          alt="Tele Caller's Dashboard CRM Screen 1 Showcase" 
+          class="telecaller-screen-img"
+        />
+
+        <!-- CRM Screen Side Callout Block -->
+        <div class="crm-callout-block">
+          <p class="callout-lead-text">The Leads page helps telecallers manage their daily workload by</p>
+          
+          <div class="callout-group-1">
+            <p class="callout-bold-text">displaying assigned leads</p>
+            <p class="callout-bold-text">daily targets</p>
+          </div>
+
+          <div class="callout-group-2">
+            <p class="callout-bold-text">advanced filters and</p>
+            <p class="callout-bold-text">prioritized lead</p>
+            <p class="callout-bold-text">information in one place</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 15: Overview Page Feature Showcase (160px gap below Section 14) -->
+    <section class="overview-feature-section">
+
+      <!-- Problem & Feature Specs Row (Right Aligned, 24px gap to image below) -->
+      <div class="overview-prob-feat-row">
+        
+        <!-- Problem Box -->
+        <div class="overview-prob-box">
+          <h4 class="prob-feat-label">PROBLEM</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Tracking daily targets and lead progress</span>
+            <span class="line-lock">across multiple metrics was time-consuming</span>
+            <span class="line-lock">and reduced visibility into overall</span>
+            <span class="line-lock">performance</span>
+          </p>
+        </div>
+
+        <!-- Feature Box -->
+        <div class="overview-feat-box">
+          <h4 class="prob-feat-label">FEATURE</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Designed a centralized overview that brings</span>
+            <span class="line-lock">together live KPIs, lead status tracking and</span>
+            <span class="line-lock">performance insights into a single,</span>
+            <span class="line-lock">easy-to-scan dashboard.</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Overview Screen 1 Showcase Container with Left Callout Text -->
+      <div class="overview-screen-container">
+        
+        <!-- Overview Screen Image -->
+        <img 
+          src="MAS Sales Dashboard/Overview Screen 1.png" 
+          alt="The Overview Page - Centralized Dashboard Showcase" 
+          class="overview-screen-img"
+        />
+
+        <!-- Left Callout Text Block -->
+        <div class="overview-left-callout-block">
+          <p class="callout-lead-text overview-callout-lead">The Overview page helps telecallers track their daily progress by</p>
+          
+          <div class="overview-callout-group-1">
+            <p class="callout-bold-text">conversion metrics</p>
+          </div>
+
+          <div class="overview-callout-group-2">
+            <p class="callout-bold-text">lead statuses</p>
+          </div>
+
+          <div class="overview-callout-group-3">
+            <p class="callout-bold-text">and daily activities</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 16: Lead Detail Page Feature Showcase (160px gap below Section 15) -->
+    <section class="leaddetail-feature-section">
+
+      <!-- Problem & Feature Specs Row (Left Aligned, 24px gap to image below) -->
+      <div class="leaddetail-prob-feat-row">
+        
+        <!-- Problem Box -->
+        <div class="leaddetail-prob-box">
+          <h4 class="prob-feat-label">PROBLEM</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Updating lead information and managing the</span>
+            <span class="line-lock">next steps after every call was fragmented</span>
+            <span class="line-lock">and time-consuming.</span>
+          </p>
+        </div>
+
+        <!-- Feature Box -->
+        <div class="leaddetail-feat-box">
+          <h4 class="prob-feat-label">FEATURE</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">The Lead Detail page streamlines post-call</span>
+            <span class="line-lock">workflows by combining lead information,</span>
+            <span class="line-lock">call updates, activity timeline, follow-up</span>
+            <span class="line-lock">reminders and lead closure into one place</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Lead Detail Screen 1 Showcase Container with Right Callout Text -->
+      <div class="leaddetail-screen-container">
+        
+        <!-- Lead Detail Screen Image -->
+        <img 
+          src="MAS Sales Dashboard/Lead Detail Page 1.png" 
+          alt="The Lead Detail Page - Comprehensive Lead Management Showcase" 
+          class="leaddetail-screen-img"
+        />
+
+        <!-- Right Callout Text Block -->
+        <div class="leaddetail-right-callout-block">
+          <p class="callout-lead-text leaddetail-callout-lead">The Lead Detail page helps telecallers manage individual leads by providing</p>
+          
+          <div class="leaddetail-callout-group-1">
+            <p class="callout-bold-text">call status updating</p>
+          </div>
+
+          <div class="leaddetail-callout-group-2">
+            <p class="callout-bold-text">detailed lead information</p>
+          </div>
+
+          <div class="leaddetail-callout-group-3">
+            <p class="callout-bold-text">activity history</p>
+          </div>
+
+          <div class="leaddetail-callout-group-4">
+            <p class="callout-bold-text">scheduling follow-ups</p>
+          </div>
+
+          <div class="leaddetail-callout-group-5">
+            <p class="callout-bold-text">closing leads in one place</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 17: Admission Sales Head Dashboard Header (120px gap below Section 16) -->
+    <section class="saleshead-dashboard-header-section" id="saleshead-dashboard">
+      <h2 class="saleshead-dashboard-title">
+        Admission Sales Head Dashboard
+      </h2>
+    </section>
+
+    <!-- Section 18: Admission Sales Head Overview Feature Showcase (100px gap below Section 17) -->
+    <section class="ash-overview-feature-section">
+
+      <!-- Problem & Feature Specs Row (Right Aligned, 24px gap to image below) -->
+      <div class="ash-overview-prob-feat-row">
+        
+        <!-- Problem Box -->
+        <div class="ash-overview-prob-box">
+          <h4 class="prob-feat-label">PROBLEM</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Monitoring overall lead distribution and telecaller</span>
+            <span class="line-lock">assigned lead required switching between multiple</span>
+            <span class="line-lock">views, making it difficult to gain a quick understanding</span>
+            <span class="line-lock">of team progress and pending work</span>
+          </p>
+        </div>
+
+        <!-- Feature Box -->
+        <div class="ash-overview-feat-box">
+          <h4 class="prob-feat-label">FEATURE</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">The Overview page helps admissions sales</span>
+            <span class="line-lock">heads monitor team performance by</span>
+            <span class="line-lock">providing a centralized view of live KPIs,</span>
+            <span class="line-lock">lead distribution, follow-up status, and</span>
+            <span class="line-lock">telecaller workload at one place</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ASH Overview Screen 1 Showcase Container with Left Callout Text -->
+      <div class="ash-overview-screen-container">
+        
+        <!-- ASH Overview Screen Image -->
+        <img 
+          src="MAS Sales Dashboard/ASH Overview Screen 1.png" 
+          alt="Admission Sales Head Overview Page Showcase" 
+          class="ash-overview-screen-img"
+        />
+
+        <!-- Left Callout Text Block -->
+        <div class="ash-overview-left-callout-block">
+          <p class="callout-lead-text ash-overview-callout-lead">The Overview page helps admissions sales heads monitor</p>
+          
+          <div class="ash-overview-callout-group-1">
+            <p class="callout-bold-text">live KPIs</p>
+            <p class="callout-bold-text">lead summaries</p>
+            <p class="callout-bold-text">follow-up insights</p>
+          </div>
+
+          <div class="ash-overview-callout-group-2">
+            <p class="callout-bold-text">telecaller workload</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 19: ASH Individual Overview Feature Showcase (100px gap below Section 18) -->
+    <section class="ash-individual-feature-section">
+
+      <!-- Problem & Feature Specs Row (Left Aligned, 24px gap to image below) -->
+      <div class="ash-individual-prob-feat-row">
+        
+        <!-- Problem Box -->
+        <div class="ash-individual-prob-box">
+          <h4 class="prob-feat-label">PROBLEM</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Tracking an individual telecaller’s progress</span>
+            <span class="line-lock">required manually reviewing lead records,</span>
+            <span class="line-lock">making performance monitoring time-</span>
+            <span class="line-lock">consuming and inefficient.</span>
+          </p>
+        </div>
+
+        <!-- Feature Box -->
+        <div class="ash-individual-feat-box">
+          <h4 class="prob-feat-label">FEATURE</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">The Individual Telecaller Page enables admissions</span>
+            <span class="line-lock">sales heads to monitor telecaller performance, review</span>
+            <span class="line-lock">assigned leads, track lead progress and access</span>
+            <span class="line-lock">detailed reports from one centralized interface.</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ASH Individual Overview Screen 1 Showcase Container with Right Callout Text -->
+      <div class="ash-individual-screen-container">
+        
+        <!-- ASH Individual Overview Screen Image -->
+        <img 
+          src="MAS Sales Dashboard/ASH Individual Overview Screen 1.png" 
+          alt="Admission Sales Head Individual Telecaller Page Showcase" 
+          class="ash-individual-screen-img"
+        />
+
+        <!-- Right Callout Text Block -->
+        <div class="ash-individual-right-callout-block">
+          <p class="callout-lead-text ash-individual-callout-lead">The Individual Telecaller Page helps admissions sales head monitor each telecaller’s performance by providing</p>
+          
+          <div class="ash-individual-callout-group-1">
+            <p class="callout-bold-text">KPIs tracking</p>
+          </div>
+
+          <div class="ash-individual-callout-group-2">
+            <p class="callout-bold-text">lead status</p>
+          </div>
+
+          <div class="ash-individual-callout-group-3">
+            <p class="callout-bold-text">assigned leads</p>
+            <p class="callout-bold-text">call progress</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 20: ASH Lead Assign Page Feature Showcase (100px gap below Section 19) -->
+    <section class="ash-leadassign-feature-section">
+
+      <!-- Problem & Feature Specs Row (Right Aligned, 24px gap to image below) -->
+      <div class="ash-leadassign-prob-feat-row">
+        
+        <!-- Problem Box -->
+        <div class="ash-leadassign-prob-box">
+          <h4 class="prob-feat-label">PROBLEM</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Managing lead allocation and tracking assigned</span>
+            <span class="line-lock">and unassigned leads was a manual and time-</span>
+            <span class="line-lock">consuming process, making it difficult to</span>
+            <span class="line-lock">organize and distribute leads efficiently.</span>
+          </p>
+        </div>
+
+        <!-- Feature Box -->
+        <div class="ash-leadassign-feat-box">
+          <h4 class="prob-feat-label">FEATURE</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">The Leads page enables admissions sales heads</span>
+            <span class="line-lock">to view assigned and unassigned leads, assign</span>
+            <span class="line-lock">leads to telecallers, filter lead lists, and import</span>
+            <span class="line-lock">new leads from one centralized interface.</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ASH Lead Assign Screen 1 Showcase Container with Left Callout Text -->
+      <div class="ash-leadassign-screen-container">
+        
+        <!-- ASH Lead Assign Screen Image -->
+        <img 
+          src="MAS Sales Dashboard/ASH Lead Assign Page 1.png" 
+          alt="Admission Sales Head Lead Assign Page Showcase" 
+          class="ash-leadassign-screen-img"
+        />
+
+        <!-- Left Callout Text Block -->
+        <div class="ash-leadassign-left-callout-block">
+          <p class="callout-lead-text ash-leadassign-callout-lead">
+            <span class="line-lock">The Leads page enables admissions sales heads to manage the</span>
+            <span class="line-lock">entire lead pipeline by viewing</span>
+          </p>
+          
+          <div class="ash-leadassign-callout-group-1">
+            <p class="callout-bold-text">assigned and unassigned leads</p>
+            <p class="callout-bold-text">assigning leads</p>
+          </div>
+
+          <div class="ash-leadassign-callout-group-2">
+            <p class="callout-bold-text">importing new leads</p>
+            <p class="callout-bold-text">filtering lead data</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 21: ASH Analytics Page Feature Showcase (100px gap below Section 20) -->
+    <section class="ash-analytics-feature-section">
+
+      <!-- Problem & Feature Specs Row (Left Aligned, 24px gap to image below) -->
+      <div class="ash-analytics-prob-feat-row">
+        
+        <!-- Problem Box -->
+        <div class="ash-analytics-prob-box">
+          <h4 class="prob-feat-label">PROBLEM</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Sales heads lacked a centralized way to analyze</span>
+            <span class="line-lock">lead conversions, monitor KPI performance and</span>
+            <span class="line-lock">compare telecaller productivity making it difficult</span>
+            <span class="line-lock">to identify trends and optimize team performance.</span>
+          </p>
+        </div>
+
+        <!-- Feature Box -->
+        <div class="ash-analytics-feat-box">
+          <h4 class="prob-feat-label">FEATURE</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">The Analytics page enables admissions sales heads</span>
+            <span class="line-lock">to monitor lead performance, track key KPIs, and</span>
+            <span class="line-lock">evaluate telecaller performance from one</span>
+            <span class="line-lock">centralized interface.</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ASH Analytics Screen 1 Showcase Container with Right Callout Text -->
+      <div class="ash-analytics-screen-container">
+        
+        <!-- ASH Analytics Screen Image -->
+        <img 
+          src="MAS Sales Dashboard/ASH Analytics Page 1.png" 
+          alt="Admission Sales Head Analytics Page Showcase" 
+          class="ash-analytics-screen-img"
+        />
+
+        <!-- Right Callout Text Block -->
+        <div class="ash-analytics-right-callout-block">
+          <p class="callout-lead-text ash-analytics-callout-lead">The Analytics page helps admissions sales heads to</p>
+          
+          <div class="ash-analytics-callout-group-1">
+            <p class="callout-bold-text">track lead conversions</p>
+          </div>
+
+          <div class="ash-analytics-callout-group-2">
+            <p class="callout-bold-text">monitor KPIs</p>
+          </div>
+
+          <div class="ash-analytics-callout-group-3">
+            <p class="callout-bold-text">evaluate telecaller performance</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 22: ASH Targets Page Feature Showcase (100px gap below Section 21) -->
+    <section class="ash-targets-feature-section">
+
+      <!-- Problem & Feature Specs Row (Right Aligned, 24px gap to image below) -->
+      <div class="ash-targets-prob-feat-row">
+        
+        <!-- Problem Box -->
+        <div class="ash-targets-prob-box">
+          <h4 class="prob-feat-label">PROBLEM</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">Setting, monitoring, and comparing sales</span>
+            <span class="line-lock">targets across multiple telecallers was a manual</span>
+            <span class="line-lock">process.</span>
+          </p>
+        </div>
+
+        <!-- Feature Box -->
+        <div class="ash-targets-feat-box">
+          <h4 class="prob-feat-label">FEATURE</h4>
+          <p class="prob-feat-desc">
+            <span class="line-lock">The Targets page enables admissions sales heads to</span>
+            <span class="line-lock">set individual or team-wide targets, monitor target</span>
+            <span class="line-lock">achievement, and track telecaller performance</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ASH Targets Screen 1 Showcase Container with Left Callout Text -->
+      <div class="ash-targets-screen-container">
+        
+        <!-- ASH Targets Screen Image -->
+        <img 
+          src="MAS Sales Dashboard/ASH Targets Page 1.png" 
+          alt="Admission Sales Head Targets Page Showcase" 
+          class="ash-targets-screen-img"
+        />
+
+        <!-- Left Callout Text Block -->
+        <div class="ash-targets-left-callout-block">
+          <p class="callout-lead-text ash-targets-callout-lead">The Targets page helps admission’s sales heads to</p>
+          
+          <div class="ash-targets-callout-group-1">
+            <p class="callout-bold-text">track achievements</p>
+          </div>
+
+          <div class="ash-targets-callout-group-2">
+            <p class="callout-bold-text">set targets</p>
+          </div>
+
+          <div class="ash-targets-callout-group-3">
+            <p class="callout-bold-text">monitor telecaller performance</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 23: What I Brought Section (220px gap below Section 22) -->
+    <section class="what-i-brought-section" id="what-i-brought">
+      
+      <!-- Section Heading -->
+      <h3 class="what-i-brought-title">What I Brought</h3>
+
+      <!-- Cards Grid Wrapper -->
+      <div class="wib-cards-wrapper">
+        
+        <!-- Top Row: WIB1 & WIB2 -->
+        <div class="wib-top-row">
+          <img 
+            src="MAS Sales Dashboard/WIB1.png" 
+            alt="What I Brought Card 1 - Optimized telecaller data entry" 
+            class="wib-card-img"
+          />
+          <img 
+            src="MAS Sales Dashboard/WIB2.png" 
+            alt="What I Brought Card 2 - Built a dedicated feature for target assignment" 
+            class="wib-card-img"
+          />
+        </div>
+
+        <!-- Bottom Row: WIB3 (Centered) -->
+        <div class="wib-bottom-row">
+          <img 
+            src="MAS Sales Dashboard/WIB3.png" 
+            alt="What I Brought Card 3 - Structured clear performance tracking layout" 
+            class="wib-card-img"
+          />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 24: What This Project Taught Me Section (220px gap below Section 23) -->
+    <section class="what-project-taught-section" id="what-i-taught">
+      
+      <!-- Section Heading -->
+      <h3 class="what-project-taught-title">What This Project Taught Me</h3>
+
+      <!-- Cards Grid Wrapper -->
+      <div class="wtpt-cards-wrapper">
+        
+        <!-- Top Row: WTPT1 & WTPT2 -->
+        <div class="wtpt-top-row">
+          <img 
+            src="MAS Sales Dashboard/WTPT1.png" 
+            alt="What This Project Taught Me Card 1 - Learned to make UX improvements within an existing product" 
+            class="wtpt-card-img"
+          />
+          <img 
+            src="MAS Sales Dashboard/WTPT2.png" 
+            alt="What This Project Taught Me Card 2 - Strengthened understanding of backend workflows" 
+            class="wtpt-card-img"
+          />
+        </div>
+
+        <!-- Bottom Row: WTPT3 (Centered) -->
+        <div class="wtpt-bottom-row">
+          <img 
+            src="MAS Sales Dashboard/WTPT3.png" 
+            alt="What This Project Taught Me Card 3 - Worked closely with sales team, Tech Lead, and Software Engineer" 
+            class="wtpt-card-img"
+          />
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Area -->
+  <footer class="site-footer" id="resume">
+    <div class="footer-container">
+      <div class="footer-main footer-cta-wrapper">
+        <h2 class="footer-cta-text">
+          Have a few points in mind.<br>Let's Connect!
+        </h2>
+        <div class="footer-social-links">
+          <!-- 1st Icon: Phone -->
+          <a href="#" aria-label="Call Me" class="social-icon phone-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <g clip-path="url(#clip0_446_11)">
+                <path d="M11.0155 16.4395C12.3599 18.8767 13.9094 21.2158 15.9211 23.3488C17.9393 25.4949 20.4491 27.4479 23.6978 29.1164C23.9387 29.2341 24.1666 29.2341 24.3716 29.1523C24.6809 29.0346 24.9966 28.7761 25.3059 28.4653C25.5468 28.2233 25.8462 27.8372 26.1587 27.4152C27.4087 25.7631 28.955 23.7119 31.1392 24.7392C31.188 24.7621 31.2239 24.7882 31.2727 24.8079L38.5578 29.0182C38.5806 29.0313 38.6067 29.0542 38.6262 29.0673C39.5865 29.7314 39.9836 30.7554 39.9934 31.9167C39.9934 33.0977 39.5604 34.4259 38.9257 35.548C38.0858 37.03 36.8489 38.0114 35.4231 38.6592C34.0656 39.2873 32.5552 39.6242 31.1034 39.8402C28.8248 40.1771 26.6893 39.9612 24.5051 39.2873C22.3697 38.6232 20.218 37.5273 17.8677 36.0682L17.6952 35.957C16.6177 35.2798 15.4524 34.5568 14.3098 33.7029C10.1301 30.5296 5.86903 25.9463 3.09234 20.9018C0.764865 16.6685 -0.504666 12.0983 0.188693 7.74399C0.572808 5.35583 1.59169 3.18359 3.36903 1.75069C4.91851 0.494458 7.0051 -0.192547 9.70692 0.0495406C10.0162 0.0724407 10.2929 0.25237 10.4393 0.520629L15.1106 8.45716C15.7942 9.347 15.8788 10.2303 15.5044 11.1136C15.1952 11.8366 14.5702 12.5039 13.7173 13.1255C13.4667 13.3414 13.1672 13.5606 12.8515 13.7896C11.8065 14.5519 10.6184 15.4319 11.0253 16.4657L11.0155 16.4395Z" fill="#05172E"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_446_11">
+                  <rect width="40" height="40" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+
+          <!-- 2nd Icon: Gmail -->
+          <a href="mailto:contact@sakshithareja.com" aria-label="Email Me" class="social-icon gmail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
+              <path d="M0 21.3334C0 13.866 0 10.1323 1.45324 7.28012C2.73156 4.77131 4.77131 2.73156 7.28012 1.45324C10.1323 0 13.866 0 21.3334 0H38.6666C46.134 0 49.8677 0 52.7199 1.45324C55.2287 2.73156 57.2685 4.77131 58.5467 7.28012C60 10.1323 60 13.866 60 21.3334V38.6666C60 46.134 60 49.8677 58.5467 52.7199C57.2685 55.2287 55.2287 57.2685 52.7199 58.5467C49.8677 60 46.134 60 38.6666 60H21.3334C13.866 60 10.1323 60 7.28012 58.5467C4.77131 57.2685 2.73156 55.2287 1.45324 52.7199C0 49.8677 0 46.134 0 38.6666V21.3334Z" fill="white"/>
+              <path d="M42.9675 13.9777L30.138 23.9901L17.0152 13.9777V13.9804L17.0311 13.994V28.014L29.9902 38.2427L42.9675 28.4089V13.9777Z" fill="#EA4335"/>
+              <path d="M46.3352 11.5423L42.966 13.9777V28.4089L53.5678 20.2693V15.3659C53.5678 15.3659 52.281 8.36267 46.3352 11.5423Z" fill="#FBBC05"/>
+              <path d="M42.966 28.4089V47.1266H51.0917C51.0917 47.1266 53.4041 46.8885 53.5704 44.2528V20.2693L42.966 28.4089Z" fill="#34A853"/>
+              <path d="M17.0317 47.1431V28.014L17.0152 28.0005L17.0317 47.1431Z" fill="#C5221F"/>
+              <path d="M17.0146 13.9801L13.6638 11.5582C7.71812 8.3786 6.42857 15.3791 6.42857 15.3791V20.2824L17.0146 28.0001V13.9801Z" fill="#C5221F"/>
+              <path d="M17.0152 13.9809V28.0009L17.0317 28.0144V13.9944L17.0152 13.9809Z" fill="#C5221F"/>
+              <path d="M6.42857 20.286V44.2695C6.59242 46.908 8.90728 47.1435 8.90728 47.1435H17.0331L17.0146 28.0009L6.42857 20.286Z" fill="#4285F4"/>
+            </svg>
+          </a>
+
+          <!-- 3rd Icon: LinkedIn -->
+          <a href="#" aria-label="LinkedIn" class="social-icon linkedin-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <g clip-path="url(#clip0_446_14)">
+                <path d="M43.658 0H4.34199C1.944 0 0 1.944 0 4.34199V43.6579C0 46.056 1.944 48 4.34199 48H43.6579C46.056 48 48 46.056 48 43.6579V4.34199C48 1.944 46.056 0 43.658 0ZM14.8532 41.4464C14.8532 42.1442 14.2875 42.7099 13.5897 42.7099H8.21089C7.51301 42.7099 6.94731 42.1442 6.94731 41.4464V18.8988C6.94731 18.2009 7.51301 17.6352 8.21089 17.6352H13.5897C14.2875 17.6352 14.8532 18.2009 14.8532 18.8988V41.4464ZM10.9003 15.5098C8.0782 15.5098 5.79041 13.222 5.79041 10.3999C5.79041 7.57784 8.0782 5.29005 10.9003 5.29005C13.7223 5.29005 16.0101 7.57784 16.0101 10.3999C16.0101 13.222 13.7225 15.5098 10.9003 15.5098ZM42.9625 41.5481C42.9625 42.1897 42.4423 42.7099 41.8007 42.7099H36.0289C35.3873 42.7099 34.8671 42.1897 34.8671 41.5481V30.9721C34.8671 29.3943 35.3299 24.0584 30.744 24.0584C27.1868 24.0584 26.4653 27.7107 26.3205 29.3497V41.5481C26.3205 42.1897 25.8004 42.7099 25.1587 42.7099H19.5763C18.9347 42.7099 18.4145 42.1897 18.4145 41.5481V18.797C18.4145 18.1554 18.9347 17.6352 19.5763 17.6352H25.1587C25.8002 17.6352 26.3205 18.1554 26.3205 18.797V20.7641C27.6395 18.7847 29.5997 17.2569 33.7733 17.2569C43.0154 17.2569 42.9625 25.8913 42.9625 30.6356V41.5481Z" fill="#0077B7"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_446_14">
+                  <rect width="48" height="48" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Sakshi Thareja. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="index.html#work">Work</a>
+          <a href="about.html">About Me</a>
+          <a href="index.html#resume">Resume</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript & Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Lenis Liquid Smooth Scroll
+      if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          smoothTouch: false,
+          wheelMultiplier: 1.0,
+          touchMultiplier: 1.5,
+        });
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+      }
+
+      // Sidebar Active Section Observer
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".sidebar-link");
+
+      if (sections.length > 0 && navLinks.length > 0) {
+        const observerOptions = {
+          root: null,
+          rootMargin: "-20% 0px -50% 0px",
+          threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const currentId = entry.target.getAttribute("id");
+              navLinks.forEach((link) => {
+                if (link.getAttribute("href") === "#" + currentId) {
+                  link.classList.add("active");
+                } else {
+                  link.classList.remove("active");
+                }
+              });
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach((section) => observer.observe(section));
+      }
+
+      // Sidebar Isolated Scroll Handler
+      const sidebarElement = document.getElementById('caseStudySidebar');
+      if (sidebarElement) {
+        sidebarElement.addEventListener('wheel', (e) => {
+          const inner = sidebarElement.querySelector('.sidebar-inner');
+          if (!inner) return;
+
+          e.preventDefault();
+          e.stopPropagation();
+          inner.scrollTop += e.deltaY;
+        }, { passive: false });
+      }
+    });
+  </script>
+</body>
+</html>
