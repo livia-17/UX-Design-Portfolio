@@ -13,9 +13,9 @@
   <link href="https://api.fontshare.com/v2/css?f[]=ranade@500,600,700&f[]=switzer@400,500&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=12">
 </head>
-<body>
+<body class="is-loading">
 
   <!-- Custom Tracking Cursor -->
   <div id="custom-cursor">
@@ -114,8 +114,8 @@
     </div>
   </div>
 
-  <!-- Interactive Hover-Glowing Dot Grid Container -->
-  <div id="interactive-grid" aria-hidden="true"></div>
+  <!-- Full-Screen Interactive Dot Grid Canvas (Loading Animation & Ambient Wallpaper) -->
+  <canvas id="interactive-grid" aria-hidden="true"></canvas>
 
   <!-- Navigation Bar Header (Fixed Solid White Header, z-index 999) -->
   <header class="site-header">
@@ -145,7 +145,11 @@
     <section class="hero-section" id="hero">
       <div class="hero-text-wrapper">
         <!-- Permanent Dotted Halftone Layer with Fade Entrance -->
-        <h1 class="hero-title dotted-text">Finding alignment<br>in a universe of<br>infinite possibilities</h1>
+        <h1 class="hero-title dotted-text">
+          <span class="title-line">Finding alignment</span><br>
+          <span class="title-line">in a universe of</span><br>
+          <span class="title-line">infinite possibilities</span>
+        </h1>
       </div>
     </section>
 
@@ -332,7 +336,9 @@
     </div>
   </footer>
 
+  <!-- Smooth Scroll Library (Lenis) -->
+  <script src="lenis.min.js"></script>
   <!-- JavaScript for Interactive Mobile Menu & Dynamic Dot Grid -->
-  <script src="script.js"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>
