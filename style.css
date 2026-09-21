@@ -1186,132 +1186,196 @@ body.case-study-page .hamburger-bar {
 .wave-right .dot-sm { animation-delay: 0.15s !important; }
 .wave-right .dot-xs { animation-delay: 0s !important; }
 
-/* Single Column Work Container - 1 Focused Card Visible at a time */
+/* --------------------------------------------------------------------------
+   7. Work Section: Split Horizontal Featured Card Layout (Matching Reference)
+   -------------------------------------------------------------------------- */
 #work-grid,
 .work-container {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: clamp(60px, 8vh, 110px) !important;
-  background: transparent !important; /* Remove any inherited background */
+  gap: clamp(70px, 9vh, 120px) !important;
+  background: transparent !important;
   width: 100% !important;
-  max-width: 1040px !important;
+  max-width: 1220px !important;
   margin: 0 auto 15vh auto !important;
   padding: 4vh 5% 15vh 5% !important;
   box-sizing: border-box !important;
   pointer-events: auto;
 }
 
-/* Strip Card Backgrounds & Fix Layout */
+/* Split Project Card (Left: Visual Mockup / Right: Details) */
 .project-card {
-  background: transparent !important; /* Removes giant blue boxes */
+  display: grid !important;
+  grid-template-columns: 1.05fr 1fr !important;
+  align-items: center !important;
+  gap: clamp(36px, 4.5vw, 64px) !important;
+  width: 100% !important;
+  max-width: 1220px !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  padding: 0 !important; 
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  width: 100% !important;
-  max-width: 1040px !important;
+  padding: 0 !important;
   box-sizing: border-box !important;
 }
 
-/* Resurrect Image Placeholders & Tag Positioning Context - Fully Responsive */
+/* Left Visual Column */
+.project-visual {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 .project-image-wrapper {
   position: relative !important;
-  display: block !important;
   width: 100% !important;
-  max-width: 100% !important;
-  aspect-ratio: 16 / 9 !important; /* Forces correct rectangle shape without blowing out width */
-  min-height: 0 !important; /* Prevents aspect-ratio from forcing huge width on mobile */
-  background: rgba(255, 255, 255, 0.05) !important; /* Very subtle placeholder box */
-  border-radius: 8px !important; /* Sharper 8px corner radius */
-  margin-bottom: 16px !important;
+  aspect-ratio: 16 / 10 !important; /* Modern wide-card ratio */
+  border-radius: 16px !important; /* Elegant rounded frame matching reference */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25) !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease,
+              box-shadow 0.4s ease !important;
 }
 
 .project-image {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: center 60% !important; /* Positions main screen with clean top headroom */
-  transform: scale(1.04) !important;
-  transform-origin: center center !important;
-  transition: transform 0.4s ease !important;
+  object-position: center center !important;
   display: block !important;
-}
-
-.project-card:hover .project-image {
-  transform: scale(1.10) !important;
+  transform: scale(1.01) !important;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .project-card:hover .project-image-wrapper {
-  transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-4px) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35) !important;
 }
 
+.project-card:hover .project-image {
+  transform: scale(1.04) !important;
+}
+
+/* Right Content Column */
+.project-info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Eyebrow / Meta Tracked Text */
+.project-eyebrow {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: clamp(11px, 0.95vw, 13px) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.52) !important;
+  margin-bottom: 14px !important;
+}
+
+/* Title with Directional Arrow */
 .project-title {
   font-family: 'DM Sans', sans-serif !important;
-  font-size: clamp(18px, 2.2vw, 28px) !important;
-  line-height: 1.25 !important;
-  font-weight: 500 !important;
+  font-size: clamp(24px, 2.4vw, 36px) !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
   color: #ffffff !important;
-  margin: 0 0 8px 0 !important;
-  word-break: break-word !important;
-  width: 100% !important;
+  margin: 0 0 16px 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  transition: color 0.2s ease !important;
 }
 
+.project-arrow {
+  display: inline-block !important;
+  width: 28px !important;
+  height: 28px !important;
+  flex-shrink: 0 !important;
+  stroke: #ffffff !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.project-card:hover .project-arrow {
+  transform: translateX(8px) !important;
+}
+
+/* Description */
 .project-desc {
   font-family: 'DM Sans', sans-serif !important;
-  font-size: clamp(13px, 1.25vw, 16px) !important;
-  line-height: 1.45 !important;
+  font-size: clamp(14px, 1.15vw, 16.5px) !important;
+  line-height: 1.6 !important;
   font-weight: 400 !important;
-  color: #cccccc !important;
-  margin: 0 0 16px 0 !important;
-  word-break: break-word !important;
-  width: 100% !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  margin: 0 0 28px 0 !important;
+  max-width: 520px !important;
 }
 
-/* Glass Tags Container Pinned to Top Right Inside Image Wrapper - Bound to Both Edges */
+/* Pill Tags (Matching Reference Style) */
 .project-tags {
-  position: absolute !important;
-  top: 10px !important;
-  right: 10px !important;
-  left: 10px !important; /* Constrains tags within the card wrapper on all screen sizes */
+  position: static !important;
   display: flex !important;
-  gap: 6px !important;
   flex-wrap: wrap !important;
-  justify-content: flex-end !important;
-  z-index: 10 !important;
-  margin-top: 0 !important;
-  pointer-events: none;
+  gap: 10px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: auto !important;
 }
 
-/* Glass Tag Pill Shape & Refined Font */
+.tag-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: clamp(11.5px, 0.95vw, 13px) !important;
+  font-weight: 400 !important;
+  white-space: nowrap !important;
+  transition: all 0.25s ease !important;
+}
+
+.project-card:hover .tag-pill {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+}
+
+/* Retain backward compatibility for .glass-tag if used elsewhere */
 .glass-tag {
   display: inline-flex !important;
   align-items: center !important;
-  border-radius: 50px !important; /* Perfect pill shape */
+  border-radius: 50px !important;
   padding: 4px 8px !important;
   margin: 0 !important;
-  
-  /* Typography */
   font-family: 'DM Sans', sans-serif !important;
   font-size: clamp(9px, 1.1vw, 11px) !important;
   font-weight: 600 !important;
-  color: #05172E !important; /* Dark Navy text for maximum readability */
+  color: #05172E !important;
   text-transform: capitalize !important;
   white-space: nowrap !important;
-  pointer-events: auto;
-  
-  /* Glassmorphism properties */
-  background: rgba(255, 255, 255, 0.88) !important; /* Frosted white backdrop */
+  background: rgba(255, 255, 255, 0.88) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(5, 23, 46, 0.2) !important; /* Subtle navy rim */
+  border: 1px solid rgba(5, 23, 46, 0.2) !important;
   box-shadow: 0 2px 8px rgba(5, 23, 46, 0.12) !important;
 }
 
@@ -1574,10 +1638,22 @@ body.case-study-page .hamburger-bar {
   }
 }
 
+@media (max-width: 920px) {
+  .project-card {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .project-desc {
+    max-width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+}
+
 @media (max-width: 880px) {
   #work-grid,
   .work-container {
-    gap: 40px !important;
+    gap: 50px !important;
     padding: 4vh 5% 12vh 5% !important;
   }
 }
@@ -1668,8 +1744,7 @@ body.case-study-page .hamburger-bar {
 
   #work-grid,
   .work-container {
-    grid-template-columns: 1fr !important;
-    gap: 36px !important;
+    gap: 48px !important;
     padding: 3vh 5% 12vh 5% !important;
   }
 
