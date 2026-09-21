@@ -1193,13 +1193,13 @@ body.case-study-page .hamburger-bar {
 .work-container {
   display: flex !important;
   flex-direction: column !important;
-  align-items: center !important;
-  gap: clamp(70px, 9vh, 120px) !important;
+  align-items: stretch !important;
+  gap: clamp(80px, 10vh, 140px) !important;
   background: transparent !important;
   width: 100% !important;
-  max-width: 1220px !important;
+  max-width: 1440px !important; /* Exact match to navbar max-width */
   margin: 0 auto 15vh auto !important;
-  padding: 4vh 5% 15vh 5% !important;
+  padding: 4vh 5% 15vh 5% !important; /* Exact match to navbar 5% horizontal margins */
   box-sizing: border-box !important;
   pointer-events: auto;
 }
@@ -1207,11 +1207,11 @@ body.case-study-page .hamburger-bar {
 /* Split Project Card (Left: Visual Mockup / Right: Details) */
 .project-card {
   display: grid !important;
-  grid-template-columns: 1.05fr 1fr !important;
+  grid-template-columns: 1fr 1fr !important;
   align-items: center !important;
-  gap: clamp(36px, 4.5vw, 64px) !important;
+  gap: clamp(40px, 5vw, 80px) !important;
   width: 100% !important;
-  max-width: 1220px !important;
+  max-width: 100% !important; /* Spans from exact left edge to exact right edge of navbar grid */
   text-decoration: none !important;
   color: inherit !important;
   cursor: pointer !important;
@@ -1319,12 +1319,12 @@ body.case-study-page .hamburger-bar {
 /* Description */
 .project-desc {
   font-family: 'DM Sans', sans-serif !important;
-  font-size: clamp(14px, 1.15vw, 16.5px) !important;
+  font-size: clamp(15px, 1.2vw, 17.5px) !important;
   line-height: 1.6 !important;
   font-weight: 400 !important;
-  color: rgba(255, 255, 255, 0.72) !important;
-  margin: 0 0 28px 0 !important;
-  max-width: 520px !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  margin: 0 0 24px 0 !important;
+  max-width: 100% !important;
 }
 
 /* Pill Tags (Matching Reference Style) */
