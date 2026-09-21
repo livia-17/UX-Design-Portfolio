@@ -17,31 +17,13 @@
 
   <style>
     /* Global Ultra-Smooth Scroll Specs */
+    *, *::before, *::after {
+      text-shadow: none !important;
+    }
+
     html {
       scroll-behavior: smooth !important;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       scroll-padding-top: 100px;
-    }
-
-    html.lenis, html.lenis body {
-      height: auto;
-    }
-
-    .lenis.lenis-smooth {
-      scroll-behavior: auto !important;
-    }
-
-    .lenis.lenis-smooth [data-lenis-prevent] {
-      overscroll-behavior: contain;
-    }
-
-    .lenis.lenis-stopped {
-      overflow: hidden;
-    }
-
-    .lenis.lenis-smooth iframe {
-      pointer-events: none;
     }
 
     body {
@@ -100,7 +82,7 @@
       text-transform: uppercase;
       text-align: center;
       color: #FFFFFF;
-      text-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+      text-shadow: none !important;
       z-index: 10;
       pointer-events: none;
     }
@@ -3426,29 +3408,23 @@
     </div>
   </footer>
 
-  <!-- JavaScript & Lenis Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <!-- JavaScript -->
   <script src="script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Initialize Lenis Liquid Smooth Scroll
-      if (typeof Lenis !== 'undefined') {
-        const lenis = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true,
-          smoothTouch: false,
-          wheelMultiplier: 1.0,
-          touchMultiplier: 1.5,
+      // Native Smooth Anchor Navigation for Sidebar Links
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (href && href.startsWith('#') && href !== '#') {
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
         });
-
-        function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-      }
+      });
 
       // Sidebar Active Section Observer
       const sections = document.querySelectorAll("section[id]");

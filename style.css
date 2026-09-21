@@ -14,6 +14,7 @@
   margin: 0;
   padding: 0;
   cursor: none !important;
+  text-shadow: none !important;
 }
 
 /* Base cursor container setup */
@@ -90,32 +91,11 @@ body.is-loaded {
 }
 
 /* --------------------------------------------------------------------------
-   2. Global Scroll Behavior & Background Theme (Lenis Smooth Scroll Integrated)
+   2. Global Scroll Behavior & Background Theme (Native Hardware Smooth Scroll)
    -------------------------------------------------------------------------- */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
 html {
   min-height: 100%;
-  scroll-behavior: auto; /* Handled smoothly by Lenis rAF loop */
+  scroll-behavior: smooth !important; /* Native hardware-accelerated smooth scrolling without text blur */
   scroll-padding-top: 76px;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
@@ -134,8 +114,9 @@ body {
   font-family: var(--font-nav);
   color: var(--color-text-light);
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
   max-width: 100vw;
 
@@ -256,7 +237,7 @@ header {
   backdrop-filter: blur(12px) !important; /* Key frosted glass effect */
   -webkit-backdrop-filter: blur(12px) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important; /* Soft rim highlight */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: none !important;
   z-index: 999 !important; /* Ensures it stays above all other content */
   pointer-events: auto !important;
   transition: opacity 0.8s ease;
@@ -615,7 +596,7 @@ body.is-loaded #hero h1 {
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: none !important;
 
   /* Typography */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;

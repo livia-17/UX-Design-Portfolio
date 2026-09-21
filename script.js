@@ -1,45 +1,21 @@
 // Sakshi Thareja Portfolio - Mobile Navigation, Dynamic Grid, Mouse Spotlight, Scroll Reveal & Letter Assembly
 document.addEventListener('DOMContentLoaded', () => {
   /* --------------------------------------------------------------------------
-     Smooth Scrolling Engine (Lenis)
-     Provides fluid, buttery-smooth inertia & momentum scrolling on desktop/laptop
+     Native Hardware-Accelerated Smooth Scrolling for Anchor Links
+     Eliminates subpixel text rasterization ghosting and drop-shadow artifacts
      -------------------------------------------------------------------------- */
-  let lenis = null;
-  if (typeof Lenis !== 'undefined') {
-    lenis = new Lenis({
-      duration: 1.3,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.5,
-      infinite: false,
-    });
-
-    function lenisRaf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(lenisRaf);
-    }
-    requestAnimationFrame(lenisRaf);
-
-    // Stop scrolling while the loading animation is playing
-    lenis.stop();
-
-    // Smooth scroll for anchor navigation links (#work, #resume, etc.)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId && targetId !== '#') {
-          const targetEl = document.querySelector(targetId);
-          if (targetEl) {
-            e.preventDefault();
-            lenis.scrollTo(targetEl, { offset: -76, duration: 1.4 });
-          }
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          targetEl.scrollIntoView({ behavior: 'smooth' });
         }
-      });
+      }
     });
-  }
+  });
 
   /* --------------------------------------------------------------------------
      0 & 2. Full-Screen "Finding Alignment" Loading Animation
@@ -216,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
         isLoaded = true;
         document.body.classList.remove('is-loading');
         document.body.classList.add('is-loaded');
-        if (lenis) lenis.start();
       }
 
       requestAnimationFrame(render);
@@ -230,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
         isLoaded = true;
         document.body.classList.remove('is-loading');
         document.body.classList.add('is-loaded');
-        if (lenis) lenis.start();
       }
     }, 4500);
 
@@ -272,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       document.body.classList.remove('is-loading');
       document.body.classList.add('is-loaded');
-      if (lenis) lenis.start();
     }, 2000);
   }
 

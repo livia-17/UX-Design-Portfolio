@@ -15,35 +15,14 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Lenis Luxury Smooth Scroll Library (Rolex-Style Inertial Scroll) -->
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-
   <style>
-    /* Lenis Smooth Scroll Core Styles (Rolex Luxury Inertial Scroll) */
-    html.lenis, html.lenis body {
-      height: auto;
+    *, *::before, *::after {
+      text-shadow: none !important;
     }
 
-    .lenis.lenis-smooth {
-      scroll-behavior: auto !important;
-    }
-
-    .lenis.lenis-smooth [data-lenis-prevent] {
-      overscroll-behavior: contain;
-    }
-
-    .lenis.lenis-stopped {
-      overflow: hidden;
-    }
-
-    .lenis.lenis-scrolling iframe {
-      pointer-events: none;
-    }
-
-    /* Global Ultra-Smooth Scroll Specs */
+    /* Global Ultra-Smooth Native Hardware Scroll Specs */
     html {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth !important;
       scroll-padding-top: 40px;
     }
 
@@ -1656,7 +1635,7 @@
       gap: 10px;
       border: 1px solid #0A2460;
       background: #FFF;
-      box-shadow: 8px 9px 0 0 #0A2460;
+      box-shadow: none !important;
       flex: 1;
     }
 
@@ -3642,78 +3621,21 @@
       }
     });
 
-    // Rolex-Style Luxury Inertial Momentum Smooth Scroll Engine (Lenis.js)
-    (function () {
-      function initLenis() {
-        if (typeof Lenis !== 'undefined') {
-          const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential damp lerp
-            orientation: 'vertical',
-            gestureOrientation: 'vertical',
-            smoothWheel: true,
-            wheelMultiplier: 1.0,
-            touchMultiplier: 1.5,
-            infinite: false,
-          });
-
-          window.lenis = lenis;
-
-          function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-          }
-          requestAnimationFrame(raf);
-
-          // Smooth Anchor Navigation for Sidebar Links
-          document.querySelectorAll('.sidebar-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-              const href = link.getAttribute('href');
-              if (href && href.startsWith('#') && href !== '#') {
-                e.preventDefault();
-                lenis.scrollTo(href, { offset: -40, duration: 1.4 });
-              }
-            });
-          });
-        } else {
-          // High-Performance Inertial Physics Fallback Engine
-          let currentY = window.scrollY;
-          let targetY = window.scrollY;
-          let isMoving = false;
-          const ease = 0.08;
-
-          function smoothScrollLoop() {
-            const diff = targetY - currentY;
-            if (Math.abs(diff) > 0.4) {
-              currentY += diff * ease;
-              window.scrollTo(0, currentY);
-              requestAnimationFrame(smoothScrollLoop);
-            } else {
-              currentY = targetY;
-              window.scrollTo(0, currentY);
-              isMoving = false;
+    // Native Hardware-Accelerated Smooth Anchor Navigation for Sidebar Links
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (href && href.startsWith('#') && href !== '#') {
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: 'smooth' });
             }
           }
-
-          window.addEventListener('wheel', (e) => {
-            if (e.ctrlKey) return;
-            e.preventDefault();
-            targetY += e.deltaY * 0.9;
-            targetY = Math.max(0, Math.min(targetY, document.documentElement.scrollHeight - window.innerHeight));
-            if (!isMoving) {
-              isMoving = true;
-              requestAnimationFrame(smoothScrollLoop);
-            }
-          }, { passive: false });
-        }
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLenis);
-      } else {
-        initLenis();
-      }
-    })();
+        });
+      });
+    });
   </script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
