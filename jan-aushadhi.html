@@ -2440,6 +2440,165 @@
         height: auto;
       }
     }
+
+    /* Jan Aushadhi App Showcase Section */
+    .ja-app-showcase-section {
+      width: 100%;
+      background-color: #FFFFFF;
+      padding: 0 8% 140px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .ja-app-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .ja-app-step-block {
+      position: relative;
+      width: 100%;
+    }
+
+    .ja-app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      width: 100%;
+      gap: 40px;
+    }
+
+    .ja-app-phone-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+    }
+
+    .ja-dash-stem {
+      width: 0;
+      border-left: 2px dashed #9AB5E3;
+      margin: 0 auto;
+    }
+
+    .ja-dash-stem-top {
+      height: 100px;
+    }
+
+    .ja-dash-stem-bottom {
+      height: 130px;
+    }
+
+    .ja-app-phone-img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .ja-app-text-col {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 20px;
+      box-sizing: border-box;
+    }
+
+    .ja-app-text-inner {
+      max-width: 440px;
+    }
+
+    .ja-app-step-title {
+      color: #1B4D9B;
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.4px;
+      margin: 0 0 16px 0;
+    }
+
+    .ja-app-step-desc {
+      color: #475467;
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Connecting Dashed Line across from left column center to right column center */
+    .ja-app-cross-connector {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      margin-top: -2px;
+    }
+
+    .ja-connector-h-line {
+      position: absolute;
+      left: calc(25% - 10px);
+      width: calc(50% + 20px);
+      top: 0;
+      border-top: 2px dashed #9AB5E3;
+    }
+
+    .ja-connector-next-stem {
+      position: absolute;
+      left: calc(75% + 10px);
+      top: 0;
+      width: 0;
+      height: 100px;
+      border-left: 2px dashed #9AB5E3;
+      transform: translateX(-1px);
+    }
+
+    @media (max-width: 900px) {
+      .ja-app-showcase-section {
+        padding: 0 6% 80px;
+      }
+      .ja-app-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .ja-app-text-col {
+        padding-left: 0;
+        text-align: center;
+        justify-content: center;
+      }
+      .ja-app-text-inner {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      .ja-app-cross-connector {
+        display: none;
+      }
+      .ja-dash-stem-top {
+        height: 50px;
+      }
+      .ja-dash-stem-bottom {
+        height: 60px;
+      }
+      .ja-app-phone-img {
+        max-width: 280px;
+      }
+      .ja-app-step-title {
+        font-size: 26px;
+      }
+      .ja-app-step-desc {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body class="case-study-page">
@@ -3498,6 +3657,41 @@
         <div class="ja-step-right fade-in-step" style="transition-delay: 0.15s;">
           <img src="Jan Aushadhi/img7.webp" alt="Track Medicines & Spending" class="ja-step-img">
         </div>
+      </div>
+    </section>
+
+    <!-- Jan Aushadhi App Section -->
+    <section class="ja-app-showcase-section" id="jan-aushadhi-app">
+      <div class="ja-app-container">
+        
+        <!-- Step 1: Smart Medicine Search -->
+        <div class="ja-app-step-block fade-in-step">
+          <div class="ja-app-grid">
+            <!-- Left Column: Phone & Vertical Stems -->
+            <div class="ja-app-phone-col">
+              <div class="ja-dash-stem ja-dash-stem-top"></div>
+              <img src="Jan Aushadhi/Smart Medicine Search.png" alt="Smart Medicine Search App Screen" class="ja-app-phone-img">
+              <div class="ja-dash-stem ja-dash-stem-bottom"></div>
+            </div>
+            
+            <!-- Right Column: Content -->
+            <div class="ja-app-text-col">
+              <div class="ja-app-text-inner">
+                <h3 class="ja-app-step-title">Smart Medicine Search</h3>
+                <p class="ja-app-step-desc">
+                  Users can quickly find medicines by brand, generic name, or symptoms, making affordable alternatives easy to access.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Zigzag Connector to Next Step -->
+          <div class="ja-app-cross-connector" aria-hidden="true">
+            <div class="ja-connector-h-line"></div>
+            <div class="ja-connector-next-stem"></div>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
