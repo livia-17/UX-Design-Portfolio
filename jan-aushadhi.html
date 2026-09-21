@@ -2563,6 +2563,23 @@
       transform: translateX(-1px);
     }
 
+    .ja-app-cross-connector-reverse {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      margin-top: -2px;
+    }
+
+    .ja-connector-next-stem-left {
+      position: absolute;
+      left: calc(25% - 10px);
+      top: 0;
+      width: 0;
+      height: 100px;
+      border-left: 2px dashed #9AB5E3;
+      transform: translateX(-1px);
+    }
+
     .ja-app-text-col-reverse {
       justify-content: flex-end;
       padding-left: 0;
@@ -2618,7 +2635,8 @@
       .ja-line-nowrap {
         white-space: normal;
       }
-      .ja-app-cross-connector {
+      .ja-app-cross-connector,
+      .ja-app-cross-connector-reverse {
         display: none;
       }
       .ja-dash-stem-top {
@@ -3751,6 +3769,41 @@
               <img src="Jan Aushadhi/Prescription Upload.png" alt="Prescription Upload App Screen" class="ja-app-phone-img">
               <div class="ja-dash-stem ja-dash-stem-bottom"></div>
             </div>
+          </div>
+
+          <!-- Zigzag Connector from Step 2 to Step 3 (Right to Left) -->
+          <div class="ja-app-cross-connector-reverse" aria-hidden="true">
+            <div class="ja-connector-h-line"></div>
+            <div class="ja-connector-next-stem-left"></div>
+          </div>
+        </div>
+
+        <!-- Step 3: Prescription Management -->
+        <div class="ja-app-step-block fade-in-step">
+          <div class="ja-app-grid">
+            <!-- Left Column: Phone Mockup & Bottom Stem -->
+            <div class="ja-app-phone-col">
+              <img src="Jan Aushadhi/Prescription Management.png" alt="Prescription Management App Screen" class="ja-app-phone-img">
+              <div class="ja-dash-stem ja-dash-stem-bottom"></div>
+            </div>
+
+            <!-- Right Column: Content -->
+            <div class="ja-app-text-col">
+              <div class="ja-app-text-inner">
+                <h3 class="ja-app-step-title">Prescription Management</h3>
+                <p class="ja-app-step-desc">
+                  <span class="ja-line-nowrap">Users can store prescriptions in one place, making them</span><br class="ja-desktop-br">
+                  <span class="ja-line-nowrap">easy to access and share with doctors, pharmacies, or</span><br class="ja-desktop-br">
+                  <span class="ja-line-nowrap">Jan Aushadhi Kendras.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zigzag Connector leading out toward Next Step (Left to Right) -->
+          <div class="ja-app-cross-connector" aria-hidden="true">
+            <div class="ja-connector-h-line"></div>
+            <div class="ja-connector-next-stem"></div>
           </div>
         </div>
 
