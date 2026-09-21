@@ -2513,7 +2513,7 @@
     }
 
     .ja-app-text-inner {
-      max-width: 440px;
+      max-width: 520px;
     }
 
     .ja-app-step-title {
@@ -2577,6 +2577,12 @@
       display: inline;
     }
 
+    @media (min-width: 901px) {
+      .ja-line-nowrap {
+        white-space: nowrap;
+      }
+    }
+
     @media (max-width: 900px) {
       .ja-app-showcase-section {
         padding: 0 6% 80px;
@@ -2608,6 +2614,9 @@
       }
       .ja-desktop-br {
         display: none;
+      }
+      .ja-line-nowrap {
+        white-space: normal;
       }
       .ja-app-cross-connector {
         display: none;
@@ -3707,7 +3716,9 @@
               <div class="ja-app-text-inner">
                 <h3 class="ja-app-step-title">Smart Medicine Search</h3>
                 <p class="ja-app-step-desc">
-                  Users can quickly find medicines by brand, generic name, or symptoms, making affordable alternatives easy to access.
+                  <span class="ja-line-nowrap">Users can quickly find medicines by brand, generic</span><br class="ja-desktop-br">
+                  <span class="ja-line-nowrap">name, or symptoms, making affordable alternatives</span><br class="ja-desktop-br">
+                  <span class="ja-line-nowrap">easy to access.</span>
                 </p>
               </div>
             </div>
@@ -3728,9 +3739,9 @@
               <div class="ja-app-text-inner ja-app-text-inner-reverse">
                 <h3 class="ja-app-step-title">Prescription Upload</h3>
                 <p class="ja-app-step-desc">
-                  Users can scan or upload prescriptions, with AI reading<br class="ja-desktop-br">
-                  handwritten ones and suggesting both branded and<br class="ja-desktop-br">
-                  generic medicine names.
+                  <span class="ja-line-nowrap">Users can scan or upload prescriptions, with AI reading</span><br class="ja-desktop-br">
+                  <span class="ja-line-nowrap">handwritten ones and suggesting both branded and</span><br class="ja-desktop-br">
+                  <span class="ja-line-nowrap">generic medicine names.</span>
                 </p>
               </div>
             </div>
