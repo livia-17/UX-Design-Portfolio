@@ -1186,15 +1186,16 @@ body.case-study-page .hamburger-bar {
 .wave-right .dot-sm { animation-delay: 0.15s !important; }
 .wave-right .dot-xs { animation-delay: 0s !important; }
 
-/* Force 2-Column Grid Container - Aligned to Navbar 5% Margins */
+/* Single Column Work Container - 1 Focused Card Visible at a time */
 #work-grid,
 .work-container {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important; /* Strictly 2 equal columns on desktop */
-  gap: clamp(40px, 5vw, 80px) clamp(24px, 3vw, 40px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: clamp(60px, 8vh, 110px) !important;
   background: transparent !important; /* Remove any inherited background */
   width: 100% !important;
-  max-width: 1440px !important;
+  max-width: 1040px !important;
   margin: 0 auto 15vh auto !important;
   padding: 4vh 5% 15vh 5% !important;
   box-sizing: border-box !important;
@@ -1211,7 +1212,7 @@ body.case-study-page .hamburger-bar {
   flex-direction: column !important;
   align-items: flex-start !important;
   width: 100% !important;
-  max-width: 100% !important;
+  max-width: 1040px !important;
   box-sizing: border-box !important;
 }
 
@@ -1350,42 +1351,6 @@ body.case-study-page .hamburger-bar {
   background: rgba(255, 255, 255, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
   box-shadow: 0 6px 16px rgba(45, 122, 239, 0.4) !important; 
-}
-
-/* Specific Typography Overrides for Last 2 Work Cards (Project 3 & Project 4) */
-.project-card:nth-child(3) .project-title,
-.project-card:nth-child(4) .project-title,
-.project-card.card-light-theme .project-title {
-  color: #05172E !important;
-  font-size: clamp(18px, 2.2vw, 28px) !important;
-  line-height: 1.25 !important;
-  font-weight: 500 !important;
-}
-
-.project-card:nth-child(3) .project-desc,
-.project-card:nth-child(4) .project-desc,
-.project-card.card-light-theme .project-desc {
-  color: #0F2744 !important;
-  font-size: clamp(13px, 1.25vw, 16px) !important;
-  line-height: 1.45 !important;
-  font-weight: 400 !important;
-}
-
-.project-card:nth-child(3) .glass-tag,
-.project-card:nth-child(4) .glass-tag,
-.project-card.card-light-theme .glass-tag {
-  color: #05172E !important;
-  font-size: clamp(9px, 1.1vw, 11px) !important;
-  font-weight: 600 !important;
-}
-
-.project-card:nth-child(3) .view-project-btn,
-.project-card:nth-child(4) .view-project-btn,
-.project-card.card-light-theme .view-project-btn {
-  color: #05172E !important;
-  font-size: clamp(13px, 1.2vw, 16px) !important;
-  font-weight: 500 !important;
-  border-color: rgba(5, 23, 46, 0.25) !important;
 }
 
 .about-section {
@@ -1604,7 +1569,7 @@ body.case-study-page .hamburger-bar {
 
   #work-grid,
   .work-container {
-    gap: 36px 20px !important;
+    gap: 48px !important;
     padding: 3vh 5% 10vh 5% !important;
   }
 }
@@ -1612,7 +1577,6 @@ body.case-study-page .hamburger-bar {
 @media (max-width: 880px) {
   #work-grid,
   .work-container {
-    grid-template-columns: 1fr !important;
     gap: 40px !important;
     padding: 4vh 5% 12vh 5% !important;
   }
