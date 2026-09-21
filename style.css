@@ -1362,6 +1362,53 @@ body.case-study-page .hamburger-bar {
   color: #ffffff !important;
 }
 
+/* --------------------------------------------------------------------------
+   Dark Variant for Project Cards on Light Background (e.g. Soulka)
+   -------------------------------------------------------------------------- */
+.project-card.card-dark-text .project-title {
+  color: #05172E !important;
+}
+
+.project-card.card-dark-text .project-arrow {
+  stroke: #05172E !important;
+}
+
+.project-card.card-dark-text:hover .project-title {
+  color: #000000 !important;
+}
+
+.project-card.card-dark-text:hover .project-arrow {
+  stroke: #000000 !important;
+}
+
+.project-card.card-dark-text .project-desc {
+  color: #1a2c42 !important;
+}
+
+.project-card.card-dark-text .tag-pill {
+  background: rgba(5, 23, 46, 0.05) !important;
+  border: 1px solid rgba(5, 23, 46, 0.2) !important;
+  color: #05172E !important;
+  font-weight: 500 !important;
+}
+
+.project-card.card-dark-text:hover .tag-pill {
+  border-color: rgba(5, 23, 46, 0.45) !important;
+  background: rgba(5, 23, 46, 0.1) !important;
+  color: #000000 !important;
+}
+
+.project-card.card-dark-text .project-image-wrapper {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%) !important;
+  border: 1px solid rgba(5, 23, 46, 0.14) !important;
+  box-shadow: 0 16px 40px rgba(5, 23, 46, 0.12) !important;
+}
+
+.project-card.card-dark-text:hover .project-image-wrapper {
+  border-color: rgba(5, 23, 46, 0.3) !important;
+  box-shadow: 0 22px 50px rgba(5, 23, 46, 0.18) !important;
+}
+
 /* Retain backward compatibility for .glass-tag if used elsewhere */
 .glass-tag {
   display: inline-flex !important;
