@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
      - Phase 1: Chaos / Infinite Possibilities (dots appear randomly across the screen)
      - Phase 2: Finding Alignment (dots smoothly glide into their precise grid coordinates)
      - Phase 3: Order & Rest (all dots at rest in uniform grid, headline fades in)
+     -------------------------------------------------------------------------- */
   const gridElement = document.getElementById('interactive-grid');
 
   if (gridElement) {
