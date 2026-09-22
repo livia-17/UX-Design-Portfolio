@@ -1916,13 +1916,15 @@ body.case-study-page .hamburger-bar {
 }
 
 .continue-reading-eyebrow {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: #8C9BAB;
-  margin: 0 0 36px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "DM Sans", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  text-transform: none;
+  color: #344054;
+  margin: 0 0 28px 0;
 }
 
 .continue-reading-grid {
