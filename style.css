@@ -1593,6 +1593,13 @@ body.case-study-page .hamburger-bar {
   justify-content: center !important;
   transition: transform 0.2s ease, opacity 0.2s ease !important;
   text-decoration: none !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.social-icon * {
+  cursor: pointer !important;
+  pointer-events: auto !important;
 }
 
 .social-icon:hover {
