@@ -986,6 +986,22 @@ body.dark-grid-interaction .grid-glow-dot {
   line-height: 28px !important; /* 116.667% */
 }
 
+.about-bio-para {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 19px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0.1px !important;
+  color: #05172E !important;
+  margin: 0 0 24px 0 !important;
+  max-width: 680px !important;
+}
+
+.about-bio-para:last-child {
+  margin-bottom: 0 !important;
+}
+
 /* ==========================================================================
    Dedicated White Background & Blue Grid Theme for About Me Page (about.html)
    ========================================================================== */
@@ -1026,7 +1042,8 @@ body.about-page .hamburger-bar {
 
 body.about-page .about-header,
 body.about-page .about-list,
-body.about-page .about-subtext {
+body.about-page .about-subtext,
+body.about-page .about-bio-para {
   color: #05172E !important;
 }
 
