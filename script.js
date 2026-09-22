@@ -258,6 +258,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --------------------------------------------------------------------------
+     Continue Reading Cards Navigation Handler
+     -------------------------------------------------------------------------- */
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.continue-card');
+    if (card) {
+      const href = card.getAttribute('href');
+      if (href) {
+        window.location.href = href;
+      }
+    }
+  });
+
+  /* --------------------------------------------------------------------------
      1. Mobile Navigation Toggle Logic
      -------------------------------------------------------------------------- */
   const menuToggle = document.getElementById('menuToggle');
@@ -395,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Define all elements that should trigger the active state
-    const interactiveSelector = 'a, button, .glass-tag, .project-card, .floating-card, input, textarea, .navbar-brand';
+    const interactiveSelector = 'a, button, .glass-tag, .project-card, .floating-card, .continue-card, input, textarea, .navbar-brand';
     const interactiveElements = document.querySelectorAll(interactiveSelector);
 
     interactiveElements.forEach(el => {

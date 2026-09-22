@@ -1076,6 +1076,10 @@ body.case-study-page #interactive-grid {
   display: none !important; /* Plain clean white background without grid */
 }
 
+body.case-study-page .main-content {
+  pointer-events: auto !important;
+}
+
 body.case-study-page .site-header,
 body.case-study-page header {
   background: rgba(255, 255, 255, 0.95) !important;
@@ -1906,6 +1910,8 @@ body.case-study-page .hamburger-bar {
   padding: 100px 8% 120px;
   box-sizing: border-box;
   position: relative;
+  z-index: 20;
+  pointer-events: auto !important;
   border-top: 1px solid rgba(5, 23, 46, 0.08);
 }
 
@@ -1913,6 +1919,7 @@ body.case-study-page .hamburger-bar {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
+  pointer-events: auto !important;
 }
 
 .continue-reading-eyebrow {
@@ -1932,20 +1939,30 @@ body.case-study-page .hamburger-bar {
   grid-template-columns: repeat(2, 1fr);
   gap: 36px;
   width: 100%;
+  pointer-events: auto !important;
 }
 
 .continue-card {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  background: #FFFFFF;
-  border: 1px solid rgba(5, 23, 46, 0.12);
-  border-radius: 16px;
-  overflow: hidden;
+  display: flex !important;
+  flex-direction: column !important;
+  text-decoration: none !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(5, 23, 46, 0.12) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 25 !important;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.25s ease;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+              border-color 0.25s ease !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+.continue-card * {
+  cursor: pointer !important;
+  pointer-events: auto !important;
 }
 
 .continue-card:hover {
