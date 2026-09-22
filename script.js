@@ -271,6 +271,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* --------------------------------------------------------------------------
+     Smart Gmail / Email Link Handling
+     - On desktop: opens Gmail web compose directly in a new tab
+     - On mobile: triggers native mailto to launch default mail app
+     -------------------------------------------------------------------------- */
+  document.addEventListener('click', (e) => {
+    const gmailBtn = e.target.closest('.gmail-icon');
+    if (gmailBtn) {
+      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        e.preventDefault();
+        window.location.href = 'mailto:sakshithareja@gmail.com';
+      }
+    }
+  });
+
+  /* --------------------------------------------------------------------------
      1. Mobile Navigation Toggle Logic
      -------------------------------------------------------------------------- */
   const menuToggle = document.getElementById('menuToggle');
