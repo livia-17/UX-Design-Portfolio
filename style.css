@@ -1019,7 +1019,13 @@ body.about-page #interactive-grid::after {
 }
 
 body.about-page .site-header,
-body.about-page header {
+body.about-page header,
+body.about-page.is-loading .site-header,
+body.about-page.is-loading header {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  display: block !important;
   background: rgba(255, 255, 255, 0.85) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
 }

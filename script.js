@@ -22,10 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
      - Phase 1: Chaos / Infinite Possibilities (dots appear randomly across the screen)
      - Phase 2: Finding Alignment (dots smoothly glide into their precise grid coordinates)
      - Phase 3: Order & Rest (all dots at rest in uniform grid, headline fades in)
-     -------------------------------------------------------------------------- */
-  document.body.classList.add('is-loading');
-
   const gridElement = document.getElementById('interactive-grid');
+
+  if (gridElement) {
+    document.body.classList.add('is-loading');
+  } else {
+    document.body.classList.remove('is-loading');
+    document.body.classList.add('is-loaded');
+  }
 
   if (gridElement && gridElement.tagName === 'CANVAS') {
     const canvas = gridElement;
@@ -247,6 +251,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('is-loading');
       document.body.classList.add('is-loaded');
     }, 2000);
+  } else {
+    document.body.classList.remove('is-loading');
+    document.body.classList.add('is-loaded');
   }
 
   /* --------------------------------------------------------------------------
