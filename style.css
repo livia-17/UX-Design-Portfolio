@@ -1011,18 +1011,11 @@ body.about-page {
   color: #05172E !important;
 }
 
-body.about-page .grid-dot {
-  background-color: rgba(10, 46, 92, 0.7) !important; /* Crisp blue dots on white background */
-}
-
+body.about-page #interactive-grid,
+body.about-page .grid-dot,
 body.about-page #interactive-grid::after {
-  background-image: radial-gradient(circle, rgba(10, 46, 92, 0.95) 2px, transparent 2px) !important;
-}
-
-body.about-page .grid-cell:hover .grid-dot,
-body.about-page .grid-dot:hover {
-  background-color: #0a2e5c !important;
-  box-shadow: 0 0 10px 4px #3b76b3, 0 0 20px 6px rgba(59, 118, 179, 0.85) !important;
+  display: none !important;
+  background-image: none !important;
 }
 
 body.about-page .site-header,
