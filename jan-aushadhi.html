@@ -1470,6 +1470,149 @@
         font-size: 34px;
       }
     }
+
+    /* Research Section */
+    .ja-research-section {
+      width: 100%;
+      background-color: #FFFFFF;
+      padding: 100px 12% 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .ja-research-container {
+      width: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .ja-research-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      color: #737373;
+      margin: 0 0 14px 0;
+      display: block;
+    }
+
+    .ja-research-title {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 40px;
+      letter-spacing: -0.05em;
+      color: #0A2460;
+      margin: 0 0 32px 0;
+      max-width: 820px;
+    }
+
+    .ja-research-callout {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 10px 10px 20px;
+      border-left: 4px solid #737373;
+      max-width: 1091px;
+      margin-bottom: 36px;
+    }
+
+    .ja-research-callout-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+      color: #4A4A4A;
+      margin: 0;
+    }
+
+    .ja-research-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: -0.05em;
+      color: #5A5858;
+      margin: 0 0 32px 0;
+    }
+
+    .ja-research-cards-grid {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 36px;
+      width: 100%;
+      max-width: 1180px;
+    }
+
+    .ja-research-card {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 24px 20px;
+      background: #FFFFFF;
+      box-shadow: 4px 5px 0px #0A2460;
+      flex: 1;
+      min-width: 0;
+      min-height: 123px;
+    }
+
+    .ja-research-card-title {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 22px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: #0A2460;
+      margin: 0 0 8px 0;
+    }
+
+    .ja-research-card-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: #5A5858;
+      margin: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .ja-research-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ja-research-section {
+        padding: 60px 6% 0;
+      }
+      .ja-research-title {
+        font-size: 28px;
+        line-height: 34px;
+      }
+      .ja-research-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
     
     /* Case Example Section */
     .ja-case-example-section {
@@ -3095,6 +3238,48 @@
       </div>
     </section>
 
+    <!-- Research Section -->
+    <section class="ja-research-section" id="research">
+      <div class="ja-research-container fade-in-step">
+        <span class="ja-research-eyebrow">RESEARCH</span>
+        <h2 class="ja-research-title">Understanding the decision behind the medicine</h2>
+        
+        <div class="ja-research-callout">
+          <p class="ja-research-callout-text">
+            We wanted to understand what happens between a prescription and a purchase and the factors that shape the choices people make along the way.
+          </p>
+        </div>
+
+        <h3 class="ja-research-subtitle">We explored four questions</h3>
+
+        <div class="ja-research-cards-grid">
+          <!-- Card 1 -->
+          <div class="ja-research-card">
+            <h4 class="ja-research-card-title">TRUST</h4>
+            <p class="ja-research-card-desc">What makes people trust or doubt generic medicines?</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="ja-research-card">
+            <h4 class="ja-research-card-title">DECISION MAKING</h4>
+            <p class="ja-research-card-desc">Who influences the choice of medicine?</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="ja-research-card">
+            <h4 class="ja-research-card-title">ACCESS</h4>
+            <p class="ja-research-card-desc">What happens when people try to obtain their medicines?</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="ja-research-card">
+            <h4 class="ja-research-card-title">AVAILIBILITY</h4>
+            <p class="ja-research-card-desc">How does stock availability affect continued access?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Case Example Section -->
     <section class="ja-case-example-section">
       <div class="ja-case-example-container">
@@ -3163,7 +3348,7 @@
     </section>
 
     <!-- Pilot Study Section -->
-    <section class="ja-pilot-section" id="research">
+    <section class="ja-pilot-section">
       <div class="ja-pilot-container">
         <h2 class="ja-pilot-title fade-in-step">What the Pilot Study revealed</h2>
         
