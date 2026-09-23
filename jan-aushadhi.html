@@ -1831,73 +1831,146 @@
       font-weight: 700;
     }
 
-    /* Buying Process Section */
-    .ja-buying-section {
+    /* Insights Section */
+    .ja-insights-section {
       width: 100%;
       background-color: #FFFFFF;
-      padding: 160px 12%;
+      padding: 120px 12% 80px;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
 
-    .ja-buying-title {
-      color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 40px;
-      font-weight: 400;
-      line-height: 60px;
-      letter-spacing: -1px;
-      margin: 0 0 60px 0;
-    }
-
-    .ja-buying-desc {
-      color: #5A5858;
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
-      line-height: 32px;
-      letter-spacing: -1px;
-      margin: 0 0 80px 0;
-      white-space: nowrap;
-    }
-
-    .ja-buying-desc strong {
-      font-weight: 700;
-    }
-
-    .ja-buying-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 80px;
-      row-gap: 60px;
+    .ja-insights-container {
       width: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .ja-buying-card {
-      border-bottom: 5px solid #0A2460;
-      border-right: 5px solid #0A2460;
-      padding: 20px;
-      text-align: center;
+    .ja-insights-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      color: #737373;
+      margin: 0 0 12px 0;
+      display: block;
+    }
+
+    .ja-insights-title {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 40px;
+      letter-spacing: -0.05em;
+      color: #0A2460;
+      margin: 0 0 31px 0;
+    }
+
+    .ja-insights-callout {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 10px 10px 20px;
+      border-left: 4px solid #737373;
+      max-width: 1081px;
+      margin: 0 0 31px 0;
+    }
+
+    .ja-insights-callout-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+      color: #4A4A4A;
+      margin: 0;
+    }
+
+    .ja-insights-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: -0.05em;
+      color: #5A5858;
+      margin: 0 0 59px 0;
+    }
+
+    .ja-insights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 80px;
+      row-gap: 80px;
+      width: 100%;
+      max-width: 1232px;
+    }
+
+    .ja-insights-card {
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      padding: 24px 20px;
+      background: #FFFFFF;
+      box-shadow: 8px 9px 0px #0A2460;
+      min-height: 128px;
     }
 
-    .ja-buying-card h3 {
-      color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 24px;
+    .ja-insights-card-title {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
       font-weight: 700;
-      margin: 0 0 16px 0;
+      font-size: 16px;
+      line-height: 22px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: #0A2460;
+      margin: 0 0 10px 0;
     }
 
-    .ja-buying-card p {
-      color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
-      line-height: 32px;
+    .ja-insights-card-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.45;
+      color: #5A5858;
       margin: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .ja-insights-grid {
+        column-gap: 40px;
+        row-gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ja-insights-section {
+        padding: 80px 6% 60px;
+      }
+      .ja-insights-title {
+        font-size: 28px;
+        line-height: 34px;
+      }
+      .ja-insights-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .ja-insights-subtitle {
+        margin-bottom: 32px;
+      }
     }
 
     /* Ecosystem Matrix Section */
@@ -3313,47 +3386,56 @@
       </p>
     </section>
 
-    <!-- Buying Process Section -->
-    <section class="ja-buying-section">
-      <h2 class="ja-buying-title fade-in-step">How Medicine buying actually happens</h2>
-      <p class="ja-buying-desc fade-in-step">
-        Through <strong>contextual inquiry</strong> at Jan Aushadhi Kendras, we observed how patients, doctors, and operators interact<br>
-        with the system in real-world conditions. Rather than isolated usability issues, the challenges that shape<br>
-        everyday decision-making were:
-      </p>
+    <!-- Insights Section -->
+    <section class="ja-insights-section" id="insights">
+      <div class="ja-insights-container fade-in-step">
+        <span class="ja-insights-eyebrow">INSIGHTS</span>
+        <h2 class="ja-insights-title">The problem wasn't a single touchpoint</h2>
 
-      <div class="ja-buying-grid">
-        <!-- Card 1 -->
-        <div class="ja-buying-card fade-in-step">
-          <h3>TRUST GAP</h3>
-          <p>
-            Low price + Weak Doctor endorsement<br>
-            = DOUBT
+        <div class="ja-insights-callout">
+          <p class="ja-insights-callout-text">
+            The pilot revealed several factors influencing medicine choice. We then looked across patients, doctors, Kendra operators and non-users to understand how these factors connected across the wider medicine access journey.
           </p>
         </div>
-        <!-- Card 2 -->
-        <div class="ja-buying-card fade-in-step" style="transition-delay: 0.15s;">
-          <h3>SYSTEM FRICTION</h3>
-          <p>
-            Manual Searches slow buying + Weak Doctor endorsement<br>
-            = FEELS UNRELIABLE
-          </p>
-        </div>
-        <!-- Card 3 -->
-        <div class="ja-buying-card fade-in-step" style="transition-delay: 0.3s;">
-          <h3>STOCK UNCERTAINTY</h3>
-          <p>
-            Stock Outs + Long Queue<br>
-            = BREAKS CONTINUITY
-          </p>
-        </div>
-        <!-- Card 4 -->
-        <div class="ja-buying-card fade-in-step" style="transition-delay: 0.45s;">
-          <h3>SOCIAL INFLUENCE</h3>
-          <p>
-            Family + Doctors influence =<br>
-            OUTWEIGH PRICE BENEFITS
-          </p>
+
+        <h3 class="ja-insights-subtitle">Contextual Inquiry</h3>
+
+        <div class="ja-insights-grid">
+          <!-- Card 1 -->
+          <div class="ja-insights-card">
+            <h4 class="ja-insights-card-title">TRUST GAP</h4>
+            <p class="ja-insights-card-desc">
+              Low price + Weak Doctor endorsement<br>
+              = DOUBT
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="ja-insights-card">
+            <h4 class="ja-insights-card-title">SYSTEM FRICTION</h4>
+            <p class="ja-insights-card-desc">
+              Manual Searches slow buying + Weak Doctor endorsement =<br>
+              FEELS UNRELIABLE
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="ja-insights-card">
+            <h4 class="ja-insights-card-title">STOCK UNCERTAINTY</h4>
+            <p class="ja-insights-card-desc">
+              Stock Outs + Long Queue<br>
+              = BREAKS CONTINUITY
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="ja-insights-card">
+            <h4 class="ja-insights-card-title">SOCIAL INFLUENCE</h4>
+            <p class="ja-insights-card-desc">
+              Family + Doctors influence =<br>
+              OUTWEIGH PRICE BENEFITS
+            </p>
+          </div>
         </div>
       </div>
     </section>
