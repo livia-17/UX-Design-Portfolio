@@ -1345,10 +1345,11 @@
       line-height: 60px;
       letter-spacing: -0.02em;
     }
-    /* Stats Section */
-    .ja-stats-section {
+    /* The Challenge Section */
+    .ja-challenge-section {
       width: 100%;
-      background-color: #FFFFFF; padding: 160px 12% 0;
+      background-color: #FFFFFF;
+      padding: 140px 12% 0;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -1356,77 +1357,119 @@
       align-items: center;
     }
 
-    .ja-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, max-content);
-      justify-content: center;
-      align-content: center;
-      row-gap: 80px;
-      column-gap: 80px;
+    .ja-challenge-container {
       width: 100%;
+      max-width: 1100px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .ja-stat-item {
+    .ja-challenge-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      color: #737373;
+      margin: 0 0 22px 0;
+      display: block;
+    }
+
+    .ja-challenge-title {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 40px;
+      letter-spacing: -0.07em;
+      color: #0A2460;
+      margin: 0 0 40px 0;
+      max-width: 1020px;
+    }
+
+    .ja-challenge-callout {
+      box-sizing: border-box;
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 40px;
+      padding: 10px 10px 10px 20px;
+      border-left: 4px solid #737373;
+      max-width: 1081px;
+      margin-bottom: 54px;
     }
 
-    .ja-donut-container {
-      position: relative;
-      width: 140px;
-      height: 140px;
-      flex-shrink: 0;
-    }
-
-    .ja-donut-svg {
-      width: 100%;
-      height: 100%;
-      transform: rotate(-90deg);
-    }
-
-    .ja-donut-bg {
-      fill: none;
-      stroke: #D4ECF6;
-      stroke-width: 16;
-    }
-
-    .ja-donut-fill {
-      fill: none;
-      stroke: #052F78;
-      stroke-width: 16;
-      stroke-linecap: round;
-      stroke-dasharray: 251.2;
-      stroke-dashoffset: 251.2;
-      transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .ja-donut-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
-      font-weight: 500;
-      color: #000000;
-    }
-
-    .ja-stat-desc {
-      font-family: "DM Sans", sans-serif;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 24px;
-      color: #5A5858;
+    .ja-challenge-callout-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+      color: #4A4A4A;
       margin: 0;
     }
 
-    .ja-stat-desc strong {
+    .ja-challenge-stats-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 80px;
+      width: 100%;
+      max-width: 920px;
+    }
+
+    .ja-challenge-stat-col {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ja-challenge-stat-number {
+      font-family: 'DM Sans', sans-serif;
       font-weight: 700;
-      color: #111111;
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+      color: #0A2460;
+      margin-bottom: 16px;
+    }
+
+    .ja-challenge-stat-heading {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.3;
+      letter-spacing: -0.03em;
+      color: #1A1A1A;
+      margin: 0 0 10px 0;
+    }
+
+    .ja-challenge-stat-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #666666;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .ja-challenge-section {
+        padding: 90px 6% 0;
+      }
+      .ja-challenge-title {
+        font-size: 28px;
+        line-height: 34px;
+      }
+      .ja-challenge-stats-row {
+        flex-direction: column;
+        gap: 36px;
+      }
+      .ja-challenge-stat-number {
+        font-size: 34px;
+      }
     }
     
     /* Case Example Section */
@@ -3002,7 +3045,7 @@
     </section>
 
     <!-- Intro Text Section -->
-    <section class="ja-intro-section" id="the-challenge">
+    <section class="ja-intro-section">
       <p class="ja-intro-text fade-in-step">
         For millions of Indian families, buying medicines is not a one-time decision.<br><br>
         It’s a recurring monthly negotiation between<br>
@@ -3010,69 +3053,45 @@
       </p>
     </section>
 
-    <!-- Statistics Section -->
-    <section class="ja-stats-section">
-      <div class="ja-stats-grid">
-        <!-- Stat 1 -->
-        <div class="ja-stat-item">
-          <div class="ja-donut-container">
-            <svg viewBox="0 0 100 100" class="ja-donut-svg">
-              <circle cx="50" cy="50" r="40" class="ja-donut-bg"></circle>
-              <circle cx="50" cy="50" r="40" class="ja-donut-fill" data-percent="39.4"></circle>
-            </svg>
-            <span class="ja-donut-text">39.4%</span>
-          </div>
-          <p class="ja-stat-desc">
-            While OOP expenditure has improved, it remains a<br>
-            critical burden. The Economic Survey 2024-25<br>
-            estimates OOP expenditure has reduced to <strong>39.4%</strong><br>
-            (from 62.6%).
+    <!-- The Challenge Section -->
+    <section class="ja-challenge-section" id="the-challenge">
+      <div class="ja-challenge-container fade-in-step">
+        <span class="ja-challenge-eyebrow">THE CHALLENGE</span>
+        <h2 class="ja-challenge-title">If generic medicines are cheaper, why aren't they the obvious choice?</h2>
+        
+        <div class="ja-challenge-callout">
+          <p class="ja-challenge-callout-text">
+            India has a large and growing need for affordable medicines, particularly for people managing recurring and chronic conditions. Jan Aushadhi was created to make generic medicines more accessible but affordability alone does not guarantee adoption.
           </p>
         </div>
-        <!-- Stat 2 -->
-        <div class="ja-stat-item">
-          <div class="ja-donut-container">
-            <svg viewBox="0 0 100 100" class="ja-donut-svg">
-              <circle cx="50" cy="50" r="40" class="ja-donut-bg"></circle>
-              <circle cx="50" cy="50" r="40" class="ja-donut-fill" data-percent="90"></circle>
-            </svg>
-            <span class="ja-donut-text">90%</span>
+
+        <div class="ja-challenge-stats-row">
+          <!-- Stat 1 -->
+          <div class="ja-challenge-stat-col">
+            <div class="ja-challenge-stat-number">39.4%</div>
+            <h4 class="ja-challenge-stat-heading">OOPE remains burden</h4>
+            <p class="ja-challenge-stat-desc">
+              India's OOP health expenditure has reduced from 62.6% to 39.4%, but medicine costs continue to affect household healthcare spending.
+            </p>
           </div>
-          <p class="ja-stat-desc">
-            On average, most Jan Aushadhi<br>
-            medicines are <strong>90% cheaper</strong> than<br>
-            branded alternatives.
-          </p>
-        </div>
-        <!-- Stat 3 -->
-        <div class="ja-stat-item">
-          <div class="ja-donut-container">
-            <svg viewBox="0 0 100 100" class="ja-donut-svg">
-              <circle cx="50" cy="50" r="40" class="ja-donut-bg"></circle>
-              <circle cx="50" cy="50" r="40" class="ja-donut-fill" data-percent="87"></circle>
-            </svg>
-            <span class="ja-donut-text">87%</span>
+
+          <!-- Stat 2 -->
+          <div class="ja-challenge-stat-col">
+            <div class="ja-challenge-stat-number">Up to 90%</div>
+            <h4 class="ja-challenge-stat-heading">Potential price difference</h4>
+            <p class="ja-challenge-stat-desc">
+              Jan Aushadhi medicines are positioned as significantly more affordable than many branded alternatives.
+            </p>
           </div>
-          <p class="ja-stat-desc">
-            Over <strong>87% of medicines</strong> sold are branded<br>
-            medicines, forcing users to pay premiums of<br>
-            up to <strong>90% over true generic prices.</strong>
-          </p>
-        </div>
-        <!-- Stat 4 -->
-        <div class="ja-stat-item">
-          <div class="ja-donut-container">
-            <svg viewBox="0 0 100 100" class="ja-donut-svg">
-              <circle cx="50" cy="50" r="40" class="ja-donut-bg"></circle>
-              <circle cx="50" cy="50" r="40" class="ja-donut-fill" data-percent="20"></circle>
-            </svg>
-            <span class="ja-donut-text">20%</span>
+
+          <!-- Stat 3 -->
+          <div class="ja-challenge-stat-col">
+            <div class="ja-challenge-stat-number">87%</div>
+            <h4 class="ja-challenge-stat-heading">Branded medicine share</h4>
+            <p class="ja-challenge-stat-desc">
+              Branded medicines continue to dominate medicine purchases.
+            </p>
           </div>
-          <p class="ja-stat-desc">
-            "Pharmacy of the World" - India <strong>supplies<br>
-            20% of the global generic medicine</strong><br>
-            volume.
-          </p>
         </div>
       </div>
     </section>
