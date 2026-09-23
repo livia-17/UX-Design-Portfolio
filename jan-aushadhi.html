@@ -1617,37 +1617,44 @@
     /* Case Example Section */
     .ja-case-example-section {
       width: 100%;
-      background-color: #FFFFFF; padding: 160px 12% 0;
+      background-color: #FFFFFF;
+      padding: 80px 12% 0;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
 
     .ja-case-example-container {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-      gap: 140px;
+      gap: clamp(60px, 10vw, 140px);
       width: 100%;
+      max-width: 1100px;
+      margin: 0;
     }
 
     .ja-case-left {
-      flex: 1;
+      flex: 0 0 380px;
+      max-width: 425px;
     }
 
     .ja-case-title {
-      font-family: "DM Sans", sans-serif;
-      font-size: 28px;
-      font-weight: 400;
-      color: #052F78;
-      line-height: 1.4;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: -0.05em;
+      color: #5A5858;
       margin: 0;
     }
 
     .ja-case-right {
-      flex: 1.2;
+      flex: 1;
+      max-width: 480px;
     }
 
     .ja-case-list {
@@ -1659,22 +1666,44 @@
     }
 
     .ja-case-list li {
-      font-family: "DM Sans", sans-serif;
-      font-size: 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
       font-weight: 400;
-      color: #333333;
-      line-height: 1.6;
-      padding: 32px 0;
-      border-bottom: 1px solid #E0E0E0;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: -0.05em;
+      color: #5A5858;
+      padding: 24px 0;
+      border-bottom: 0.5px solid #737373;
     }
 
     .ja-case-list li:first-child {
       padding-top: 0;
     }
 
+    .ja-case-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
     .ja-case-list li strong {
       font-weight: 700;
-      color: #111111;
+      color: #222222;
+    }
+
+    @media (max-width: 768px) {
+      .ja-case-example-section {
+        padding: 60px 6% 0;
+      }
+      .ja-case-example-container {
+        flex-direction: column;
+        gap: 32px;
+      }
+      .ja-case-left,
+      .ja-case-right {
+        max-width: 100%;
+        flex: 1 1 auto;
+      }
     }
 
     /* About Jan Aushadhi Section */
@@ -3286,27 +3315,26 @@
         <!-- Left Title -->
         <div class="ja-case-left">
           <h2 class="ja-case-title fade-in-step">
-            Let's understand the Role of Jan Aushadhi Scheme -<br>
-            Case Example of Mrs. Vibha Kapoor (80 Years)
+            A patient’s experience with Jan Aushadhi
           </h2>
         </div>
         <!-- Right List -->
         <div class="ja-case-right">
           <ul class="ja-case-list fade-in-step">
             <li>
-              Manages multiple chronic conditions: <strong>hypertension, diabetes,<br>hypothyroidism, gastric ulcers, and requires blood thinners.</strong>
+              Manages multiple chronic conditions: <strong>hypertension, diabetes, hypothyroidism, gastric ulcers, and requires blood thinners.</strong>
             </li>
             <li>
-              Previously purchased medicines from private pharmacies<br>for <strong>₹1,502/month.</strong>
+              Previously purchased medicines from private pharmacies for <strong>₹1,502/month.</strong>
             </li>
             <li>
               Switched to Jan Aushadhi in 2021.
             </li>
             <li>
-              New monthly cost: <strong>₹306 for the same</strong> therapeutic regimen.<br><strong>~80% cost reduction</strong> achieved.
+              New monthly cost: <strong>₹306 for the same therapeutic regimen.</strong><br><strong>~80% cost reduction achieved.</strong>
             </li>
             <li>
-              Has used Jan Aushadhi medicines for <strong>3+ years with no adverse<br>side effects</strong> reported
+              Has used Jan Aushadhi medicines for <strong>3+ years with no adverse side effects reported.</strong>
             </li>
           </ul>
         </div>
