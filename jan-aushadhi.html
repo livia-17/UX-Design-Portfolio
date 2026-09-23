@@ -1637,8 +1637,7 @@
     }
 
     .ja-case-left {
-      flex: 0 0 380px;
-      max-width: 425px;
+      flex: 0 0 auto;
     }
 
     .ja-case-title {
@@ -1650,6 +1649,7 @@
       letter-spacing: -0.05em;
       color: #5A5858;
       margin: 0;
+      white-space: nowrap;
     }
 
     .ja-case-right {
@@ -1698,6 +1698,9 @@
       .ja-case-example-container {
         flex-direction: column;
         gap: 32px;
+      }
+      .ja-case-title {
+        white-space: normal;
       }
       .ja-case-left,
       .ja-case-right {
