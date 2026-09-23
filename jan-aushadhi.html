@@ -1709,172 +1709,100 @@
       }
     }
 
-    /* About Jan Aushadhi Section */
-    .ja-about-section {
-      width: 100%;
-      background-color: #FFFFFF; padding: 160px 12% 0;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .ja-about-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      gap: 80px; /* Brings image closer to the left text */
-      width: 100%;
-      align-items: center;
-      max-width: 1412px;
-      margin: 0 auto;
-    }
-
-    .ja-about-left {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .ja-about-title {
-      color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 40px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 60px;
-      letter-spacing: -1px;
-      margin: 0;
-    }
-
-    .ja-about-desc {
-      color: #5A5858;
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 28px;
-      letter-spacing: -1px;
-      margin: 0;
-      white-space: nowrap;
-    }
-
-    .ja-about-desc strong {
-      font-weight: 700;
-    }
-
-    .ja-about-but {
-      color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 28px;
-      letter-spacing: -1px;
-      margin: 0;
-    }
-
-    .ja-about-tags {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .ja-about-tag {
-      display: flex;
-      padding: 10px;
-      justify-content: center;
-      align-items: center;
-      background: #DBFBFF;
-      color: #0A2460;
-      text-align: center;
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 28px;
-      letter-spacing: -1px;
-    }
-
-    .ja-about-right {
-      flex: 0 0 auto;
-      display: flex;
-      justify-content: center;
-    }
-
-    .ja-about-image {
-      width: 319px;
-      height: 439px;
-      aspect-ratio: 101/139;
-      object-fit: contain;
-
-    }
-
     /* Pilot Study Section */
     .ja-pilot-section {
       width: 100%;
-      background-color: #FFFFFF; padding: 160px 12%;
+      background-color: #FFFFFF;
+      padding: 80px 12% 0;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
 
     .ja-pilot-container {
       width: 100%;
+      margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 60px;
+      align-items: flex-start;
     }
 
     .ja-pilot-title {
-      color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 40px;
+      font-family: 'DM Sans', sans-serif;
       font-style: normal;
-      font-weight: 400;
-      line-height: 60px;
-      letter-spacing: -1px;
-      margin: 0;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: -0.05em;
+      color: #5A5858;
+      margin: 0 0 32px 0;
     }
 
     .ja-pilot-cards {
       display: flex;
       flex-direction: row;
-      gap: 40px;
+      align-items: stretch;
+      gap: 30px;
       width: 100%;
-      justify-content: space-between;
+      max-width: 1266px;
     }
 
     .ja-pilot-card {
-      display: inline-flex;
-      padding: 40px 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 10px;
-      border: 1px solid #0A2460;
-      background: #FFF;
-      box-shadow: none !important;
+      text-align: center;
+      padding: 24px 20px;
+      background: #FFFFFF;
+      box-shadow: 4px 5px 0px #0A2460;
       flex: 1;
+      min-width: 0;
+      min-height: 147px;
+      border: none !important;
     }
 
-    .ja-pilot-card p {
+    .ja-pilot-card-title {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 22px;
+      letter-spacing: 0;
+      text-transform: uppercase;
       color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
+      margin: 0 0 10px 0;
+    }
+
+    .ja-pilot-card-desc {
+      font-family: 'DM Sans', sans-serif;
       font-style: normal;
       font-weight: 400;
-      line-height: 32px;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: #5A5858;
       margin: 0;
-      white-space: nowrap;
     }
 
-    .ja-pilot-card strong {
-      color: #0A2460;
-      font-weight: 700;
+    @media (max-width: 1024px) {
+      .ja-pilot-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ja-pilot-section {
+        padding: 60px 6% 0;
+      }
+      .ja-pilot-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
     }
 
     /* Signals Section */
@@ -3344,85 +3272,34 @@
       </div>
     </section>
 
-    <!-- About Jan Aushadhi Section -->
-    <section class="ja-about-section">
-      <div class="ja-about-container">
-        <!-- Left Content -->
-        <div class="ja-about-left">
-          <h2 class="ja-about-title fade-in-step">About Jan Aushadhi</h2>
-          
-          <p class="ja-about-desc fade-in-step">
-            The Pradhan Mantri Bhartiya Janaushadhi Pariyojana (PMBJP) aims to cut<br>
-            out of pocket healthcare costs by giving every Indian <strong>access to affordable,</strong><br>
-            <strong>high-quality generic medicines.</strong>
-          </p>
-          
-          <p class="ja-about-but fade-in-step">BUT</p>
-          
-          <p class="ja-about-desc fade-in-step">
-            Despite being affordable, Jan Aushadhi struggles at the exact moments when<br>
-            people need it most
-          </p>
-          
-          <div class="ja-about-tags fade-in-step">
-            <div class="ja-about-tag">During Emergencies</div>
-            <div class="ja-about-tag">Stock shortages,</div>
-            <div class="ja-about-tag">Doctor-dependent decisions</div>
-          </div>
-        </div>
-        
-        <!-- Right Image -->
-        <div class="ja-about-right fade-in-step">
-          <img src="Jan Aushadhi/JAS.webp" alt="Jan Aushadhi Graphic" class="ja-about-image">
-        </div>
-      </div>
-    </section>
-
     <!-- Pilot Study Section -->
     <section class="ja-pilot-section">
-      <div class="ja-pilot-container">
-        <h2 class="ja-pilot-title fade-in-step">What the Pilot Study revealed</h2>
-        
+      <div class="ja-pilot-container fade-in-step">
+        <h2 class="ja-pilot-title">Pilot Study</h2>
+
         <div class="ja-pilot-cards">
           <!-- Card 1 -->
-          <div class="ja-pilot-card fade-in-step">
-            <p>
-              <strong>Chronic conditions</strong><br>
-              <strong>make medicine</strong><br>
-              <strong>intake continuous,</strong><br>
-              home remedies<br>
-              remain common
-            </p>
+          <div class="ja-pilot-card">
+            <h4 class="ja-pilot-card-title">CHRONIC NEEDS</h4>
+            <p class="ja-pilot-card-desc">Long-term conditions require continuous medication, making reliable access important beyond a single purchase.</p>
           </div>
+
           <!-- Card 2 -->
-          <div class="ja-pilot-card fade-in-step" style="transition-delay: 0.15s;">
-            <p>
-              Users prioritize<br>
-              <strong>proximity and</strong><br>
-              <strong>price</strong>, often mixing<br>
-              Jan Aushadhi with<br>
-              other options
-            </p>
+          <div class="ja-pilot-card">
+            <h4 class="ja-pilot-card-title">MIXED SOURCES</h4>
+            <p class="ja-pilot-card-desc">Users often combine Jan Aushadhi with private pharmacies and other purchasing options.</p>
           </div>
+
           <!-- Card 3 -->
-          <div class="ja-pilot-card fade-in-step" style="transition-delay: 0.3s;">
-            <p>
-              Affordable pricing<br>
-              triggers doubts due<br>
-              to <strong>low awareness</strong><br>
-              and <strong>weak doctor</strong><br>
-              <strong>endorsement</strong>
-            </p>
+          <div class="ja-pilot-card">
+            <h4 class="ja-pilot-card-title">PRICE–TRUST PARADOX</h4>
+            <p class="ja-pilot-card-desc">Limited awareness and weak doctor endorsement can reduce confidence in generic medicines.</p>
           </div>
+
           <!-- Card 4 -->
-          <div class="ja-pilot-card fade-in-step" style="transition-delay: 0.45s;">
-            <p>
-              Store environment<br>
-              and <strong>prescription</strong><br>
-              <strong>practices</strong><br>
-              <strong>influence trust</strong><br>
-              beyond cost
-            </p>
+          <div class="ja-pilot-card">
+            <h4 class="ja-pilot-card-title">TRUST IS CONTEXTUAL</h4>
+            <p class="ja-pilot-card-desc">Store experience, prescription practices and trusted recommendations shape medicine choices beyond cost.</p>
           </div>
         </div>
       </div>
