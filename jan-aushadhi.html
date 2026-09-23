@@ -2085,34 +2085,39 @@
     .ja-user-stats-section {
       width: 100%;
       background-color: #FFFFFF;
-      padding: 60px 12% 160px;
+      padding: 80px 12% 0;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
 
     .ja-user-stats-title {
-      color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 32px;
-      font-weight: 400;
-      margin: 0 0 20px 0;
-      letter-spacing: -1px;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: -0.05em;
+      color: #5A5858;
+      margin: 0 0 36px 0;
     }
 
     .ja-user-stats-grid {
       display: flex;
-      justify-content: space-between;
+      flex-direction: row;
       align-items: center;
+      gap: clamp(40px, 6vw, 80px);
       width: 100%;
-      margin-bottom: 20px;
+      max-width: 1100px;
+      margin-bottom: 36px;
     }
 
     .ja-user-stat-card {
       display: flex;
       align-items: center;
-      gap: 20px;
-      width: 30%;
+      gap: 16px;
     }
 
     .ja-donut-small {
@@ -2149,17 +2154,34 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-family: "DM Sans", sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 16px;
       font-weight: 700;
-      color: #101828;
+      color: #0A2460;
+    }
+
+    .ja-user-stat-card .ja-stat-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.05em;
+      color: #737373;
+      margin: 0;
+    }
+
+    .ja-bar-chart-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
     .ja-bar-chart-small {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      width: 84px;
+      gap: 4px;
+      width: 96px;
       flex-shrink: 0;
     }
 
@@ -2169,15 +2191,16 @@
     }
 
     .ja-bar {
-      height: 16px;
-      border-radius: 4px;
+      height: 18px;
+      border-radius: 3px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       padding-right: 6px;
-      font-family: "DM Sans", sans-serif;
-      font-size: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
       font-weight: 700;
+      box-sizing: border-box;
     }
 
     .ja-bar.light-blue {
@@ -2187,7 +2210,7 @@
 
     .ja-bar.medium-blue {
       background-color: #7AA2F7;
-      color: #0A2460;
+      color: #FFFFFF;
     }
 
     .ja-bar.dark-blue {
@@ -2195,23 +2218,46 @@
       color: #FFFFFF;
     }
 
-    .ja-user-stat-card .ja-stat-desc {
-      font-family: "DM Sans", sans-serif;
-      font-size: 16px;
-      line-height: 24px;
-      color: #101828;
-      margin: 0;
+    .ja-bar-labels {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .ja-user-stat-card .ja-stat-desc strong {
-      font-weight: 700;
+    .ja-bar-labels span {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: -0.05em;
+      color: #737373;
+      white-space: nowrap;
     }
 
     .ja-user-stats-conclusion {
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
-      color: #0A2460;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.05em;
+      color: #737373;
       margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .ja-user-stats-grid {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ja-user-stats-section {
+        padding: 60px 6% 0;
+      }
     }
 
     /* Patterns Section */
@@ -3504,7 +3550,7 @@
     </section>
 
     <!-- User Stats Section -->
-    <section class="ja-user-stats-section" style="padding-bottom: 60px;">
+    <section class="ja-user-stats-section">
       <h3 class="ja-user-stats-title fade-in-step">Jan Aushadhi Users</h3>
       
       <div class="ja-user-stats-grid fade-in-step">
@@ -3527,7 +3573,7 @@
             </svg>
             <div class="ja-donut-text">50%</div>
           </div>
-          <p class="ja-stat-desc">50% buy both<br><strong>chronic + regular medicines</strong></p>
+          <p class="ja-stat-desc">50% buy both<br>chronic + regular medicines</p>
         </div>
 
         <!-- Stat 2 -->
@@ -3548,27 +3594,29 @@
             </svg>
             <div class="ja-donut-text">65%</div>
           </div>
-          <p class="ja-stat-desc">65% purchase for<br><strong>30-day supply at once</strong></p>
+          <p class="ja-stat-desc">50% buy both<br>chronic + regular medicines</p>
         </div>
 
         <!-- Stat 3 (Bar chart) -->
         <div class="ja-user-stat-card">
-          <div class="ja-bar-chart-small">
-            <div class="ja-bar-row">
-              <div class="ja-bar light-blue" style="width: 60%;"><span>12</span></div>
+          <div class="ja-bar-chart-wrapper">
+            <div class="ja-bar-chart-small">
+              <div class="ja-bar-row">
+                <div class="ja-bar light-blue" style="width: 55%;"><span>12</span></div>
+              </div>
+              <div class="ja-bar-row">
+                <div class="ja-bar medium-blue" style="width: 75%;"><span>17</span></div>
+              </div>
+              <div class="ja-bar-row">
+                <div class="ja-bar dark-blue" style="width: 96%;"><span>20</span></div>
+              </div>
             </div>
-            <div class="ja-bar-row">
-              <div class="ja-bar medium-blue" style="width: 85%;"><span>17</span></div>
-            </div>
-            <div class="ja-bar-row">
-              <div class="ja-bar dark-blue" style="width: 100%;"><span>20</span></div>
+            <div class="ja-bar-labels">
+              <span>Thyroid</span>
+              <span>Diabetes</span>
+              <span>Hypertension</span>
             </div>
           </div>
-          <p class="ja-stat-desc">
-            <strong style="color: #0A2460;">Hypertension</strong>, 
-            <strong style="color: #7AA2F7;">Diabetes</strong> and 
-            <strong style="color: #D0DEF5;">Thyroid</strong>
-          </p>
         </div>
 
       </div>
