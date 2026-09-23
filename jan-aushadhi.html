@@ -2264,29 +2264,40 @@
     .ja-patterns-section {
       width: 100%;
       background-color: #FFFFFF;
-      padding: 0 12% 100px;
+      padding: 80px 12% 0;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
 
     .ja-patterns-title {
-      color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 40px;
-      font-weight: 400;
-      line-height: 60px;
-      letter-spacing: -1px;
-      margin: 0 0 24px 0;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: -0.05em;
+      color: #5A5858;
+      margin: 0 0 8px 0;
     }
 
     .ja-patterns-desc {
-      color: #5A5858;
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
-      line-height: 32px;
-      letter-spacing: -1px;
-      margin: 0 0 80px 0;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      letter-spacing: -0.05em;
+      color: #737373;
+      margin: 0 0 40px 0;
+    }
+
+    @media (max-width: 768px) {
+      .ja-patterns-section {
+        padding: 60px 6% 0;
+      }
     }
 
     .ja-patterns-img-wrapper {
@@ -3807,11 +3818,11 @@
       <p class="ja-user-stats-conclusion fade-in-step">Quality skepticism and doctor influence leads to adoption blocker for citizens.</p>
     </section>
 
-    <!-- Affinity Mapping Section -->
-    <section class="ja-patterns-section" id="insights">
-      <h2 class="ja-patterns-title fade-in-step">Finding the patterns</h2>
+    <!-- Synthesis Section -->
+    <section class="ja-patterns-section">
+      <h2 class="ja-patterns-title fade-in-step">Synthesis</h2>
       <p class="ja-patterns-desc fade-in-step">
-        To move beyond isolated stories and understand the system as a whole, we clustered survey responses, quotes, and observations into themes based on shared needs, motivations, and pain points.
+        We clustered observations across stakeholders to identify patterns that appeared repeatedly across the ecosystem.
       </p>
 
       <div class="ja-patterns-img-wrapper fade-in-step">
