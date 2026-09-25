@@ -483,7 +483,7 @@ button {
   margin: 0;
   pointer-events: none; /* Allows cursor hover to pass through to dot grid */
   opacity: 0;
-  transition: opacity 1.2s ease;
+  transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity;
 }
 
@@ -492,15 +492,14 @@ button {
 }
 
 body.is-loading .hero-title,
-body.is-loading .hero-text-wrapper,
 body.is-loading #hero h1 {
   opacity: 0 !important;
 }
 
 body.is-loaded .hero-title,
-body.is-loaded .hero-text-wrapper,
 body.is-loaded #hero h1 {
   opacity: 1 !important;
+  transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* --------------------------------------------------------------------------
