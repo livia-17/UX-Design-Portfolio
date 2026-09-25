@@ -187,12 +187,12 @@ div#interactive-grid::after {
   contain: strict; /* High-performance layout containment for fast rendering */
 }
 
-/* 2px x 2px Micro Dot Architecture with Exact 75% Base Opacity */
+/* 2px x 2px Micro Dot Architecture with Exact 50% Base Opacity */
 .grid-dot {
   width: 2px;
   height: 2px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.75); /* Exactly 75% opacity base white */
+  background-color: rgba(255, 255, 255, 0.5); /* Exactly 50% opacity base white */
   transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.8s ease, opacity 0.8s ease;
   will-change: transform, opacity, background-color, box-shadow;
   pointer-events: auto;

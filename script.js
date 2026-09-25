@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let x = dot.targetX;
         let y = dot.targetY;
         let radius = 0.9; // Minimized resting radius (1.8px diameter)
-        let alpha = 0.75; // Resting opacity
+        let alpha = 0.5; // Resting opacity
 
         if (!isLoaded) {
           // If dot hasn't appeared yet
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allSettled = false;
             x = dot.startX;
             y = dot.startY;
-            alpha = 0.75 * appearProgress;
+            alpha = 0.5 * appearProgress;
           } else {
             // PHASE 2: MINIMAL & CALM ALIGNMENT INTO GRID POSITIONS
             const alignElapsed = elapsed - dot.alignStartTime;
@@ -160,12 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
               const ease = easeOutCubic(p);
               x = dot.startX + (dot.targetX - dot.startX) * ease;
               y = dot.startY + (dot.targetY - dot.startY) * ease;
-              alpha = 0.75;
+              alpha = 0.5;
             } else {
               // Perfectly settled at grid coordinate
               x = dot.targetX;
               y = dot.targetY;
-              alpha = 0.75;
+              alpha = 0.5;
             }
           }
         }
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (dist < 150) {
             const factor = 1 - dist / 150;
             radius = Math.max(radius, 0.9 + 0.7 * factor);
-            alpha = Math.min(1.0, alpha + 0.25 * factor);
+            alpha = Math.min(1.0, alpha + 0.5 * factor);
           }
         }
 
