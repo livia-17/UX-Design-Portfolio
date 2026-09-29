@@ -2753,11 +2753,11 @@
     .ja-step-title {
       color: #0A2460;
       font-family: "DM Sans", sans-serif;
-      font-size: 40px;
+      font-size: 36px;
       font-style: normal;
-      font-weight: 400;
-      line-height: 60px; /* 150% */
-      letter-spacing: -1px;
+      font-weight: 500;
+      line-height: 40px;
+      letter-spacing: -0.05em;
       margin: 0;
       white-space: nowrap;
     }
@@ -2810,6 +2810,13 @@
       .ja-step-img {
         max-width: 100%;
         height: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ja-step-title {
+        font-size: 26px;
+        line-height: 32px;
       }
     }
 
