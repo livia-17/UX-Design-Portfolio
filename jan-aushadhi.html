@@ -2458,6 +2458,78 @@
     }
 
 
+    /* Opportunity Section */
+    .ja-opportunity-section {
+      width: 100%;
+      background-color: #FFFFFF;
+      padding: 0 12%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .ja-opportunity-label {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      color: #737373;
+      margin: 0 0 12px 0;
+    }
+
+    .ja-opportunity-title {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 40px;
+      letter-spacing: -0.05em;
+      color: #0A2460;
+      margin: 0 0 31px 0;
+    }
+
+    .ja-opportunity-callout {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 10px 10px 20px;
+      border-left: 4px solid #737373;
+      max-width: 1081px;
+      width: 100%;
+    }
+
+    .ja-opportunity-callout-text {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 28px;
+      letter-spacing: -0.02em;
+      color: #5A5858;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .ja-opportunity-section {
+        padding: 0 6%;
+      }
+      .ja-opportunity-title {
+        font-size: 26px;
+        line-height: 32px;
+        margin-bottom: 20px;
+      }
+      .ja-opportunity-callout-text {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
     /* Conclusion Section */
     .ja-conclusion-section {
       width: 100%;
@@ -3802,13 +3874,17 @@
 
 
 
-    <!-- Conclusion Section -->
-    <section class="ja-conclusion-section" id="the-opportunity">
-      <h3 class="ja-conclusion-title fade-in-step">What was really going wrong</h3>
-      <p class="ja-conclusion-desc fade-in-step">
-        While affordability attracts first-time users, it <strong>does not ensure continued trust or dependence.</strong><br>
-        The Jan Aushadhi ecosystem <strong>lacks clear, accessible information</strong> that helps users confidently evaluate medicine options.
-      </p>
+    <!-- Opportunity Section -->
+    <section class="ja-opportunity-section" id="the-opportunity">
+      <span class="ja-opportunity-label fade-in-step">OPPORTUNITY</span>
+      <h2 class="ja-opportunity-title fade-in-step">The problem wasn't a single touchpoint</h2>
+      
+      <div class="ja-opportunity-callout fade-in-step">
+        <p class="ja-opportunity-callout-text">
+          While affordability attracts first-time users, it does not ensure continued trust or dependence.<br>
+          The Jan Aushadhi ecosystem lacks clear, accessible information that helps users confidently evaluate medicine options.
+        </p>
+      </div>
     </section>
 
     <!-- Problem Statement Section -->
