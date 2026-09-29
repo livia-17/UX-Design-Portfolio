@@ -2600,7 +2600,7 @@
       margin: 0;
     }
 
-    /* Rethinking Section */
+    /* Rethinking Solution Section */
     .ja-rethinking-section {
       width: 100%;
       background-color: #FFFFFF;
@@ -2608,33 +2608,77 @@
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
     }
 
-    .ja-rethinking-title {
-      color: #0A2460;
-      font-family: "DM Sans", sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin: 0 0 40px 0;
-      line-height: 1.5;
-    }
-
-    .ja-rethinking-desc {
-      color: #5A5858;
-      font-family: "DM Sans", sans-serif;
+    .ja-solution-label {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
       font-size: 20px;
-      line-height: 34px;
-      margin: 0 0 24px 0;
+      line-height: 20px;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      color: #737373;
+      margin: 0 0 12px 0;
     }
 
-    .ja-rethinking-desc:last-child {
+    .ja-solution-title {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 40px;
+      letter-spacing: -0.05em;
+      color: #0A2460;
+      margin: 0 0 31px 0;
+    }
+
+    .ja-solution-callout {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 10px 10px 20px;
+      border-left: 4px solid #737373;
+      max-width: 1081px;
+      width: 100%;
+    }
+
+    .ja-solution-callout-text p {
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 28px;
+      letter-spacing: -0.02em;
+      color: #5A5858;
+      margin: 0 0 20px 0;
+    }
+
+    .ja-solution-callout-text p:last-child {
       margin-bottom: 0;
     }
 
-    .ja-rethinking-desc strong {
+    .ja-solution-callout-text strong {
       font-weight: 700;
       color: #101828;
+    }
+
+    @media (max-width: 768px) {
+      .ja-rethinking-section {
+        padding: 80px 6%;
+      }
+      .ja-solution-title {
+        font-size: 26px;
+        line-height: 32px;
+        margin-bottom: 20px;
+      }
+      .ja-solution-callout-text p {
+        font-size: 16px;
+        line-height: 24px;
+      }
     }
 
     /* Unified Card Intro Section */
@@ -3906,13 +3950,19 @@
 
     <!-- Rethinking Solution Section -->
     <section class="ja-rethinking-section" id="solution">
-      <h2 class="ja-patterns-title fade-in-step">Rethinking how access, trust and information connect –<br>Thinking the solution</h2>
-      <p class="ja-rethinking-desc fade-in-step">
-        Insights from the research revealed that the core challenges – <strong>trust, fragmented information, and dependency on intermediaries</strong> could not be addressed through a single interface or touchpoint. The problem extended across prescriptions, medicine discovery, purchase, and follow-up.
-      </p>
-      <p class="ja-rethinking-desc fade-in-step">
-        This led to the exploration of a unified health card system as a way to connect users, doctors, and Jan Aushadhi Kendras through a shared layer of reliable information. Rather than acting as a product on its own, the card functions as an enabling system <strong>bridging prescriptions, medicine equivalence, and user history across physical and digital interactions.</strong>
-      </p>
+      <span class="ja-solution-label fade-in-step">SOLUTION</span>
+      <h2 class="ja-solution-title fade-in-step">Rethinking how access, trust and information connect</h2>
+      
+      <div class="ja-solution-callout fade-in-step">
+        <div class="ja-solution-callout-text">
+          <p>
+            Insights from the research revealed that the core challenges – <strong>trust, fragmented information, and dependency on intermediaries</strong> could not be addressed through a single interface or touchpoint. The problem extended across prescriptions, medicine discovery, purchase, and follow-up.
+          </p>
+          <p>
+            This led to the exploration of a unified health card system as a way to connect users, doctors, and Jan Aushadhi Kendras through a shared layer of reliable information. Rather than acting as a product on its own, the card functions as an enabling system <strong>bridging prescriptions, medicine equivalence, and user history across physical and digital interactions.</strong>
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- Unified Card Section -->
