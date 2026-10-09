@@ -1560,12 +1560,16 @@
       <div class="soulka-youtube-wrapper">
           <video 
             id="soulkaVideoPlayer"
-            src="Soulka/AboutSoulka.mp4" 
             autoplay
             muted
             loop 
             playsinline 
-            controls>
+            controls
+            preload="auto"
+            poster="Soulka/AboutSoulka_poster.png">
+            <source src="Soulka/AboutSoulka.mp4" type="video/mp4">
+            <source src="Soulka/About Soulka.mp4" type="video/mp4">
+            Your browser does not support the video tag.
           </video>
       </div>
     </section>
@@ -2052,7 +2056,36 @@
         fadeElements.forEach((el) => fadeObserver.observe(el));
       }
 
-      // HTML5 Video Scroll Controller removed to allow full native user control without interference
+      // Soulka Video Showcase Autoplay & Scroll Observer
+      const soulkaVideo = document.getElementById("soulkaVideoPlayer");
+      if (soulkaVideo) {
+        soulkaVideo.muted = true;
+        soulkaVideo.defaultMuted = true;
+
+        const playVideo = () => {
+          soulkaVideo.muted = true;
+          const promise = soulkaVideo.play();
+          if (promise !== undefined) {
+            promise.catch(() => {
+              // Browser autoplay policy prevented immediate playback; will resume on scroll or interaction
+            });
+          }
+        };
+
+        playVideo();
+
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              playVideo();
+            } else {
+              soulkaVideo.pause();
+            }
+          });
+        }, { threshold: 0.15 });
+
+        videoObserver.observe(soulkaVideo);
+      }
     });
 
     // Native Hardware-Accelerated Smooth Anchor Navigation for Sidebar Links
