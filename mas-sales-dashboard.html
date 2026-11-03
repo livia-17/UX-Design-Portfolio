@@ -936,10 +936,12 @@
 
     .telecaller-prob-feat-row {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
       width: 100%;
+      max-width: 685px; /* Aligns with CRM screen mockup width */
+      padding: 0 16px 0 13px; /* Aligns exactly with screen left & right bezels */
+      box-sizing: border-box;
       margin: 0 0 24px 0; /* Exact 24px gap to image below */
     }
 
