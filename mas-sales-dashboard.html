@@ -1560,23 +1560,25 @@
 
     .ash-targets-prob-feat-row {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
       width: 100%;
-      margin-bottom: 24px;
+      max-width: 685px; /* Aligns with ASH Targets screen mockup width */
+      padding: 0 16px 0 13px; /* Aligns exactly with screen left & right bezels */
+      box-sizing: border-box;
+      margin-bottom: 16px; /* 16px gap to image below */
     }
 
     .ash-targets-prob-box {
       display: flex;
       flex-direction: column;
-      max-width: 320px;
+      max-width: 480px;
     }
 
     .ash-targets-feat-box {
       display: flex;
       flex-direction: column;
-      max-width: 420px;
+      max-width: 620px;
     }
 
     .ash-targets-screen-container {
@@ -1739,7 +1741,8 @@
       .ash-overview-prob-feat-row,
       .ash-individual-prob-feat-row,
       .ash-leadassign-prob-feat-row,
-      .ash-analytics-prob-feat-row {
+      .ash-analytics-prob-feat-row,
+      .ash-targets-prob-feat-row {
         flex-direction: column;
         gap: 24px;
       }
@@ -3224,9 +3227,8 @@
         <div class="ash-targets-prob-box">
           <h4 class="prob-feat-label">PROBLEM</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">Setting, monitoring, and comparing sales</span>
-            <span class="line-lock">targets across multiple telecallers was a manual</span>
-            <span class="line-lock">process.</span>
+            <span class="line-lock">Setting and tracking sales targets across telecallers</span>
+            <span class="line-lock">was a manual, time-consuming process.</span>
           </p>
         </div>
 
@@ -3234,9 +3236,8 @@
         <div class="ash-targets-feat-box">
           <h4 class="prob-feat-label">FEATURE</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">The Targets page enables admissions sales heads to</span>
-            <span class="line-lock">set individual or team-wide targets, monitor target</span>
-            <span class="line-lock">achievement, and track telecaller performance</span>
+            <span class="line-lock">Targets page to set individual or team goals</span>
+            <span class="line-lock">and track telecaller performance.</span>
           </p>
         </div>
 
