@@ -1413,23 +1413,25 @@
 
     .ash-leadassign-prob-feat-row {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
       width: 100%;
-      margin-bottom: 24px;
+      max-width: 685px; /* Aligns with ASH Lead Assign screen mockup width */
+      padding: 0 16px 0 13px; /* Aligns exactly with screen left & right bezels */
+      box-sizing: border-box;
+      margin-bottom: 16px; /* 16px gap to image below */
     }
 
     .ash-leadassign-prob-box {
       display: flex;
       flex-direction: column;
-      max-width: 320px;
+      max-width: 480px;
     }
 
     .ash-leadassign-feat-box {
       display: flex;
       flex-direction: column;
-      max-width: 420px;
+      max-width: 620px;
     }
 
     .ash-leadassign-screen-container {
@@ -1733,7 +1735,8 @@
       .overview-prob-feat-row,
       .leaddetail-prob-feat-row,
       .ash-overview-prob-feat-row,
-      .ash-individual-prob-feat-row {
+      .ash-individual-prob-feat-row,
+      .ash-leadassign-prob-feat-row {
         flex-direction: column;
         gap: 24px;
       }
@@ -3105,10 +3108,8 @@
         <div class="ash-leadassign-prob-box">
           <h4 class="prob-feat-label">PROBLEM</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">Managing lead allocation and tracking assigned</span>
-            <span class="line-lock">and unassigned leads was a manual and time-</span>
-            <span class="line-lock">consuming process, making it difficult to</span>
-            <span class="line-lock">organize and distribute leads efficiently.</span>
+            <span class="line-lock">Manual lead allocation and tracking</span>
+            <span class="line-lock">made lead management time-consuming.</span>
           </p>
         </div>
 
@@ -3116,10 +3117,8 @@
         <div class="ash-leadassign-feat-box">
           <h4 class="prob-feat-label">FEATURE</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">The Leads page enables admissions sales heads</span>
-            <span class="line-lock">to view assigned and unassigned leads, assign</span>
-            <span class="line-lock">leads to telecallers, filter lead lists, and import</span>
-            <span class="line-lock">new leads from one centralized interface.</span>
+            <span class="line-lock">Leads page enables sales heads to assign,</span>
+            <span class="line-lock">filter, and import leads efficiently.</span>
           </p>
         </div>
 
