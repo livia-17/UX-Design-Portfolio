@@ -1156,23 +1156,25 @@
 
     .leaddetail-prob-feat-row {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
       width: 100%;
-      margin-bottom: 24px;
+      max-width: 685px; /* Aligns with Lead Detail screen mockup width */
+      padding: 0 16px 0 13px; /* Aligns exactly with screen left & right bezels */
+      box-sizing: border-box;
+      margin-bottom: 16px; /* 16px gap to image below */
     }
 
     .leaddetail-prob-box {
       display: flex;
       flex-direction: column;
-      max-width: 320px;
+      max-width: 480px;
     }
 
     .leaddetail-feat-box {
       display: flex;
       flex-direction: column;
-      max-width: 420px;
+      max-width: 620px;
     }
 
     .leaddetail-screen-container {
@@ -1724,7 +1726,8 @@
 
     @media (max-width: 850px) {
       .telecaller-prob-feat-row,
-      .overview-prob-feat-row {
+      .overview-prob-feat-row,
+      .leaddetail-prob-feat-row {
         flex-direction: column;
         gap: 24px;
       }
@@ -2914,9 +2917,8 @@
         <div class="leaddetail-prob-box">
           <h4 class="prob-feat-label">PROBLEM</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">Updating lead information and managing the</span>
-            <span class="line-lock">next steps after every call was fragmented</span>
-            <span class="line-lock">and time-consuming.</span>
+            <span class="line-lock">Managing lead updates and follow-ups</span>
+            <span class="line-lock">after calls was fragmented and time-consuming.</span>
           </p>
         </div>
 
@@ -2924,10 +2926,8 @@
         <div class="leaddetail-feat-box">
           <h4 class="prob-feat-label">FEATURE</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">The Lead Detail page streamlines post-call</span>
-            <span class="line-lock">workflows by combining lead information,</span>
-            <span class="line-lock">call updates, activity timeline, follow-up</span>
-            <span class="line-lock">reminders and lead closure into one place</span>
+            <span class="line-lock">Centralized Lead Details page combining call updates,</span>
+            <span class="line-lock">activity history, follow-ups, and lead closure.</span>
           </p>
         </div>
 
