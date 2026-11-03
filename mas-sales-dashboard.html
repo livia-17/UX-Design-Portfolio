@@ -1485,23 +1485,25 @@
 
     .ash-analytics-prob-feat-row {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
       width: 100%;
-      margin-bottom: 24px;
+      max-width: 685px; /* Aligns with ASH Analytics screen mockup width */
+      padding: 0 16px 0 13px; /* Aligns exactly with screen left & right bezels */
+      box-sizing: border-box;
+      margin-bottom: 16px; /* 16px gap to image below */
     }
 
     .ash-analytics-prob-box {
       display: flex;
       flex-direction: column;
-      max-width: 320px;
+      max-width: 480px;
     }
 
     .ash-analytics-feat-box {
       display: flex;
       flex-direction: column;
-      max-width: 420px;
+      max-width: 620px;
     }
 
     .ash-analytics-screen-container {
@@ -1736,7 +1738,8 @@
       .leaddetail-prob-feat-row,
       .ash-overview-prob-feat-row,
       .ash-individual-prob-feat-row,
-      .ash-leadassign-prob-feat-row {
+      .ash-leadassign-prob-feat-row,
+      .ash-analytics-prob-feat-row {
         flex-direction: column;
         gap: 24px;
       }
@@ -3165,10 +3168,8 @@
         <div class="ash-analytics-prob-box">
           <h4 class="prob-feat-label">PROBLEM</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">Sales heads lacked a centralized way to analyze</span>
-            <span class="line-lock">lead conversions, monitor KPI performance and</span>
-            <span class="line-lock">compare telecaller productivity making it difficult</span>
-            <span class="line-lock">to identify trends and optimize team performance.</span>
+            <span class="line-lock">Sales heads struggled to analyze lead conversions,</span>
+            <span class="line-lock">track KPIs and compare telecaller performance.</span>
           </p>
         </div>
 
@@ -3176,10 +3177,8 @@
         <div class="ash-analytics-feat-box">
           <h4 class="prob-feat-label">FEATURE</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">The Analytics page enables admissions sales heads</span>
-            <span class="line-lock">to monitor lead performance, track key KPIs, and</span>
-            <span class="line-lock">evaluate telecaller performance from one</span>
-            <span class="line-lock">centralized interface.</span>
+            <span class="line-lock">Analytics page with conversion insights,</span>
+            <span class="line-lock">KPI tracking and telecaller performance metrics.</span>
           </p>
         </div>
 
