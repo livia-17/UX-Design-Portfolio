@@ -1080,23 +1080,25 @@
 
     .overview-prob-feat-row {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
       width: 100%;
+      max-width: 685px; /* Aligns with Overview screen mockup width */
+      padding: 0 16px 0 13px; /* Aligns exactly with screen left & right bezels */
+      box-sizing: border-box;
       margin-bottom: 24px;
     }
 
     .overview-prob-box {
       display: flex;
       flex-direction: column;
-      max-width: 320px;
+      max-width: 480px;
     }
 
     .overview-feat-box {
       display: flex;
       flex-direction: column;
-      max-width: 420px;
+      max-width: 620px;
     }
 
     .overview-screen-container {
@@ -1721,7 +1723,8 @@
     }
 
     @media (max-width: 850px) {
-      .telecaller-prob-feat-row {
+      .telecaller-prob-feat-row,
+      .overview-prob-feat-row {
         flex-direction: column;
         gap: 24px;
       }
@@ -2856,9 +2859,7 @@
           <h4 class="prob-feat-label">PROBLEM</h4>
           <p class="prob-feat-desc">
             <span class="line-lock">Tracking daily targets and lead progress</span>
-            <span class="line-lock">across multiple metrics was time-consuming</span>
-            <span class="line-lock">and reduced visibility into overall</span>
-            <span class="line-lock">performance</span>
+            <span class="line-lock">across metrics was time-consuming and fragmented.</span>
           </p>
         </div>
 
@@ -2866,10 +2867,8 @@
         <div class="overview-feat-box">
           <h4 class="prob-feat-label">FEATURE</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">Designed a centralized overview that brings</span>
-            <span class="line-lock">together live KPIs, lead status tracking and</span>
-            <span class="line-lock">performance insights into a single,</span>
-            <span class="line-lock">easy-to-scan dashboard.</span>
+            <span class="line-lock">Centralized dashboard with live KPIs,</span>
+            <span class="line-lock">lead tracking, and performance insights.</span>
           </p>
         </div>
 
