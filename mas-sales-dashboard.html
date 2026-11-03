@@ -1266,23 +1266,25 @@
 
     .ash-overview-prob-feat-row {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
       width: 100%;
-      margin-bottom: 24px;
+      max-width: 685px; /* Aligns with ASH Overview screen mockup width */
+      padding: 0 16px 0 13px; /* Aligns exactly with screen left & right bezels */
+      box-sizing: border-box;
+      margin-bottom: 16px; /* 16px gap to image below */
     }
 
     .ash-overview-prob-box {
       display: flex;
       flex-direction: column;
-      max-width: 320px;
+      max-width: 480px;
     }
 
     .ash-overview-feat-box {
       display: flex;
       flex-direction: column;
-      max-width: 420px;
+      max-width: 620px;
     }
 
     .ash-overview-screen-container {
@@ -1727,7 +1729,8 @@
     @media (max-width: 850px) {
       .telecaller-prob-feat-row,
       .overview-prob-feat-row,
-      .leaddetail-prob-feat-row {
+      .leaddetail-prob-feat-row,
+      .ash-overview-prob-feat-row {
         flex-direction: column;
         gap: 24px;
       }
@@ -2988,10 +2991,8 @@
         <div class="ash-overview-prob-box">
           <h4 class="prob-feat-label">PROBLEM</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">Monitoring overall lead distribution and telecaller</span>
-            <span class="line-lock">assigned lead required switching between multiple</span>
-            <span class="line-lock">views, making it difficult to gain a quick understanding</span>
-            <span class="line-lock">of team progress and pending work</span>
+            <span class="line-lock">Admissions heads struggled to track lead distribution</span>
+            <span class="line-lock">and team workload across multiple views.</span>
           </p>
         </div>
 
@@ -2999,11 +3000,8 @@
         <div class="ash-overview-feat-box">
           <h4 class="prob-feat-label">FEATURE</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">The Overview page helps admissions sales</span>
-            <span class="line-lock">heads monitor team performance by</span>
-            <span class="line-lock">providing a centralized view of live KPIs,</span>
-            <span class="line-lock">lead distribution, follow-up status, and</span>
-            <span class="line-lock">telecaller workload at one place</span>
+            <span class="line-lock">Centralized overview with live KPIs,</span>
+            <span class="line-lock">lead distribution, and telecaller workload tracking.</span>
           </p>
         </div>
 
