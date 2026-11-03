@@ -1338,23 +1338,25 @@
 
     .ash-individual-prob-feat-row {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 133px; /* Exact 133px gap between Problem and Feature boxes */
       width: 100%;
-      margin-bottom: 24px;
+      max-width: 685px; /* Aligns with ASH Individual screen mockup width */
+      padding: 0 16px 0 13px; /* Aligns exactly with screen left & right bezels */
+      box-sizing: border-box;
+      margin-bottom: 16px; /* 16px gap to image below */
     }
 
     .ash-individual-prob-box {
       display: flex;
       flex-direction: column;
-      max-width: 320px;
+      max-width: 480px;
     }
 
     .ash-individual-feat-box {
       display: flex;
       flex-direction: column;
-      max-width: 420px;
+      max-width: 620px;
     }
 
     .ash-individual-screen-container {
@@ -1730,7 +1732,8 @@
       .telecaller-prob-feat-row,
       .overview-prob-feat-row,
       .leaddetail-prob-feat-row,
-      .ash-overview-prob-feat-row {
+      .ash-overview-prob-feat-row,
+      .ash-individual-prob-feat-row {
         flex-direction: column;
         gap: 24px;
       }
@@ -3045,10 +3048,8 @@
         <div class="ash-individual-prob-box">
           <h4 class="prob-feat-label">PROBLEM</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">Tracking an individual telecaller’s progress</span>
-            <span class="line-lock">required manually reviewing lead records,</span>
-            <span class="line-lock">making performance monitoring time-</span>
-            <span class="line-lock">consuming and inefficient.</span>
+            <span class="line-lock">Admissions heads struggled to track individual</span>
+            <span class="line-lock">telecaller performance and lead progress manually.</span>
           </p>
         </div>
 
@@ -3056,10 +3057,8 @@
         <div class="ash-individual-feat-box">
           <h4 class="prob-feat-label">FEATURE</h4>
           <p class="prob-feat-desc">
-            <span class="line-lock">The Individual Telecaller Page enables admissions</span>
-            <span class="line-lock">sales heads to monitor telecaller performance, review</span>
-            <span class="line-lock">assigned leads, track lead progress and access</span>
-            <span class="line-lock">detailed reports from one centralized interface.</span>
+            <span class="line-lock">Individual telecaller's dashboard with assigned leads,</span>
+            <span class="line-lock">performance tracking and detailed reports.</span>
           </p>
         </div>
 
