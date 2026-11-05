@@ -412,42 +412,10 @@ document.addEventListener('DOMContentLoaded', () => {
      -------------------------------------------------------------------------- */
 
   /* --------------------------------------------------------------------------
-     6. Custom Tracking Cursor Logic
+     6. Custom Tracking Cursor Logic (Disabled - System Default Cursor Active)
      -------------------------------------------------------------------------- */
   const cursor = document.getElementById('custom-cursor');
   if (cursor) {
-    // Track mouse movement, update coordinates with setProperty ('important' flag) and reveal cursor
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.setProperty('left', e.clientX + 'px', 'important');
-      cursor.style.setProperty('top', e.clientY + 'px', 'important');
-      cursor.style.setProperty('opacity', '1', 'important');
-    });
-
-    // Define all elements that should trigger the active state
-    const interactiveSelector = 'a, button, .glass-tag, .project-card, .floating-card, .continue-card, input, textarea, .navbar-brand';
-    const interactiveElements = document.querySelectorAll(interactiveSelector);
-
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('is-active'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('is-active'));
-    });
-
-    // Event delegation to catch all dynamic and nested hover states seamlessly
-    document.addEventListener('mouseover', (e) => {
-      if (e.target && e.target.closest && e.target.closest(interactiveSelector)) {
-        cursor.classList.add('is-active');
-      }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-      if (e.target && e.target.closest && e.target.closest(interactiveSelector)) {
-        const related = e.relatedTarget;
-        if (!related || !related.closest || !related.closest(interactiveSelector)) {
-          cursor.classList.remove('is-active');
-        }
-      }
-    });
-  } else {
-    console.error('Custom cursor element not found in the DOM.');
+    cursor.style.display = 'none';
   }
 });

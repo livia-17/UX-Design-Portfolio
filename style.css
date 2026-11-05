@@ -13,23 +13,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: none !important;
   text-shadow: none !important;
 }
 
-/* Base cursor container setup */
+/* Custom Tracking Cursor (Disabled - System Default Cursor Active) */
 #custom-cursor {
-  position: fixed !important;
-  top: 0;  /* No !important so JS can update coordinates freely */
-  left: 0; /* No !important so JS can update coordinates freely */
-  width: 44px !important;  /* Reduced from 60px */
-  height: 44px !important; /* Reduced from 60px */
-  pointer-events: none !important;
-  z-index: 100000 !important;
-  transform: translate(-50%, -50%) !important;
-  opacity: 0; /* Hide initially until first mouse movement */
-  transition: opacity 0.3s ease; /* Smooth fade in */
-  will-change: left, top, opacity;
+  display: none !important;
 }
 
 /* Overlap the two states perfectly */
